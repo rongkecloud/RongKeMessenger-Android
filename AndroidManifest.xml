@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+		  package="com.rongkecloud.test"
+		  android:installLocation="auto"
+		  android:versionCode="15"
+		  android:versionName="2.3.15">
+
+	<uses-sdk
+			android:minSdkVersion="11"
+			android:targetSdkVersion="20"/>
+
+	<uses-feature
+			android:name="android.hardware.camera"/>
+
+	<uses-permission android:name="android.permission.VIBRATE"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+	<uses-permission android:name="android.permission.CAMERA"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+	<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+	<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+	<uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+	<application
+			android:name=".system.App"
+			android:hasCode="true"
+			android:icon="@drawable/logo"
+			android:debuggable="true"
+			android:label="@string/app_name"
+			android:persistent="true"
+			android:theme="@android:style/Theme.NoTitleBar">
+
+		<!-- 提醒使用的UI -->
+		<activity
+				android:name=".ui.reminder.ReminderActivity"
+				android:configChanges="orientation|keyboardHidden"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.Translucent"/>
+
+		<!-- ui begin -->
+		<!-- 欢迎页面 -->
+		<activity
+				android:name=".ui.WelcomeActivity"
+				android:configChanges="orientation|keyboardHidden"
+				android:screenOrientation="portrait">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+
+		<!-- 注册 -->
+		<activity
+				android:name=".ui.RegisterActivity"
+				android:screenOrientation="portrait"
+				android:windowSoftInputMode="stateHidden|adjustPan"/>
+
+		<!-- 登录 -->
+		<activity
+				android:name=".ui.LoginActivity"
+				android:screenOrientation="portrait"
+				android:windowSoftInputMode="stateHidden|adjustPan"/>
+		<!-- 引导页 -->
+		<activity
+				android:name=".ui.GuideActivity"
+				android:screenOrientation="portrait"
+				android:windowSoftInputMode="stateHidden|adjustPan"/>
+		<!-- 主界面 -->
+		<activity
+				android:name=".ui.MainActivity"
+				android:launchMode="singleTask"
+				android:screenOrientation="portrait"/>
+		<!-- 通讯录 -->
+		<activity
+				android:name=".ui.contact.AddressListActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".ui.contact.ContactDetailInfoActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".ui.contact.AddFriendsListActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".ui.contact.NotifyActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".ui.contact.BigImageActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".ui.contact.AddFriendsActivity"
+				android:screenOrientation="portrait"/>
+		<!-- 设置 -->
+		<activity
+				android:name=".ui.setting.SettingMainActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".ui.setting.SettingPersonalActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".ui.setting.SettingModifyPwdActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".ui.setting.SettingFeedbackActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".ui.setting.SettingAboutActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".ui.setting.ShowContentsActivity"
+				android:screenOrientation="landscape"/>
+		<activity
+				android:name=".ui.setting.mms.SettingMmsActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".ui.setting.mms.SettingMmsNotifyActivity"
+				android:screenOrientation="portrait"/>
+		<!-- 即时通信  begin -->
+		<!-- 设置聊天背景页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatSetMsgBgActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"/>
+		<!-- 录制视频页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatRecordVideoActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"
+				android:windowSoftInputMode="stateAlwaysHidden"/>
+		<!-- 选择会话成员页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatSelectUsersActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"
+				android:windowSoftInputMode="stateHidden|adjustPan"/>
+		<!-- 搜索消息会话列表页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatSearchChatListActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"
+				android:windowSoftInputMode="adjustResize"/>
+
+		<!-- 搜索消息列表页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatSearchMessageListActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"
+				android:windowSoftInputMode="stateHidden|adjustPan"/>
+		<!-- 会话列表页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatListActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"/>
+		<!-- 聊天页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatMsgActivity"
+				android:launchMode="singleTask"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"
+				android:windowSoftInputMode="adjustResize"/>
+		<!-- 选择文件页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatSelectFileActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"/>
+		<!-- 群聊会话管理页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatGroupManageActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"/>
+		<!-- 单聊会话管理页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatSingleManageActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"/>
+		<!-- 查看图片页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatViewImagesActivity"
+				android:screenOrientation="portrait"/>
+		<!-- 转发/分享页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatForwardActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"
+				android:windowSoftInputMode="stateHidden|adjustPan"/>
+		<!-- 联系人列表页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatAddressListActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"/>
+		<!-- 用户创建和参与的群列表页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatGroupListActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"/>
+		<!-- 接收第三方分享信息的页面 -->
+		<activity
+				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatReceiveThirdInfoActivity"
+				android:launchMode="singleTask"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.Translucent">
+
+			<!-- 一张图片的分享 -->
+			<intent-filter>
+				<action android:name="android.intent.action.SEND"/>
+
+				<category android:name="android.intent.category.DEFAULT"/>
+
+				<data android:mimeType="image/*"/>
+			</intent-filter>
+			<!-- 多张图片的分享 -->
+			<intent-filter>
+				<action android:name="android.intent.action.SEND_MULTIPLE"/>
+
+				<category android:name="android.intent.category.DEFAULT"/>
+
+				<data android:mimeType="image/*"/>
+			</intent-filter>
+		</activity>
+		<!-- 即时通信  end -->
+
+
+		<!-- 音视频通话相关的内容 begin -->
+		<activity
+				android:name="com.rongke.cloud.av.demo.ui.RKCloudAVDemoActivity"
+				android:launchMode="singleTask"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name="com.rongke.cloud.av.demo.ui.RKCloudAVCallLogListActivity"
+				android:screenOrientation="portrait"/>
+		<!-- 音视频通话相关的内容 end -->
+
+
+		<!-- 多人语音  begin -->
+		<activity
+				android:name="com.rongke.cloud.meeting.demo.ui.RKCloudMeetingDemoActivity"
+				android:launchMode="singleTask"
+				android:screenOrientation="portrait"/>
+		<!-- 邀请加入多人语音会议室的UI -->
+		<activity
+				android:name="com.rongke.cloud.meeting.demo.ui.RKCloudMeetingDemoInvitedActivity"
+				android:configChanges="orientation|keyboardHidden"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.Translucent">
+			<intent-filter>
+				<action android:name="action_rkcloud_mutlimeeting_invite"/>
+
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
+		<!-- 多人语音  end -->
+
+		<!--融智客服云 begin-->
+
+		<!-- 设置连接service页面 -->
+		<activity
+				android:name="com.rongkecloud.customerservice.ui.RKServiceChatConnectActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.Translucent"/>
+
+		<!-- 设置聊天页面 -->
+		<activity
+				android:name="com.rongkecloud.customerservice.ui.RKServiceChatMsgActivity"
+				android:launchMode="singleTask"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"
+				android:windowSoftInputMode="stateHidden|adjustResize"/>
+
+		<!-- 设置留言给客服页面 -->
+		<activity
+				android:name="com.rongkecloud.customerservice.ui.RKServiceChatLeaveMessageActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"/>
+
+		<!-- 设置图片滑动页面 -->
+		<activity
+				android:name="com.rongkecloud.customerservice.ui.RKServiceChatViewImagesActivity"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar"/>
+		<!--融智客服云 end-->
+
+		<receiver android:name=".system.AutoStartReceiver">
+			<intent-filter
+					android:enabled="true"
+					android:exported="false">
+				<action android:name="android.intent.action.BOOT_COMPLETED"/>
+				<action android:name="android.intent.action.USER_PRESENT"/>
+				<action android:name="android.intent.action.GTALK_CONNECTED"/>
+				<action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+				<action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+				<action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+				<action android:name="android.net.wifi.STATE_CHANGE"/>
+				<action android:name="android.intent.action.SCREEN_OFF"/>
+				<action android:name="android.intent.action.SCREEN_ON"/>
+				<action android:name="android.intent.action.PHONE_STATE"/>
+				<action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</receiver>
+
+		<service android:name="com.rongkecloud.android.lps.LPSDaemonService"
+				 android:exported="false"
+				 android:process=":remote"/>
+
+		<receiver android:name="com.rongkecloud.android.lps.RKServiceBroadcastReceiver"
+				  android:enabled="true"
+				  android:exported="false">
+
+			<intent-filter android:priority="90000">
+				<action android:name="android.intent.action.USER_PRESENT" />
+			</intent-filter>
+
+			<intent-filter>
+				<action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+				<action android:name="android.net.wifi.RSSI_CHANGED"/>
+				<action android:name="android.net.wifi.STATE_CHANGE"/>
+				<action android:name="android.net.wifi.WIFI_STATE_CHANGED"/>
+			</intent-filter>
+
+			<intent-filter>
+				<action android:name="lps.message.receive" />
+				<action android:name="lps.connection.state.change" />
+				<action android:name="lps.auth.result.broadcast" />
+				<action android:name="lps.reconnect" />
+				<action android:name="lps.ping" />
+
+				<data android:mimeType="*/*" />
+			</intent-filter>
+		</receiver>
+
+		<meta-data
+				android:name="RKCLOUD_KEY"
+				android:value="ee5646b5d8be3a57918c9857850b53be90ce1004"/>
+	</application>
+
+</manifest>
