@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/rkcloud_userandpass_bgcolor"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_layout" />
+    <View
+            style="@style/divider_line_style"
+    />
+    <!-- 分隔线 -->
+    <include layout="@layout/rkcloud_chat_setting_dividezone" />
+    <LinearLayout
+            style="@style/ui_bg_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        android:orientation="vertical"
+    >
+    <EditText
+        android:id="@+id/setting_old_pwd"
+        style="@style/setting_modify_pwd_edittext_style"
+        android:background="@color/bg_transparent"
+        android:hint="@string/setting_old_pwd_hint"
+        android:inputType="textPassword" />
+    <View
+            style="@style/divider_line_style"
+            android:layout_marginLeft="15dip"
+    />
+    <EditText
+        android:id="@+id/setting_new_pwd"
+        style="@style/setting_modify_pwd_edittext_style"
+        android:layout_marginTop="10dip"
+        android:hint="@string/setting_new_pwd_hint"
+        android:background="@color/bg_transparent"
+        android:inputType="textPassword" />
+    <View
+            style="@style/divider_line_style"
+        android:layout_marginLeft="15dip"
+    />
+    <EditText
+        android:id="@+id/setting_new_pwd_again"
+        style="@style/setting_modify_pwd_edittext_style"
+        android:layout_marginTop="10dip"
+        android:hint="@string/setting_new_pwd_again_hint"
+        android:background="@color/bg_transparent"
+        android:inputType="textPassword" />
+    </LinearLayout>
+</LinearLayout>

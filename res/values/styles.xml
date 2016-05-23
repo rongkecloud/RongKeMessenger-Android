@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- UI使用的背景样式 -->
+    <style name="ui_bg_style">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!-- UI使用的白色背景样式 -->
+    <style name="ui_bg_style_white">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!-- title左侧文字样式 -->
+    <style name="title_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxWidth">200dip</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textColor">@color/title_content_textcolor</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:focusable">false</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingLeft">5dip</item>
+    </style>
+    
+    <style name="main_tabs_fragment_btn">
+        <item name="android:padding">0dip</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/color_tab_text</item>
+        <item name="android:scaleType">matrix</item>
+        <item name="android:background">@color/tab_bg</item>
+    </style>
+    <!-- 登录输入框样式 -->
+    <style name="login_edittext_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">35dip</item>
+        <item name="android:drawableRight">@drawable/rkcloud_chat_clear_img</item>
+        <item name="android:drawablePadding">6dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:imeOptions">flagNoExtractUi</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/text_Color_Hint</item>
+        <item name="android:paddingRight">10dip</item>
+    </style>
+
+    <!-- 登录按钮样式 -->
+    <style name="btn_login_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/rkcloud_chat_btn_mms_send</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingLeft">10dip</item>
+        <item name="android:paddingRight">10dip</item>
+        <item name="android:paddingTop">3dip</item>
+        <item name="android:paddingBottom">3dip</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <!-- 列表的统一样式 -->
+    <style name="ListviewStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:divider">@drawable/listview_divider</item>
+        <item name="android:cacheColorHint">#00000000</item>
+        <item name="android:listSelector">#00000000</item>
+        <item name="android:scrollingCache">false</item>
+        <item name="android:fastScrollEnabled">false</item>
+        <item name="android:fadeScrollbars">false</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <!-- 列表条目的统一样式 -->
+    <style name="ListViewItemStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:paddingLeft">@dimen/listview_item_paddingleftright</item>
+        <item name="android:paddingRight">@dimen/listview_item_paddingleftright</item>
+        <item name="android:paddingTop">@dimen/listview_item_paddingtopbottom</item>
+        <item name="android:paddingBottom">@dimen/listview_item_paddingtopbottom</item>
+        <item name="android:background">@drawable/rkcloud_chat_listview_item_bg</item>
+        <item name="android:descendantFocusability">blocksDescendants</item>
+    </style>
+    
+    <!-- 删除好友按钮样式 -->
+    <style name="contact_detail_operation_friend_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">35dip</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/rkcloud_chat_listview_item_bg</item>
+        <item name="android:textColor">@color/contact_account_textcolor</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingLeft">10dip</item>
+        <item name="android:paddingRight">10dip</item>
+        <item name="android:paddingTop">3dip</item>
+        <item name="android:paddingBottom">3dip</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    
+    <!-- 修改密码输入框样式 -->
+    <style name="setting_modify_pwd_edittext_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">50dip</item>
+        <item name="android:layout_marginLeft">15dip</item>
+        <item name="android:layout_marginRight">10dip</item>
+        <item name="android:layout_marginTop">10dip</item>
+        <item name="android:textColorHint">@color/text_Color_Hint</item>
+        <item name="android:textColor">@color/rkcloud_chat_setting_item_tip_textcolor</item>
+
+        <item name="android:maxLength">20</item>
+    </style>
+
+    <!-- 分隔线样式 -->
+    <style name="divider_line_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/chat_msg_time_line</item>
+    </style>
+
+
+    <!-- 详细资料按钮样式 -->
+    <style name="details_button_style">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textSize">@dimen/contact_detail_rematk_textsize</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="myDialogTheme" parent="android:Theme.Dialog">
+        <item name="android:windowNoTitle">true</item><!--除去title-->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>

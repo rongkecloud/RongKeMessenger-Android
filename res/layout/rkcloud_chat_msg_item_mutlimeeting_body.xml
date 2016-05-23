@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/rkcloud_chat_msg_content_paddingBottom"
+    android:paddingLeft="@dimen/rkcloud_chat_msg_content_paddingleft"
+    android:paddingRight="@dimen/rkcloud_chat_msg_content_paddingright"
+    android:paddingTop="@dimen/rkcloud_chat_msg_content_paddingtop" >
+
+    <!-- 图标 -->
+
+    <ImageView
+        android:id="@+id/avcall_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="2dip"
+        android:src="@drawable/rkcloud_chat_img_msg_mutlimeeting" />
+
+    <TextView
+        android:id="@+id/meeting_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff333333"
+        android:textSize="16sp" />
+
+</LinearLayout>

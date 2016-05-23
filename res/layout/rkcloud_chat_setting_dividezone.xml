@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/rkcloud_chat_setting_dividezone_height" >
+
+    <ImageView
+        style="@style/rkcloud_chat_listview_divide_style"
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        style="@style/rkcloud_chat_listview_divide_style"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

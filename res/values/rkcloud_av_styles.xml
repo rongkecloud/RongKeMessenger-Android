@@ -1,0 +1,30 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="rkcloud_av_btnzone_style">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:visibility">gone</item>
+    </style>
+    
+    <style name="rkcloud_av_btn_icon_style">
+        <item name="android:layout_width">@dimen/rkcloud_av_btn_bg_width</item>
+        <item name="android:layout_height">@dimen/rkcloud_av_btn_bg_height</item>
+        <item name="android:background">@drawable/rkcloud_av_bg_btn_other</item>
+    </style>
+    
+    <style name="rkcloud_av_btn_text_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">3dip</item>
+        <item name="android:paddingLeft">2dip</item>
+        <item name="android:paddingRight">2dip</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/rkcloud_av_btn_textsize</item>
+        <item name="android:textColor">@color/rkcloud_av_btn_textcolor</item>
+    </style>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+	   android:shape="rectangle">
+
+	<stroke android:width="5dip" android:color="#ffffff"/>
+
+	<corners android:radius="@dimen/rkcloud_chat_record_btn_bg_start_radius"/>
+
+	<size
+			android:height="@dimen/rkcloud_chat_record_btn_bg_start_widthheight"
+			android:width="@dimen/rkcloud_chat_record_btn_bg_start_widthheight"/>
+</shape>

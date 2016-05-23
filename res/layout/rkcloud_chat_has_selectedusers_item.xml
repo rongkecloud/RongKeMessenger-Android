@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants" >
+
+    <com.rongkecloud.test.ui.widget.RoundedImageView
+        android:id="@+id/headerimg"
+        android:layout_width="@dimen/rkcloud_chat_selectuser_columnwidth"
+        android:layout_height="@dimen/rkcloud_chat_selectuser_columnwidth"
+        android:scaleType="fitXY"
+        android:src="@drawable/rkcloud_chat_img_header_default" />
+
+</RelativeLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <FrameLayout
+        android:id="@+id/cropimage"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ff000000" >
+
+        <com.rongkecloud.chat.demo.ui.widget.RKCloudChatTouchImageViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <!-- 底部操作栏 -->
+
+        <LinearLayout
+            android:id="@+id/layout_ope"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/rkcloud_chat_bg_viewimg_footer"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <!-- 返回 -->
+
+            <TextView
+                android:id="@+id/nav_return"
+                style="@style/rkcloud_chat_viewimage_btn_style"
+                android:text="@string/rkcloud_chat_btn_return" />
+
+            <!-- 保存 -->
+
+            <TextView
+                android:id="@+id/nav_save"
+                style="@style/rkcloud_chat_viewimage_btn_style"
+                android:text="@string/rkcloud_chat_btn_save" />
+            <!-- 转发 -->
+
+            <TextView
+                android:id="@+id/nav_forward"
+                style="@style/rkcloud_chat_viewimage_btn_style"
+                android:text="@string/rkcloud_chat_btn_forward" />
+            <!-- 分享 -->
+
+            <TextView
+                android:id="@+id/nav_share"
+                style="@style/rkcloud_chat_viewimage_btn_style"
+                android:text="@string/rkcloud_chat_btn_share" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/rkcloud_chat_titlezone_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/rkcloud_chat_titlezone_title_textcolor"
+        android:textSize="@dimen/rkcloud_chat_titlezone_title_textsize" />
+
+</RelativeLayout>

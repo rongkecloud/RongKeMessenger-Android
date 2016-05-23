@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+
+        <RelativeLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <com.rongkecloud.test.ui.widget.NoNetworkHintView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="@color/tab_line" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tab_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" 
+        android:paddingTop="1dip"
+        android:paddingBottom="1dip">
+
+        <!-- 会话 -->
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/bnt_conversation"
+                style="@style/main_tabs_fragment_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/maintab_conversation_ic"
+                android:text="@string/tab_conversation" />
+
+            <TextView
+                android:id="@+id/msg_unread_cnt"
+                style="@style/rkcloud_chat_chat_unreadcnt_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dip"
+                android:layout_alignParentRight="true"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
+        <!-- 通讯录 -->
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/bnt_address_book"
+                style="@style/main_tabs_fragment_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/maintab_addressbook_ic"
+                android:text="@string/tab_address_book" />
+        </RelativeLayout>
+
+        <!-- 设置 -->
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/bnt_setting"
+                style="@style/main_tabs_fragment_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/maintab_setting_ic"
+                android:text="@string/tab_setting" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

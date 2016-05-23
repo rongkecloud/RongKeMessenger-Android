@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ui_bg_style"
+    android:layout_width="fill_parent"
+    android:background="@color/register_bg"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_layout" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dip"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dip"
+                android:text="@string/app_name"
+                android:visibility="gone"
+                android:textColor="@color/login_edittext_textcolor"
+                android:textSize="28sp" />
+
+            <com.rongkecloud.chat.demo.ui.widget.RKCloudChatSearchEditText
+                android:id="@+id/register_name"
+                style="@style/login_edittext_style"
+                android:hint="@string/register_input_name_hint"
+                android:inputType="textVisiblePassword"
+                android:layout_marginBottom="10dp"
+                />
+            <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/text_Color_Hint"
+            />
+            <com.rongkecloud.chat.demo.ui.widget.RKCloudChatSearchEditText
+                android:id="@+id/register_pwd"
+                style="@style/login_edittext_style"
+                android:hint="@string/register_input_pwd_hint"
+                android:maxLength="20"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:password="true" />
+            <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/text_Color_Hint"
+            />
+            <com.rongkecloud.chat.demo.ui.widget.RKCloudChatSearchEditText
+                android:id="@+id/register_pwd_again"
+                style="@style/login_edittext_style"
+                android:hint="@string/register_input_pwd_again_hint"
+                android:maxLength="20"
+                android:layout_marginTop="10dp"
+                android:password="true" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/registerbnt"
+            style="@style/btn_login_style"
+            android:layout_marginTop="30dip"
+            android:layout_marginLeft="40dip"
+            android:layout_marginRight="40dip"
+            android:textColor="@color/white"
+            android:text="@string/register_btn" />
+</LinearLayout>

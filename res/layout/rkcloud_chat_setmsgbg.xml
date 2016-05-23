@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    style="@style/rkcloud_chat_ui_bg_style"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <!-- 标题部分 -->
+
+    <include
+        android:id="@+id/layout_title"
+        layout="@layout/rkcloud_chat_title_layout" />
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <ImageView style="@style/rkcloud_chat_listview_divide_style" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" 
+            android:paddingTop="5dip"
+            android:paddingBottom="5dip"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip">
+
+            <Button
+                android:id="@+id/confirm"
+                style="@style/rkcloud_chat_btn_style"
+                android:layout_width="0dip"
+                android:layout_weight="1.0"
+                android:layout_marginRight="20dip"
+                android:text="@string/rkcloud_chat_btn_confirm" />
+
+            <Button
+                android:id="@+id/returnbnt"
+                style="@style/rkcloud_chat_btn_style"
+                android:layout_width="0dip"
+                android:layout_weight="1.0"
+                android:text="@string/rkcloud_chat_btn_cancel" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_title"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical" >
+
+        <!-- 分隔线 -->
+
+        <include layout="@layout/rkcloud_chat_setting_dividezone" />
+
+        <!-- 拍照 -->
+
+        <LinearLayout
+            android:id="@+id/layout_takephoto"
+            style="@style/rkcloud_chat_setting_item_style" >
+
+            <TextView
+                style="@style/rkcloud_chat_setting_item_tip_style"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/rkcloud_chat_setmsgbg_takephoto" />
+        </LinearLayout>
+
+        <!-- 分隔线 -->
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
+            android:clickable="false"
+            android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft" >
+
+            <ImageView style="@style/rkcloud_chat_listview_divide_style" />
+        </RelativeLayout>
+
+        <!-- 本地相片 -->
+
+        <LinearLayout
+            android:id="@+id/layout_pic"
+            style="@style/rkcloud_chat_setting_item_style" >
+
+            <TextView
+                style="@style/rkcloud_chat_setting_item_tip_style"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="@string/rkcloud_chat_setmsgbg_selectimg" />
+
+            <ImageView
+                style="@style/rkcloud_chat_setting_item_arrow_style"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent" />
+        </LinearLayout>
+
+        <!-- 分隔线 -->
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
+            android:clickable="false"
+            android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft" >
+
+            <ImageView style="@style/rkcloud_chat_listview_divide_style" />
+        </RelativeLayout>
+
+        <!-- 取消背景 -->
+
+        <LinearLayout
+            android:id="@+id/layout_cancel"
+            style="@style/rkcloud_chat_setting_item_style" >
+
+            <TextView
+                style="@style/rkcloud_chat_setting_item_tip_style"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="@string/rkcloud_chat_setmsgbg_cancel" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

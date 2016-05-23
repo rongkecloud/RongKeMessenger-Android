@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rkcloud_chat_listview_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/rkcloud_chat_listview_item_paddingtop"
+    android:paddingLeft="@dimen/rkcloud_chat_listview_item_paddingleft"
+    android:paddingRight="@dimen/rkcloud_chat_listview_item_paddingleft"
+    android:paddingTop="@dimen/rkcloud_chat_listview_item_paddingtop" >
+
+    <com.rongkecloud.test.ui.widget.RoundedImageView
+        android:id="@+id/file_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/file_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="8dip"
+        android:textColor="#ff808080"
+        android:textSize="17sp" />
+
+</LinearLayout>

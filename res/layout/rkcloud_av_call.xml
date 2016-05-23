@@ -1,0 +1,262 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_callroot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/layout_callcontent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rkcloud_meeting_bg" >
+
+        <!-- 对端视频 -->
+
+        <RelativeLayout
+            android:id="@+id/remotevideo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/rkcloud_av_remotevideo_bgcolor"
+            android:visibility="gone" />
+
+        <!-- 对端用户信息区域 -->
+
+        <RelativeLayout
+            android:id="@+id/layout_userinfo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/rkcloud_av_userinfozone_margintop"
+            android:paddingLeft="@dimen/rkcloud_av_userinfozone_paddingleft"
+            android:paddingRight="@dimen/rkcloud_av_userinfozone_paddingleft" >
+
+            <!-- 头像 -->
+
+            <com.rongkecloud.test.ui.widget.RoundedImageView
+                android:id="@+id/headerimage"
+                android:layout_width="@dimen/rkcloud_av_headerimg_width"
+                android:layout_height="@dimen/rkcloud_av_headerimg_height"
+                android:layout_marginTop="60dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/rkcloud_av_img_header_default" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_below="@id/headerimage"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <!-- 名称 -->
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/rkcloud_av_username_textcolor"
+                    android:textSize="@dimen/rkcloud_av_username_textsize" />
+                <!-- 通话状态 -->
+
+                <TextView
+                    android:id="@+id/callstatus"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/rkcloud_av_callstatus_textcolor"
+                    android:textSize="@dimen/rkcloud_av_callstatus_textsize" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- 视频通话时的缩小按钮 -->
+
+        <ImageView
+            android:id="@+id/hideui_invideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/rkcloud_av_shrink_marginleft"
+            android:layout_marginTop="@dimen/rkcloud_av_shrink_margintop"
+            android:src="@drawable/rkcloud_av_img_shrink"
+            android:visibility="gone" />
+
+        <!-- 语音通话时的缩小按钮 -->
+
+        <ImageView
+            android:id="@+id/hideui_inaudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="@dimen/rkcloud_av_shrink_marginleft"
+            android:layout_marginTop="@dimen/rkcloud_av_shrink_margintop"
+            android:src="@drawable/rkcloud_av_img_shrink"
+            android:visibility="gone" />
+
+        <!-- 语音通话时的记时器 -->
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/rkcloud_av_timer_margintop"
+            android:background="@drawable/rkcloud_av_timer_bg"
+            android:gravity="center_horizontal"
+            android:paddingBottom="5dip"
+            android:paddingLeft="8dip"
+            android:paddingRight="8dip"
+            android:paddingTop="5dip"
+            android:textColor="@color/rkcloud_av_timer_textcolor"
+            android:textSize="@dimen/rkcloud_av_timer_textsize"
+            android:visibility="gone" />
+
+        <!-- 音频操作相关的按钮 -->
+
+        <LinearLayout
+            android:id="@+id/btnzone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/rkcloud_av_btnzone_paddingtop"
+            android:paddingTop="@dimen/rkcloud_av_btnzone_paddingtop" >
+
+            <LinearLayout
+                android:id="@+id/btnzone_calling"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone" >
+
+                <!-- 静音 -->
+
+                <LinearLayout
+                    android:id="@+id/layout_mute"
+                    style="@style/rkcloud_av_btnzone_style"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/mute"
+                        style="@style/rkcloud_av_btn_icon_style"
+                        android:src="@drawable/rkcloud_av_btn_mute" />
+
+                    <TextView
+                        style="@style/rkcloud_av_btn_text_style"
+                        android:text="@string/rkcloud_av_btn_mute" />
+                </LinearLayout>
+
+                <!-- 免提 -->
+
+                <LinearLayout
+                    android:id="@+id/layout_handfree"
+                    style="@style/rkcloud_av_btnzone_style"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/handfree"
+                        style="@style/rkcloud_av_btn_icon_style"
+                        android:src="@drawable/rkcloud_av_btn_handfree" />
+
+                    <TextView
+                        style="@style/rkcloud_av_btn_text_style"
+                        android:text="@string/rkcloud_av_btn_handsfree" />
+                </LinearLayout>
+
+                <!-- 切换摄像头 -->
+
+                <LinearLayout
+                    android:id="@+id/layout_switchcamera"
+                    style="@style/rkcloud_av_btnzone_style"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/switchcamera"
+                        style="@style/rkcloud_av_btn_icon_style"
+                        android:src="@drawable/rkcloud_av_btn_switchcamera" />
+
+                    <TextView
+                        style="@style/rkcloud_av_btn_text_style"
+                        android:text="@string/rkcloud_av_btn_switchcamera" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal" >
+
+                <!-- 切换到语音聊天 -->
+
+                <LinearLayout
+                    android:id="@+id/layout_toaudio"
+                    style="@style/rkcloud_av_btnzone_style"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/toaudio"
+                        style="@style/rkcloud_av_btn_icon_style"
+                        android:src="@drawable/rkcloud_av_btn_toaudio" />
+
+                    <TextView
+                        style="@style/rkcloud_av_btn_text_style"
+                        android:text="@string/rkcloud_av_btn_toaudio" />
+                </LinearLayout>
+
+                <!-- 挂断 -->
+
+                <LinearLayout
+                    android:id="@+id/layout_hangup"
+                    style="@style/rkcloud_av_btnzone_style"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/hangup"
+                        style="@style/rkcloud_av_btn_icon_style"
+                        android:background="@drawable/rkcloud_av_bg_btn_hangup"
+                        android:src="@drawable/rkcloud_av_btn_hangup" />
+
+                    <TextView
+                        android:id="@+id/hangup_text"
+                        style="@style/rkcloud_av_btn_text_style"
+                        android:text="@string/rkcloud_av_btn_hangup" />
+                </LinearLayout>
+
+                <!-- 接听 -->
+
+                <LinearLayout
+                    android:id="@+id/layout_answer"
+                    style="@style/rkcloud_av_btnzone_style"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/answer"
+                        style="@style/rkcloud_av_btn_icon_style"
+                        android:background="@drawable/rkcloud_av_bg_btn_answer"
+                        android:src="@drawable/rkcloud_av_btn_answer" />
+
+                    <TextView
+                        style="@style/rkcloud_av_btn_text_style"
+                        android:text="@string/rkcloud_av_btn_answer" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

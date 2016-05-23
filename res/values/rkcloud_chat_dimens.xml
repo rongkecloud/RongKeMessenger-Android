@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <!-- title区域相关尺寸的定义 -->
+    <dimen name="rkcloud_chat_titlezone_height">48dip</dimen>
+    <dimen name="rkcloud_chat_titlezone_title_textsize">17sp</dimen>
+    <dimen name="rkcloud_chat_titlezone_title_paddingleft">8dip</dimen>
+    <dimen name="rkcloud_chat_titlezone_rightbtn_minwidth">50dip</dimen>
+    <dimen name="rkcloud_chat_listview_item_paddingleft">8dip</dimen>
+    <dimen name="rkcloud_chat_listview_item_paddingtop">8dip</dimen>
+
+    <!-- 设置使用的相关数据 -->
+    <dimen name="rkcloud_chat_setting_dividezone_height">15dip</dimen>
+    <dimen name="rkcloud_chat_setting_item_height">45dip</dimen>
+    <dimen name="rkcloud_chat_setting_item_marginleft">10dip</dimen>
+    <dimen name="rkcloud_chat_setting_item_tip_textsize">16sp</dimen>
+    <dimen name="rkcloud_chat_setting_item_content_textsize">14sp</dimen>
+    <dimen name="rkcloud_chat_setting_item_width_line">43dip</dimen>
+    <dimen name="rkcloud_chat_setting_text_size">16sp</dimen>
+    <!-- 头像尺寸 -->
+    <dimen name="rkcloud_chat_headerimg_width">45dip</dimen>
+    <dimen name="rkcloud_chat_headerimg_height">45dip</dimen>
+    
+    <!-- 表情在不同位置显示的尺寸 -->
+    <dimen name="rkcloud_chat_emoji_width">26dip</dimen>
+    <dimen name="rkcloud_chat_emoji_height">26dip</dimen>
+    <dimen name="rkcloud_chat_emoji_inchatlist_width">16dip</dimen>
+    <dimen name="rkcloud_chat_emoji_inchatlist_height">16dip</dimen>
+    <dimen name="rkcloud_chat_emoji_inmsglist_width">24dip</dimen>
+    <dimen name="rkcloud_chat_emoji_inmsglist_height">24dip</dimen>
+    <dimen name="rkcloud_chat_emoji_inedittext_width">22dip</dimen>
+    <dimen name="rkcloud_chat_emoji_inedittext_height">22dip</dimen>
+
+    <!-- 选择成员使用的相关数据 -->
+    <dimen name="rkcloud_chat_selectuser_checkbox_width">20dip</dimen>
+    <dimen name="rkcloud_chat_selectuser_checkbox_height">20dip</dimen>
+    <dimen name="rkcloud_chat_selectuser_gridview_horizontalspacing">8dip</dimen>
+    <dimen name="rkcloud_chat_selectuser_uppercase_letter">18dip</dimen>
+    <dimen name="rkcloud_chat_selectuser_columnwidth">40dip</dimen>
+
+    <!-- 会话列表页面使用的数据 -->
+    <dimen name="rkcloud_chat_chatlist_item_frame_width">55dip</dimen>
+    <dimen name="rkcloud_chat_chatlist_item_frame_height">50dip</dimen>
+    <dimen name="rkcloud_chat_chatlist_item_name_textsize">16sp</dimen>
+    <dimen name="rkcloud_chat_chatlist_item_lastmsgtime_textsize">12sp</dimen>
+    <dimen name="rkcloud_chat_chatlist_item_content_textsize">14sp</dimen>
+    <dimen name="rkcloud_chat_chatlist_item_msgfailed_textsize">12sp</dimen>
+    
+    <!-- 消息列表页面图片的高度 -->
+    <dimen name="rkcloud_chat_msg_attachzone_height">220dip</dimen>
+    <dimen name="rkcloud_chat_msg_attachimg_width">60dip</dimen>
+    <dimen name="rkcloud_chat_msg_attachimg_height">60dip</dimen>
+    <dimen name="rkcloud_chat_msg_item_margintop">5dip</dimen>
+    <dimen name="rkcloud_chat_msg_headerimage_width">40dip</dimen>
+    <dimen name="rkcloud_chat_msg_headerimage_height">40dip</dimen>
+    <dimen name="rkcloud_chat_msg_tip_textsize">12sp</dimen> 
+    <dimen name="rkcloud_chat_msg_name_textsize">15sp</dimen> 
+    <dimen name="rkcloud_chat_msg_downprogress_width">40dip</dimen> 
+    <dimen name="rkcloud_chat_msg_downprogress_textsize">12sp</dimen> 
+    <dimen name="rkcloud_chat_msg_content_paddingtop">4dip</dimen>  
+    <dimen name="rkcloud_chat_msg_content_paddingBottom">4dip</dimen> 
+    <dimen name="rkcloud_chat_msg_content_paddingleft">8dip</dimen> 
+    <dimen name="rkcloud_chat_msg_content_paddingright">8dip</dimen>  
+    <dimen name="rkcloud_chat_msg_image_portrait_height">120dip</dimen>
+    <dimen name="rkcloud_chat_msg_image_landscape_height">60dip</dimen>
+    
+    <dimen name="rkcloud_chat_msg_points_marginleft">2dip</dimen>
+    <dimen name="rkcloud_chat_msg_gridvide_space">5dip</dimen>
+    <dimen name="rkcloud_chat_sidebar_width">26dip</dimen>
+    <dimen name="rkcloud_chat_address_sidebar_textsize">15sp</dimen>
+	<!-- 录音页面使用的数值 -->
+   	<dimen name="rkcloud_chat_record_btn_bg_start_widthheight">40dip</dimen>
+	<dimen name="rkcloud_chat_record_btn_bg_stop_widthheight">25dip</dimen>
+	<dimen name="rkcloud_chat_record_btn_bg_start_radius">30dip</dimen>
+    <dimen name="rkcloud_chat_record_btn_bg_stop_radius">3dip</dimen>
+    <dimen name="rkcloud_chat_record_btn_cancel_textsize">22sp</dimen>
+    
+    
+    <!-- 联系人使用的数据 -->
+    <dimen name="rkcloud_chat_address_headerimg_width">40dip</dimen>
+    <dimen name="rkcloud_chat_address_headerimg_height">40dip</dimen>
+    <dimen name="rkcloud_chat_address_categoryname_textsize">14sp</dimen>
+    <dimen name="rkcloud_chat_address_name_textsize">16sp</dimen>
+
+</resources>

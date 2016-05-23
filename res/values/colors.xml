@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="bg_content">#ECEDF1</color>
+    <color name="bg_transparent">#00000000</color>
+    <color name="ui_bg_color">#FFFFFF</color>
+    <color name="ui_bg_color_white">#FFFFFF</color>
+    <color name="chat_msg_time_line">#D8D8D8</color>
+    <color name="driver_line_color">#DFDFDF</color>
+    <!-- 提示的文字颜色 -->
+    <color name="prompt_content_color">#676767</color>
+    <color name="prompt_content_color_red">#F74C31</color>
+    <!-- title区域的色值定义 -->
+    <color name="title_right_btn_text_color">#808080</color>
+    <color name="title_text_color">#343434</color>
+    <color name="title_content_textcolor">#ffffffff</color>
+    <color name="title_content_pressed_bgcolor">#181D1F</color>
+    <color name="white">#FFFFFF</color>
+    <color name="blue">#19AEF0</color>
+    <color name="login_edittext_textcolor">#181818</color>
+    <color name="login_edittexthint_textcolor">#bfbebe</color>
+    <color name="tab_bg">#FCFCFC</color>
+    <color name="tab_line">#E1E1E1</color>
+    <!-- 通讯录字体颜色 -->
+    <color name="contact_account_textcolor">#181818</color>
+    <color name="contact_remark_textcolor">#ff808080</color>
+    <color name="contact_select_account_textcolor">#31b6ef</color>
+    <color name="contact_delete_friend_btn_bg_normal">#ffff3b30</color>
+    <color name="contact_delete_friend_btn_bg_pressed">#e5342a</color>
+    
+    <color name="setting_about_textcolor">#4C4C4C</color>
+
+    <color name="search_hint">#9A9A9A</color>
+
+</resources>

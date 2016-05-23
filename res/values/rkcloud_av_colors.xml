@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="rkcloud_av_listview_item_normal_bgcolor">#ffffff</color>
+    <color name="rkcloud_av_listview_item_pressed_bgcolor">#ffd5d5d5</color>
+    <color name="rkcloud_av_remotevideo_bgcolor">#cc000000</color>
+    <color name="rkcloud_av_username_textcolor">#ffffff</color>
+    <color name="rkcloud_av_callstatus_textcolor">#ffffff</color>
+    <color name="rkcloud_av_timer_textcolor">#ffffff</color>
+    <color name="rkcloud_av_btn_hangup_bgcolor">#ee524d</color>
+    <color name="rkcloud_av_btn_hangup_selected_bgcolor">#cf413d</color>
+    <color name="rkcloud_av_btn_answer_bgcolor">#45c01a</color>
+    <color name="rkcloud_av_btn_answer_selected_bgcolor">#298409</color>
+    <color name="rkcloud_av_btn_other_bgcolor">#00000000</color>
+    <color name="rkcloud_av_btn_other_selected_bgcolor">#ffd39b</color>
+    <color name="rkcloud_av_btn_textcolor">#ffffff</color>
+
+</resources>

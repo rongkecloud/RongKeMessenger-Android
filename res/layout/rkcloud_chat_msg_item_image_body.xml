@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/rkcloud_chat_msg_content_paddingtop"
+    android:paddingBottom="@dimen/rkcloud_chat_msg_content_paddingBottom">
+
+    <ImageView
+        android:id="@+id/img_src"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/rkcloud_chat_img_picmsg_default" />
+
+</RelativeLayout>

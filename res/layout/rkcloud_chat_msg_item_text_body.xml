@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rkchat="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/rkcloud_chat_msg_content_paddingtop"
+    android:paddingBottom="@dimen/rkcloud_chat_msg_content_paddingBottom"
+    android:gravity="center_vertical">
+
+    <com.rongkecloud.chat.demo.ui.widget.RKCloudChatResizeTextView
+        android:id="@+id/txt_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textColor="#ff333333"
+        android:textSize="16sp"
+        rkchat:width_scale="0.65" />
+
+</LinearLayout>

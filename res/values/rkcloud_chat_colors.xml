@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- title zone背景色 -->
+    <color name="rkcloud_chat_titlezone_bgcolor">#22292c</color>
+    <color name="rkcloud_chat_titlezone_title_textcolor">#ffffffff</color>
+    <color name="rkcloud_chat_titlezone_btn_pressedbgcolor">#181d1f</color>
+
+    <!-- 注册时候使用的色值 -->
+    <color name="title_content">#82807A</color>
+    <color name="register_bg">#F2F3F6</color>
+
+    <!-- 登录界面用户名和密码背景颜色 -->
+    <color name="rkcloud_userandpass_bgcolor">#F2F3F7</color>
+
+    <!-- 灰色背景色 -->
+    <color name="rkcloud_chat_ui_bgcolor">#ebebeb</color>
+    <!-- 白色背景色 -->
+    <color name="rkcloud_chat_ui_white_bgcolor">#ffffff</color>
+    
+    <!-- 蓝色按钮背景色 -->
+    <color name="rkcloud_chat_btn_bgcolor_disable">#e4e4e4</color>
+    <color name="rkcloud_chat_btn_bgcolor_normal">#31b6ef</color>
+    <color name="rkcloud_chat_btn_bgcolor_pressed">#0099dc</color>
+
+    <!-- 列表使用的色值 -->
+    <color name="rkcloud_chat_listview_item_normal_bgcolor">#ffffff</color>
+    <color name="rkcloud_chat_listview_item_pressed_bgcolor">#ffd5d5d5</color>
+    <color name="rkcloud_chat_listview_divide_color">#ffcccccc</color>
+
+    <!-- 搜索结果时的高亮颜色 -->
+    <color name="rkcloud_chat_search_result_highlightcolor">#fff100</color>
+
+    <!-- 设置使用的色值 -->
+    <color name="text_Color_Hint">#BFBFBF</color>
+    <color name="rkcloud_chat_setting_item_tip_textcolor">#ff181818</color>
+    <color name="rkcloud_chat_setting_item_content_textcolor">#ff808080</color>
+
+    <!-- 会话列表页面使用的色值 -->
+    <color name="rkcloud_chat_chatlist_item_settop_normal_bgcolor">#f5fff1</color>
+    <color name="rkcloud_chat_chatlist_item_name_textcolor">#ff181818</color>
+    <color name="rkcloud_chat_chatlist_item_lastmsgtime_textcolor">#ffa6a6a6</color>
+    <color name="rkcloud_chat_chatlist_item_content_textcolor">#ff808080</color>
+    <color name="rkcloud_chat_chatlist_item_msgfailed_textcolor">#ffff3300</color>
+    <color name="rkcloud_chat_chatlist_item_draft_textcolor">#821814</color>
+    <color name="rccloud_chat_chatlist_sendMusic">#7C7C7C</color>
+
+    <!-- 聊天页面使用的色值 -->
+    <color name="rkcloud_chat_msg_tip_bgcolor">#d4d4d4</color>
+    <color name="rkcloud_chat_msg_tip_textcolor">#ffffff</color>
+    <color name="rkcloud_chat_msg_name_textcolor">#ff666666</color>
+    <color name="rkcloud_chat_msg_downprogress_textcolor">#ffffffff</color> 
+
+    <!-- 联系人使用的色值 -->
+    <color name="rkcloud_chat_address_categoryname_textcolor">#ff595c61</color>
+    <color name="rkcloud_chat_address_name_textcolor">#ff181818</color>
+    
+    <!-- 录音页面使用的色值 -->
+    <color name="rkcloud_chat_record_btn_bgcolor">#F53333</color>
+    <color name="rkcloud_chat_record_btn_switchcamera_bgcolor">#00000000</color>
+    <color name="rkcloud_chat_record_btn_switchcamera_selected_bgcolor">#ffd39b</color>
+
+</resources>

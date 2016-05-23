@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 多人语音界面 文字被点击的颜色 -->
+    <color name="rkcloud_mmeting_text_press_color">#01a5df</color>
+    <!-- 多人语音界面 文字的正常颜色 -->
+    <color name="rkcloud_mmeting_text_normal_color">#c0c0c0</color>
+    <!-- 进入多人语音的textview 背景颜色 -->
+    <color name="rkcloud_mmeting_in">#aec96c</color>
+    
+    <!-- 列表使用的色值 -->
+    <color name="rkcloud_meeting_inviteitem_normal_bgcolor">#ffffff</color>
+    <color name="rkcloud_meeting_inviteitem_pressed_bgcolor">#ffd5d5d5</color>
+</resources>

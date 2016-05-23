@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"> 
+    <string name="rkcloud_meeting_sdk_uninit">请先初始化云视互动SDK，并且保证初始化成功后再使用。</string>  
+    
+    <string name="rkcloud_meeting_title">多人语音</string>
+    <string name="rkcloud_meeting_invitetitle">邀请您加入多人语音</string>
+    <string name="rkcloud_meeting_btn_return">返回</string>
+    <string name="rkcloud_meeting_btn_add">加入</string>
+    <string name="rkcloud_meeting_user_num">(<xliff:g id="usernum">%s</xliff:g>人)</string>
+        
+    <string name="rkcloud_meeting_notification_title">云视互动多人语音会议室</string>
+    <string name="rkcloud_meeting_notification_content">点击进入多人语音会议室</string>
+    
+    <string name="rkcloud_meeting_handsfree">免提</string>
+    <string name="rkcloud_meeting_mute">静音</string>
+    
+    <string name="rkcloud_meeting_fail">进入多人语音失败。</string>
+    <string name="rkcloud_meeting_fail_paramerror">进入多人语音失败：参数错误。</string>
+    <string name="rkcloud_meeting_fail_sdkuninit">进入多人语音失败：SDK未初始化。</string>
+    <string name="rkcloud_meeting_fail_unsupport">进入多人语音失败：不支持多人语音。</string>
+    <string name="rkcloud_meeting_fail_hasmeeting">进入多人语音失败：当前有正在进行的多人语音。</string>
+    <string name="rkcloud_meeting_fail_hasavcall">进入多人语音失败：当前有正在进行的音视频通话。</string>
+    <string name="rkcloud_meeting_fail_dail_timeout">进入多人语音超时，请稍后再试。</string>
+    <string name="rkcloud_meeting_hangup">我已退出多人语音。</string>
+    <string name="rkcloud_meeting_failed_frequent_operation">您的操作过于频繁，请稍后再试。</string>
+
+    <string name="rkcloud_meeting_wait">等待其他用户进入...</string>  
+    <string name="rkcloud_meeting_per">呼叫准备中...</string>
+    <string name="rkcloud_meeting_ring">呼叫中...</string>
+    <string name="rkcloud_meeting_invite_sure">加入</string>
+    <string name="rkcloud_meeting_invite_cancle">取消</string>
+    <string name="rkcloud_meeting_me">我</string>
+    <string name="rkcloud_meeting_user_in"><xliff:g id="in">%s</xliff:g>加入多人语音</string>
+    <string name="rkcloud_meeting_user_out"><xliff:g id="out">%s</xliff:g>退出多人语音</string>
+    <string name="rkcloud_meeting_user_out_time"><xliff:g id="out">%s</xliff:g>退出多人语音,通话时长:<xliff:g id="time">%s</xliff:g></string>
+    <string name="rkcloud_meeting_startmeeting">我发起了多人语音</string>
+    
+    <string name="rkcloud_meeting_invitefailed">邀请失败。</string>
+    <string name="rkcloud_meeting_invitefailed_paramerror">邀请失败：参数错误。</string>
+    <string name="rkcloud_meeting_invitefailed_forbidyourself">邀请失败：禁止邀请自己。</string>
+    <string name="rkcloud_meeting_invitefailed_unhavemeeting">邀请失败：当前无正在进行的多人会议。</string>
+    <string name="rkcloud_meeting_invitefailed_illegalerreceiver">邀请失败：存在非法用户。</string>
+</resources>

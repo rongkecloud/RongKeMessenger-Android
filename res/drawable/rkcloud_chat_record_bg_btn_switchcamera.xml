@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true"><shape android:shape="rectangle">
+            <stroke android:width="1px" android:color="@color/rkcloud_chat_record_btn_switchcamera_selected_bgcolor" />
+
+            <solid android:color="@color/rkcloud_chat_record_btn_switchcamera_selected_bgcolor" />
+
+            <corners android:radius="@dimen/rkcloud_chat_record_btn_bg_start_radius" />
+
+            <size android:height="@dimen/rkcloud_chat_record_btn_bg_start_widthheight" android:width="@dimen/rkcloud_chat_record_btn_bg_start_widthheight" />
+        </shape></item>
+    <item android:state_selected="true"><shape android:shape="rectangle">
+            <stroke android:width="1px" android:color="@color/rkcloud_chat_record_btn_switchcamera_selected_bgcolor" />
+
+            <solid android:color="@color/rkcloud_chat_record_btn_switchcamera_selected_bgcolor" />
+
+            <corners android:radius="@dimen/rkcloud_chat_record_btn_bg_start_radius" />
+
+            <size android:height="@dimen/rkcloud_chat_record_btn_bg_start_widthheight" android:width="@dimen/rkcloud_chat_record_btn_bg_start_widthheight" />
+        </shape></item>
+    <item><shape android:shape="rectangle">
+            <stroke android:width="1px" android:color="@color/rkcloud_chat_record_btn_switchcamera_selected_bgcolor" />
+
+            <solid android:color="@color/rkcloud_chat_record_btn_switchcamera_bgcolor" />
+
+            <corners android:radius="@dimen/rkcloud_chat_record_btn_bg_start_radius" />
+
+            <size android:height="@dimen/rkcloud_chat_record_btn_bg_start_widthheight" android:width="@dimen/rkcloud_chat_record_btn_bg_start_widthheight" />
+        </shape></item>
+
+</selector>

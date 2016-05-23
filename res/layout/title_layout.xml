@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="48dip"
+                android:background="@color/rkcloud_chat_titlezone_title_textcolor"
+                android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/rkcloud_chat_title_bg"
+        android:drawablePadding="5dip"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:padding="8dip"
+        android:singleLine="true"
+        android:text="@string/bnt_return"
+        android:textColor="@color/title_content"
+        android:textSize="@dimen/rkcloud_chat_titlezone_title_textsize" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/text_title_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:textColor="@color/rkcloud_chat_titlezone_bgcolor"
+        android:textSize="@dimen/setting_about_content_textsize"
+        />
+
+    <LinearLayout
+        android:id="@+id/title_right_btnzone"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="8dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <!-- 左侧图标 -->
+
+        <LinearLayout
+            android:id="@+id/title_imgbtns_leftzone"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ImageButton
+                android:id="@+id/title_imgbtns_leftbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/title_bg"
+                android:minWidth="@dimen/rkcloud_chat_titlezone_rightbtn_minwidth" />
+        </LinearLayout>
+
+        <!-- 中间图标 -->
+
+        <LinearLayout
+            android:id="@+id/title_imgbtns_centerzone"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ImageButton
+                android:id="@+id/title_imgbtns_centerbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/title_bg"
+                android:minWidth="@dimen/rkcloud_chat_titlezone_rightbtn_minwidth" />
+        </LinearLayout>
+        <!-- 右侧图标 -->
+
+        <ImageButton
+            android:id="@+id/title_imgbtns_rightbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/title_bg"
+            android:gravity="center"
+            android:minWidth="@dimen/rkcloud_chat_titlezone_rightbtn_minwidth"
+            android:visibility="gone" />
+
+        <!-- 按钮 -->
+
+        <Button
+            android:id="@+id/title_right_btn"
+            style="@style/rkcloud_chat_btn_style"
+            android:layout_width="wrap_content"
+            android:layout_height="30dip"
+            android:layout_marginRight="8dip"
+            android:minWidth="@dimen/rkcloud_chat_titlezone_rightbtn_minwidth"
+            android:textSize="@dimen/rkcloud_chat_setting_item_tip_textsize"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</RelativeLayout>

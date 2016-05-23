@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rkchat="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" 
+    android:paddingTop="@dimen/rkcloud_chat_msg_content_paddingtop"
+    android:paddingBottom="@dimen/rkcloud_chat_msg_content_paddingBottom"
+    android:paddingLeft="@dimen/rkcloud_chat_msg_content_paddingleft"
+    android:paddingRight="@dimen/rkcloud_chat_msg_content_paddingright">
+
+    <!-- 文件图标 -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="2dip"
+        android:src="@drawable/rkcloud_chat_img_msg_file" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <!-- 文件名称 -->
+
+        <com.rongkecloud.chat.demo.ui.widget.RKCloudChatResizeTextView
+            android:id="@+id/file_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            rkchat:width_scale="0.5" />
+
+        <com.rongkecloud.chat.demo.ui.widget.RKCloudChatResizeTextView
+            android:id="@+id/file_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff787878"
+            android:textSize="10sp"
+            rkchat:width_scale="0.5" />
+    </LinearLayout>
+
+</LinearLayout>

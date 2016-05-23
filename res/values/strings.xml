@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">融科通</string>
+    <string name="netword_breakoff">网络连接中断，请检查您的数据网络连接</string>
+    <string name="network_off">无法连接网络，请检查您的数据网络连接</string>
+    <string name="string_connect_failed">连接失败，请稍后再试</string>
+    <string name="parse_data_error">解析数据有误</string>
+    <string name="tip">提示</string>
+    <string name="operation_content">操作处理中...</string>
+    <string name="operation_success">操作成功</string>
+    <string name="operation_failed">操作失败</string>
+    <string name="getdata_failed">获取数据失败</string>   
+
+    <!-- 按钮定义 -->
+    <string name="bnt_return">返回</string>
+    <string name="bnt_yes">是</string>
+    <string name="bnt_no">否</string>
+    <string name="bnt_confirm">确定</string>
+    <string name="bnt_cancel">取消</string>
+    <string name="bnt_close">关闭</string>
+    <string name="bnt_clear">清空</string>
+    <string name="bnt_save">保存</string>
+    <string name="bnt_send">发送</string>
+    <string name="bnt_refresh">刷新</string>
+    <string name="bnt_search">搜索</string>
+    <string name="bnt_add">添加</string>
+    <string name="gui_immediately">立即开始</string>
+    <!-- 被禁用户 -->
+    <string name="forbiden_title">提示</string>
+    <string name="forbiden_content">您的帐户已被停用，详细情况请联系客服</string>
+
+    <!-- 被踢用户 -->
+    <string name="offline_title">离线提示</string>
+    <string name="offline_content">您的账号已在其他地方登录</string>
+    <string name="offline_bnt_relogin">重新登录</string>
+    
+    <!-- 软件升级 -->
+    <string name="setting_others_checkupdate">检查更新</string>
+    <string name="setting_update_notneed">已经是最新版本，无需更新</string>
+    <string name="setting_check_update_failed">检查更新失败，请稍后重试</string>
+    <string name="setting_update_downing">软件升级中…</string>
+    <string name="setting_update_content">您的软件有可用更新，点击“立即更新”升级至最新版本</string>
+    <string name="setting_update_low_tip">升级提示</string>
+    <string name="setting_update_new_ver_prefix">新版本：<xliff:g id="version">%s</xliff:g></string>
+    <string name="setting_update_now">立即更新</string>
+    <string name="setting_update_network_error">您的网络暂不可用，请确认网络连接情况</string>
+    <string name="setting_update_checking">检查更新中,请稍候…</string>
+    <string name="setting_update_confirm">您的软件有可用更新，点击“立即更新”按钮升级至最新版本</string>
+    <string name="upgrade_downapk_failed">升级失败</string>
+
+    <!-- 主页面的tab项 -->
+    <string name="tab_conversation">会话</string>
+    <string name="tab_address_book">通讯录</string>
+    <string name="tab_setting">设置</string>
+
+    <string name="start_group_chat">发起群聊</string>
+    
+    <string name="welcome_loading_tip">数据正在初始化，请稍候...</string>
+    
+	<string name="sdk_init_tip">初始化SDK中，请稍候...</string>
+    <string name="sdk_init_accounterror">云视互动SDK初始化失败：账号或密码错误</string>
+    <string name="sdk_init_banneduser">云视互动SDK初始化失败：账号被禁</string>
+    <string name="sdk_init_authfailed">云视互动SDK初始化失败：认证失败</string>
+    <string name="sdk_init_failed">云视互动SDK初始化失败</string>
+    
+    <!-- 注册 -->
+    <string name="register_btn">新用户注册</string>
+    <string name="register">注册</string>
+    <string name="register_enterprise">注册企业用户</string>
+    <string name="register_normal">注册普通用户</string>
+    <string name="register_input_name_hint">请输入用户名</string>
+    <string name="register_input_mobile_hint">请输入手机号码</string>
+    <string name="register_input_emile_hint">请输入邮箱</string>
+    <string name="register_input_pwd_hint">请输入密码</string>
+    <string name="register_input_pwd_again_hint">请再次输入密码</string>
+    <string name="register_name_format_error">用户名不能为空且由6-20位字母或数字组成，且第一位必须为字母</string>
+    <string name="register_pwd_format_error">密码不能为空，且由6-20位数字或字母组成</string>
+    <string name="register_pwd_again_format_error">确认密码不能为空，且由6-20位数字或字母组成</string>
+    <string name="register_mobile_format_error">手机号码格式不正确</string>
+    <string name="register_mobile_not_null">手机号码不能为空</string>
+    <string name="register_emile_format_error">邮箱格式不正确</string>
+    <string name="register_emile_not_null">邮箱不能为空</string>
+    <string name="register_pwd_not_equal">两次输入的密码不一致，请重新输入</string>
+    <string name="register_account_exist">账号已经存在</string>
+	
+    <string name="register_tip">注册中，请稍候...</string>
+    
+    <!-- 登录 -->
+    <string name="login_name_text">请输入账号</string>
+    <string name="login_pwd_text">请输入密码</string>
+    <string name="login">登&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;录</string>
+    <string name="login_title">登录</string>
+    <string name="forget_pwd"><u>忘记密码？</u></string>
+    <string name="login_name_not_empty">用户名不能为空</string>
+    <string name="login_pwd_not_empty">密码不能为空</string>
+    <string name="login_name_format_error">帐户和密码不匹配，请重新登录</string>
+    <string name="login_pwd_format_error">帐户和密码不匹配，请重新登录</string>
+    <string name="login_wait_title">登录</string>
+    <string name="login_wait_content">登录中，请稍候...</string>
+    <string name="login_account_error">帐户和密码不匹配，请重新登录</string>
+    <string name="login_result_failed">登录失败，请稍后重试</string>
+    <string name="login_account_not_exist">账号不存在</string>
+    <string name="exit">退&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;出</string>
+	
+    <string name="login_tip">登录中，请稍候...</string>
+    
+    <!-- 通讯录 -->
+    <string name="contact_title">通讯录</string>
+    <string name="contact_default_friendgroup">我的好友</string>
+    <string name="contact_no_data">通讯录中暂无数据。</string>
+	<string name="contact_new_friend">新的朋友</string>
+	<string name="contact_group_talking">群聊</string>
+    <string name="contact_group_list">群聊列表</string>
+	<string name="contact_add_friend">添加好友</string>
+	<string name="contact_service">云视互动小秘书</string>
+	<string name="contact_friends_group">好友分组</string>
+	<string name="contact_detail_address">地址</string>
+	<string name="contact_modify_remark">未设置</string>
+	<string name="contact_modify_remark_title">修改备注名称</string>
+	<string name="contact_detail_send_mms">发消息</string>
+    <string name="contact_message">消息</string>
+	<string name="contact_detail_add_friend">&#160;&#160;添加好友</string>
+	<string name="contact_detail_delete_friend">删除好友</string>
+    <string name="contact_detail_delete">删除</string>
+    <string name="contact_detail_title">详细资料</string>
+	<string name="contact_detail_delete_friend_confirm">确认要删除好友吗？</string>
+	<string name="add_friend_from_contact_title">查看手机通讯录</string>
+	<string name="contact_manager_group">管理分组</string>
+	<string name="contact_manager_group_add">添加分组</string>
+	<string name="contact_manager_group_modify">修改分组</string>
+	<string name="contact_manager_group_delete">删除分组</string>
+	<string name="contact_manager_group_delete_confirm">确认要删除分组吗？</string>
+	<string name="contact_group_name_not_null">分组名称不能为空</string>
+	<string name="contact_group_name_exist">分组名称已存在</string>
+	<string name="contact_add_friend_title">添加好友</string>
+	<string name="contact_add_friend_confirm">通过验证</string>
+	<string name="contact_select_friend">搜索:</string>
+	<string name="contact_search_cond_format">搜索条件不能为空，且由数字或字母组成，并以字母开头</string>
+	<string name="contact_search_no_friend">用户不存在</string>
+	<string name="contact_search_friend_exist">用户已在好友列表或已在通知列表</string>
+	<string name="contact_search_friend_title">搜索好友结果</string>
+	<string name="contact_search_friend_hint">用户名</string>
+	<string name="contact_delete_friend_failed">删除失败</string>
+	<string name="contact_already_send_add">您已发送添加好友请求，正在等待对方确认</string>
+	<string name="contact_has_been_friend">互为好友</string>
+	<string name="contact_waiting_verify">等待验证</string>
+	<string name="contact_add_waitverify">等待对方验证中</string>
+	<string name="contact_add_yourself">禁止添加自己为好友</string>
+	<string name="contact_add_friend_hintinfo"><xliff:g id="self">%s</xliff:g> 请求加您为好友</string>
+	<string name="contact_remark">备注</string>
+    
+    <!-- 设置页面使用的相关内容 -->
+    <string name="setting_account_format">账号: <xliff:g id="account">%s</xliff:g></string>
+    <string name="setting_personal_info">个人信息</string>
+    <string name="setting_photo">头像</string>
+    <string name="chatdemo_setting_account">登录帐号</string>
+    <string name="setting_add_friend_premission">加我为好友需要验证信息</string>
+    <string name="chatdemo_setting_mms">消息设置</string>
+    <string name="chatdemo_setting_mms_notify">新消息提醒</string>
+    <string name="chatdemo_setting_mms_earphone">听筒播放语音消息</string>
+    <string name="chatdemo_setting_mms_notify_notificationbar">通知栏提示</string>
+    <string name="chatdemo_setting_mms_notify_sound">声音提示</string>
+    <string name="chatdemo_setting_mms_notify_sound_music">新消息提示音</string>
+    <string name="chatdemo_setting_mms_notify_sound_music_default">系统铃声</string>
+    <string name="chatdemo_setting_mms_notify_sound_music_title">设置新消息提示音</string>
+    <string name="chatdemo_setting_mms_vibration">振动提示</string>
+    <string name="chatdemo_setting_clearallmsg">清空消息记录</string>
+    <string name="setting_modify_pwd">修改密码</string>
+    <string name="setting_check_update">检查更新</string>
+    <string name="setting_feedback">意见反馈</string>
+    <string name="setting_about">关于融科通</string>
+    <string name="chatdemo_setting_clearallmsg_title">清空消息记录</string>
+    <string name="chatdemo_setting_clearallmsg_confirm">您确认清空所有消息记录吗？</string>
+    <string name="chatdemo_setting_checkupgrade">检查更新</string>
+    <string name="chatdemo_setting_checkupdate_newestversion">当前已是最新版本</string>
+    <string name="chatdemo_setting_logout">退出登录</string>
+    <string name="chatdemo_setting_logout_title">退出当前系统</string>
+    <string name="chatdemo_setting_logout_confirm">您确认退出当前系统吗？</string>
+    
+    <string name="setting_name">姓名</string>
+    <string name="setting_sax">性别</string>
+    <string name="setting_mobile">手机号码</string>
+    <string name="setting_email">邮箱</string>
+    <string name="setting_addr">地址</string>
+    
+    <string name="setting_avatar_failed">设置头像失败</string>
+    <string name="setting_upload_avatar_failed">上传头像失败</string>
+    <string name="setting_get_avatar_failed">下载头像失败</string>
+    
+    <string name="setting_old_pwd_hint">请输入旧密码</string>
+    <string name="setting_new_pwd_hint">请输入新密码</string>
+    <string name="setting_new_pwd_again_hint">请再次输入新密码</string>
+    <string name="setting_old_pwd_format_error">旧密码不能为空，且由6-20位数字或字母组成</string>
+    <string name="setting_new_pwd_format_error">新密码不能为空，且由6-20位数字或字母组成</string>
+    <string name="setting_new_pwd_again_format_error">两次输入的密码不一致，请重新输入</string>
+    <string name="setting_modify_pwd_success">密码修改成功，请记住新密码</string>
+    <string name="setting_modify_pwd_old_error">旧密码不正确</string>
+    
+    <string name="setting_input_feedback_content">请输入问题描述</string>
+    <string name="setting_feedback_content_not_null">问题描述信息不能为空</string>
+    
+    <string name="setting_about_content">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 融科通是基于云视互动打造的前、后完全开源APP，除完善的APP框架和后台设计外，还涵盖了注册、登录、通讯录管理、单聊、群聊、音视频通话、多人语音聊天室等即时通讯互动功能，陆续融科通还会逐步推出朋友圈、附近的人、多媒体客服等高级功能，旨在帮助广大开发者能够基于融科通开源代码上最低成本快速实现自身的产品。</string>
+    <string name="setting_about_enter_name">西安融科通信技术有限公司</string>
+    <string name="setting_about_copy_right">云视互动  All Rights Reserver.</string>
+    <string name="setting_about_versoncode"><xliff:g id="appname">%s</xliff:g>(V<xliff:g id="version">%s</xliff:g>)</string>
+    <string name="setting_about_qqgroup">技术客服QQ群：<xliff:g id="qqgroup">%s</xliff:g></string>
+    <string name="setting_about_business_email">商务联系: <xliff:g id="business_email">%s</xliff:g></string>
+    <string name="setting_about_technology_email">技术支持: <xliff:g id="technology_email">%s</xliff:g></string>
+    <string name="setting_about_website">官网: <xliff:g id="hotline">%s</xliff:g></string>
+    
+    <string name="friendnotify_title">新的朋友</string>   
+    <string name="friendnotify_ope_confirmadd">通过验证</string>
+    <string name="friendnotify_ope_waitverify">等待验证</string>
+    <string name="friendnotify_ope_addfriend">加为好友</string>
+    <string name="friendnotify_ope_has_friend">已添加</string>
+    <string name="friendnotify_ope_has_mypatient">已验证</string>
+    <string name="friendnotify_hint_request_addfriend">对方请求加您为好友</string>
+    <string name="friendnotify_hint_mobilecontact">手机联系人:<xliff:g id="name">%s</xliff:g></string>
+    <string name="friendnotify_context_delete">删除</string>
+    <string name="friendnotify_clear_confirm_title">清空提示</string>
+    <string name="friendnotify_clear_confirm_content">确认清空朋友通知消息吗？</string> 
+    <string name="friendnotify_clear_failed">清空通知消息失败</string>
+    <string name="friendnotify_needverify_title">对方需要验证</string> 
+    <string name="friendnotify_needverify_hint">请填写验证内容</string> 
+    <string name="friendnotify_needverify_content_empty">请输入验证内容</string> 
+   
+    <string name="friendnotify_add_waitverify">需要等待对方的验证</string>  
+    <string name="friendnotify_addfriend_failed">添加好友失败</string> 
+    <string name="friendnotify_addfriend_success">添加好友成功</string> 
+    <string name="friendnotify_addfriend_waiting">等待对方验证中</string> 
+    <string name="friendnotify_confirmadd_selectgroup_title">分组到</string>
+    <string name="friendnotify_confirmadd_failed">操作失败</string> 
+    <string name="friendnotify_confirmadd_success">操作成功</string> 
+    
+    <string name="friendnotify_msg_hasfriend">我通过了您的好友请求，现在我们可以开始对话啦</string>
+    <string name="friendnotify_msg_hasfriend_1">我通过了您的好友验证请求，现在我们可以开始对话啦</string>
+    
+    <string name="person_sex_man">男</string>
+    <string name="person_sex_woman">女</string>
+
+</resources>

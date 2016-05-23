@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/rkcloud_chat_ui_bg_style"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/layout_title"
+        layout="@layout/rkcloud_chat_title_layout" />
+
+    <View
+            android:id="@+id/line_chat"
+            style="@style/divider_line_style"
+    />
+    <!-- 搜索区域 -->
+
+    <com.rongkecloud.chat.demo.ui.widget.RKCloudChatSearchEditText
+        android:id="@+id/search_friend_edittext"
+        style="@style/rkcloud_chat_search_edittext_style"
+        android:layout_width="fill_parent"
+        android:hint="@string/contact_search_friend_hint"
+        android:inputType="textVisiblePassword"
+        android:maxLength="20"/>
+
+    <LinearLayout
+        android:id="@+id/search_layout"
+        style="@style/rkcloud_chat_setting_item_style"
+        android:layout_height="wrap_content"
+        android:visibility="gone" >
+
+        <ImageView
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/select_friends_img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dip"
+            android:gravity="center_vertical"
+            android:text="@string/contact_select_friend"
+            android:textColor="@color/contact_account_textcolor"
+            android:textSize="@dimen/contact_detail_account_textsize" />
+
+        <TextView
+            android:id="@+id/search_friend_account"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dip"
+            android:gravity="center_vertical"
+            android:textColor="@color/contact_select_account_textcolor"
+            android:textSize="@dimen/contact_detail_account_textsize" />
+    </LinearLayout>
+
+</LinearLayout>

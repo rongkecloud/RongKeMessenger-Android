@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ui_bg_style"
+    android:layout_width="fill_parent"
+    android:layout_height="45dip"
+    android:background="@drawable/rkcloud_chat_listview_item_bg"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/group_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingBottom="10dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="15dip" />
+
+    <TextView
+        android:id="@+id/textGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="45dip"
+        android:gravity="center_vertical"
+        android:textColor="@color/contact_account_textcolor"
+        android:textSize="@dimen/contact_detail_account_textsize" 
+        android:singleLine="true"
+        android:ellipsize="end"/>
+
+</LinearLayout>

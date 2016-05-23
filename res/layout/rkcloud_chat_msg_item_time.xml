@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/timelayout"
+    android:layout_width="fill_parent"
+    android:layout_height="20dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:layout_marginTop="15dip"
+    >
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_weight="1"
+            android:background="@color/chat_msg_time_line"
+            android:layout_marginLeft="20dip"
+    />
+    <!-- 消息显示的时间提示 -->
+    <TextView
+        android:id="@+id/msg_time"
+        android:gravity="center"
+        android:paddingTop="2dip"
+        android:paddingBottom="2dip"
+        android:layout_weight="1"
+        android:textSize="@dimen/rkcloud_chat_msg_tip_textsize"
+        android:textColor="@color/contact_remark_textcolor"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_weight="1"
+            android:background="@color/chat_msg_time_line"
+            android:layout_marginRight="20dip"
+    />
+</LinearLayout>

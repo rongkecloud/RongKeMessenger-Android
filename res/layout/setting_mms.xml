@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/rkcloud_chat_ui_bg_style"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/rkcloud_chat_title_layout" />
+    <View
+            style="@style/divider_line_style"
+    />
+    <!-- 分隔线 -->
+
+    <include layout="@layout/rkcloud_chat_setting_dividezone" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!-- 新消息提醒 -->
+
+            <LinearLayout
+                android:id="@+id/layout_newmsg_notify"
+                style="@style/rkcloud_chat_setting_item_style" >
+
+                <TextView
+                    style="@style/rkcloud_chat_setting_item_tip_style"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:text="@string/chatdemo_setting_mms_notify" />
+
+                <ImageView
+                    style="@style/rkcloud_chat_setting_item_arrow_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent" />
+            </LinearLayout>
+            <!-- 两个条目间的分隔线 -->
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
+                android:clickable="false"
+                android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft" >
+
+                <ImageView style="@style/rkcloud_chat_listview_divide_style" />
+            </RelativeLayout>
+
+            <!-- 是否使用听筒播放语音消息 -->
+
+            <LinearLayout style="@style/rkcloud_chat_setting_item_style" >
+
+                <TextView
+                    style="@style/rkcloud_chat_setting_item_tip_style"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:text="@string/chatdemo_setting_mms_earphone" />
+
+                <ImageView
+                    android:id="@+id/audio_playmodel"
+                    style="@style/rkcloud_chat_setting_item_switch_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

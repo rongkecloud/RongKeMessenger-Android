@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical">
+
+	<RelativeLayout
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+
+		<VideoView
+				android:id="@+id/videoview"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"/>
+
+		<!-- 切换摄像头 -->
+
+		<ImageView
+				android:id="@+id/switchcamera"
+				android:layout_alignParentRight="true"
+				android:layout_marginTop="10dip"
+				android:layout_marginRight="10dip"
+				style="@style/rkcloud_chat_record_btn_icon_style"
+				android:background="@drawable/rkcloud_chat_record_bg_btn_switchcamera"
+				android:src="@drawable/rkcloud_chat_record_btn_switchcamera"/>
+
+		<RelativeLayout
+				android:id="@+id/btnzone"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_alignParentBottom="true"
+				android:orientation="horizontal"
+				android:paddingBottom="10dip"
+				android:paddingTop="10dip">
+
+			<TextView
+					android:id="@+id/cancel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/rkcloud_chat_btn_cancel"
+					android:textColor="@color/rkcloud_chat_ui_white_bgcolor"
+					android:textSize="@dimen/rkcloud_chat_record_btn_cancel_textsize"
+					android:layout_marginLeft="20dip"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+			<!-- 开启 -->
+
+			<RelativeLayout
+					android:id="@+id/layout_start"
+					style="@style/rkcloud_chat_record_btnzone_style">
+
+				<ImageView
+						style="@style/rkcloud_chat_record_btn_icon_style"
+						android:background="@drawable/rkcloud_chat_record_bg"
+						android:layout_centerInParent="true"/>
+
+				<ImageView
+						android:layout_width="@dimen/rkcloud_chat_record_btn_bg_start_widthheight"
+						android:layout_height="@dimen/rkcloud_chat_record_btn_bg_start_widthheight"
+						android:background="@drawable/rkcloud_chat_record_bg_btn_start"
+						android:layout_centerInParent="true"/>
+
+			</RelativeLayout>
+
+			<!-- 停止 -->
+			<RelativeLayout
+					android:id="@+id/layout_stop"
+					style="@style/rkcloud_chat_record_btnzone_style">
+
+				<ImageView
+						style="@style/rkcloud_chat_record_btn_icon_style"
+						android:background="@drawable/rkcloud_chat_record_bg"
+						android:layout_centerInParent="true"/>
+
+				<ImageView
+						android:layout_width="@dimen/rkcloud_chat_record_btn_bg_stop_widthheight"
+						android:layout_height="@dimen/rkcloud_chat_record_btn_bg_stop_widthheight"
+						android:background="@drawable/rkcloud_chat_record_bg_btn_stop"
+						android:layout_centerInParent="true"/>
+			</RelativeLayout>
+
+		</RelativeLayout>
+
+		<LinearLayout
+				android:id="@+id/layout_progressbar"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_above="@id/btnzone"
+				android:layout_marginLeft="10dip"
+				android:layout_marginRight="10dip"
+				android:gravity="center_horizontal"
+				android:orientation="horizontal"
+				android:visibility="gone">
+
+			<TextView
+					android:id="@+id/recordingduration"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:gravity="right|center_vertical"
+					android:minWidth="40dip"
+					android:singleLine="true"/>
+
+			<ProgressBar
+					android:id="@+id/progressbar"
+					style="?android:attr/progressBarStyleHorizontal"
+					android:layout_width="0dip"
+					android:layout_height="10dip"
+					android:layout_gravity="center_vertical"
+					android:layout_marginLeft="3dip"
+					android:layout_marginRight="3dip"
+					android:layout_weight="1"/>
+
+			<TextView
+					android:id="@+id/recordingmxduration"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:gravity="left|center_vertical"
+					android:minWidth="40dip"
+					android:singleLine="true"/>
+		</LinearLayout>
+	</RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/rkcloud_chat_ui_bgcolor"
+    android:orientation="vertical" >
+
+    <!-- title区域 -->
+
+    <include layout="@layout/rkcloud_chat_title_layout" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/rkcloud_chat_radiogroup_bg"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal" >
+
+        <!-- 左侧按钮 -->
+
+        <RadioButton
+            android:id="@+id/existchats"
+            style="@style/rkcloud_chat_radiogroup_tab_bnt_style"
+            android:text="@string/rkcloud_chat_forwardmsg_tab_nearchat" />
+
+        <!-- 右侧按钮 -->
+
+        <RadioButton
+            android:id="@+id/address"
+            style="@style/rkcloud_chat_radiogroup_tab_bnt_style"
+            android:background="@drawable/rkcloud_chat_radiogroup_tab_bg_right"
+            android:checked="false"
+            android:text="@string/rkcloud_chat_forwardmsg_tab_address" />
+    </RadioGroup>
+
+    <!-- 搜索区域 -->
+
+    <com.rongkecloud.chat.demo.ui.widget.RKCloudChatSearchEditText
+        android:id="@+id/searchedittext"
+        style="@style/rkcloud_chat_search_edittext_style"
+        android:layout_width="fill_parent" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1">
+
+        <ProgressBar
+            android:id="@+id/loading_progressbar"
+            style="@android:style/Widget.ProgressBar.Inverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/emptytv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/rkcloud_chat_forwardmsg_result_empty"
+            android:textColor="#ff999999"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/listview"
+            style="@style/rkcloud_chat_ListviewStyle"
+            android:background="@color/rkcloud_chat_ui_white_bgcolor"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </RelativeLayout>
+
+</LinearLayout>

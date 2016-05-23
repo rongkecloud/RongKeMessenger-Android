@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rkcloud_chat_listview_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/categoryname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/rkcloud_chat_ui_bgcolor"
+        android:gravity="center_vertical"
+        android:paddingBottom="5dip"
+        android:paddingLeft="@dimen/rkcloud_chat_selectuser_uppercase_letter"
+        android:textColor="@color/rkcloud_chat_address_categoryname_textcolor"
+        android:textSize="@dimen/rkcloud_chat_address_name_textsize"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/rkcloud_chat_listview_item_paddingtop"
+        android:paddingLeft="@dimen/rkcloud_chat_listview_item_paddingleft"
+        android:paddingRight="@dimen/rkcloud_chat_sidebar_width"
+        android:paddingTop="@dimen/rkcloud_chat_listview_item_paddingtop" >
+
+        <ImageView
+                android:id="@+id/checkbox"
+                android:layout_width="@dimen/rkcloud_chat_selectuser_checkbox_width"
+                android:layout_height="@dimen/rkcloud_chat_selectuser_checkbox_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/rkcloud_chat_checkbox_bg" />
+
+        <com.rongkecloud.test.ui.widget.RoundedImageView
+            android:id="@+id/headerphoto"
+            android:layout_width="@dimen/rkcloud_chat_address_headerimg_width"
+            android:layout_height="@dimen/rkcloud_chat_address_headerimg_height"
+            android:layout_marginRight="4dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/rkcloud_chat_img_header_default" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/rkcloud_chat_address_name_textcolor"
+            android:textSize="@dimen/rkcloud_chat_address_name_textsize" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/divide"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/rkcloud_chat_listview_item_paddingleft"
+        android:layout_marginRight="@dimen/rkcloud_chat_sidebar_width"
+        android:background="@drawable/rkcloud_chat_listview_divider"
+        android:visibility="gone" />
+
+</LinearLayout>

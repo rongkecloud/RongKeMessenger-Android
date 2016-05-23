@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/rkcloud_chat_titlezone_height"
+    android:background="@color/rkcloud_chat_titlezone_title_textcolor"
+    android:gravity="center_vertical" >
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:drawablePadding="5dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/rkcloud_chat_titlezone_title_paddingleft"
+        android:paddingRight="20dp"
+        android:text="@string/bnt_return"
+        android:textColor="@color/title_content"
+        android:textSize="@dimen/rkcloud_chat_setting_item_tip_textsize" />
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/text_title_content"
+            android:paddingLeft="60dp"
+            android:paddingRight="60dp"
+            android:textColor="@color/title_text_color"
+            android:textSize="@dimen/rkcloud_chat_titlezone_title_textsize"
+            android:ellipsize="middle"
+            android:gravity="center"
+            android:singleLine="true"
+            />
+    <LinearLayout
+        android:id="@+id/title_right_btnzone"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <!-- 左侧图标 -->
+
+        <LinearLayout
+            android:id="@+id/title_imgbtns_leftzone"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ImageButton
+                android:id="@+id/title_imgbtns_leftbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/rkcloud_chat_title_bg"
+                android:minWidth="@dimen/rkcloud_chat_titlezone_rightbtn_minwidth" />
+        </LinearLayout>
+
+        <!-- 中间图标 -->
+
+        <LinearLayout
+            android:id="@+id/title_imgbtns_centerzone"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ImageButton
+                android:id="@+id/title_imgbtns_centerbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/rkcloud_chat_title_bg"
+                android:minWidth="@dimen/rkcloud_chat_titlezone_rightbtn_minwidth" />
+        </LinearLayout>
+        <!-- 右侧图标 -->
+
+        <ImageButton
+            android:id="@+id/title_imgbtns_rightbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/rkcloud_chat_title_bg"
+            android:gravity="center"
+            android:minWidth="@dimen/rkcloud_chat_titlezone_rightbtn_minwidth"
+            android:visibility="gone" />
+
+        <!-- 按钮 -->
+
+        <Button
+            android:id="@+id/title_right_btn"
+            style="@style/rkcloud_chat_btn_style"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dip"
+            android:minWidth="@dimen/rkcloud_chat_titlezone_rightbtn_minwidth"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/rkcloud_chat_titlezone_title_textsize"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,176 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/rkcloud_chat_ui_bg_style"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/rkcloud_chat_title_layout" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="80dip"
+        android:background="@color/white"
+        android:layout_marginTop="20dip"
+        android:orientation="horizontal" >
+
+        <com.rongkecloud.test.ui.widget.RoundedImageView
+            android:layout_marginTop="@dimen/setting_about_entinfo_textsize"
+            android:layout_marginBottom="@dimen/setting_about_entinfo_textsize"
+            android:id="@+id/avatar_img"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_marginLeft="@dimen/setting_about_entinfo_textsize"
+            android:scaleType="fitXY" />
+        <TextView
+            android:id="@+id/account_text"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dip"
+            android:gravity="center_vertical"
+            android:textColor="@color/contact_account_textcolor"
+            android:textSize="@dimen/contact_detail_account_textsize" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/contact_remark_linear"
+        style="@style/rkcloud_chat_setting_item_style"
+        android:layout_marginTop="20dip"
+        android:clickable="false"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/contact_detail_marginleftright"
+            android:text="@string/contact_remark"
+            android:textColor="@color/contact_account_textcolor"
+            android:textSize="@dimen/contact_detail_account_textsize" />
+
+        <TextView
+            android:id="@+id/remark_text"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/contact_remark_textcolor"
+            android:textSize="@dimen/contact_detail_rematk_textsize" />
+
+        <ImageView
+            style="@style/rkcloud_chat_setting_item_arrow_style"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" />
+    </LinearLayout>
+
+    <RelativeLayout
+        style="@style/rkcloud_chat_setting_item_style"
+        android:layout_marginTop="20dip"
+        android:clickable="false"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/contact_detail_marginleftright"
+            android:text="@string/setting_name"
+            android:textColor="@color/contact_account_textcolor"
+            android:textSize="@dimen/contact_detail_account_textsize" />
+
+        <TextView
+            android:id="@+id/name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="75dip"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/contact_remark_textcolor"
+            android:textSize="@dimen/contact_detail_rematk_textsize" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
+        android:clickable="false"
+        android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft" >
+
+        <ImageView style="@style/rkcloud_chat_listview_divide_style" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/rkcloud_chat_setting_item_style"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:minHeight="@dimen/rkcloud_chat_setting_item_height"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/contact_detail_marginleftright"
+            android:text="@string/contact_detail_address"
+            android:textColor="@color/contact_account_textcolor"
+            android:textSize="@dimen/contact_detail_account_textsize" />
+
+        <TextView
+            android:id="@+id/address_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="75dip"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:text="kdslsjgksljf考虑时间的方面了开始的方面是来得快模式可见的浪费你受得了开发能力开发那算了可烦你了开始看对方能受得了恐辐女老师看到哪里"
+            android:textColor="@color/contact_remark_textcolor"
+            android:textSize="@dimen/contact_detail_rematk_textsize" />
+    </RelativeLayout>
+
+<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        >
+    <Button
+            android:id="@+id/contact_send_mms"
+            style="@style/details_button_style"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/sigle_sendmsg"
+            android:textColor="@color/search_hint"
+            android:text="@string/contact_message" />
+
+    <Button
+            android:id="@+id/contact_vedio"
+            style="@style/details_button_style"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/sigle_video"
+            android:textColor="@color/search_hint"
+            android:text="@string/rk_video_bottom" />
+    <Button
+            android:id="@+id/contact_delete_friend"
+            style="@style/details_button_style"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/sigle_delete"
+            android:text="@string/contact_detail_delete"
+            android:textColor="@color/prompt_content_color_red" />
+    <RelativeLayout
+            android:id="@+id/contact_add_friend"
+            style="@style/details_button_style"
+            android:layout_height="wrap_content"
+            android:background="@drawable/addfirendbtnbg"
+            >
+        <Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:drawableLeft="@drawable/rkcloud_chat_img_add"
+                android:textColor="@color/white"
+                android:background="@color/bg_transparent"
+                android:layout_centerInParent="true"
+                android:text="@string/contact_detail_add_friend" />
+    </RelativeLayout>
+</LinearLayout>
+</LinearLayout>

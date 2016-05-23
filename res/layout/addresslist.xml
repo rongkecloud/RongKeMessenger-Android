@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/rkcloud_chat_ui_bg_style"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/layout_title"
+        layout="@layout/rkcloud_chat_title_layout" />
+
+    <View style="@style/divider_line_style" />
+    <!-- 搜索区域 -->
+
+    <com.rongkecloud.chat.demo.ui.widget.RKCloudChatSearchEditText
+        android:id="@+id/searchedittext"
+        style="@style/rkcloud_chat_search_edittext_style"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/layout_title"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/contact_newfriend_layout"
+        style="@style/rkcloud_chat_setting_item_style"
+        android:layout_marginTop="30px" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/newfriend_img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/contact_new_friend"
+            android:textColor="@color/contact_account_textcolor"
+            android:textSize="@dimen/contact_detail_account_textsize" />
+
+        <ImageView
+            android:id="@+id/notify_unread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/contact_notify_unread_bg" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
+        android:clickable="false"
+        android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft" >
+
+        <ImageView style="@style/rkcloud_chat_listview_divide_style" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/contact_group"
+        style="@style/rkcloud_chat_setting_item_style" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/contact_group" />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/contact_group_talking"
+            android:textColor="@color/contact_account_textcolor"
+            android:textSize="@dimen/contact_detail_account_textsize" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
+        android:clickable="false"
+        android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft" >
+
+        <ImageView style="@style/rkcloud_chat_listview_divide_style" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/service_layout"
+        style="@style/rkcloud_chat_setting_item_style" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/service_img" />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/contact_service"
+            android:textColor="@color/contact_account_textcolor"
+            android:textSize="@dimen/contact_detail_account_textsize" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/rkcloud_chat_listview_item_paddingleft"
+        android:layout_marginTop="@dimen/rkcloud_chat_listview_item_paddingleft"
+        android:paddingLeft="@dimen/rkcloud_chat_listview_item_paddingleft"
+        android:text="@string/contact_friends_group"
+        android:textColor="@color/rkcloud_chat_address_categoryname_textcolor"
+        android:textSize="@dimen/rkcloud_chat_address_categoryname_textsize"
+        android:visibility="gone" />
+
+    <ExpandableListView
+        android:id="@+id/contact_group_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/rkcloud_chat_listview_item_paddingleft"
+        android:background="@color/white"
+        android:childDivider="@drawable/listview_divider"
+        android:childIndicator="@null"
+        android:divider="@drawable/listview_divider"
+        android:groupIndicator="@null"
+        android:scrollbars="none" >
+    </ExpandableListView>
+
+</LinearLayout>

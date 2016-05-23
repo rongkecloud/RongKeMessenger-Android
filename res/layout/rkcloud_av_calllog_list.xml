@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dip"
+        android:background="#22292c"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/rkcloud_av_title_bg"
+            android:drawablePadding="5dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dip"
+            android:paddingRight="2dip"
+            android:singleLine="true"
+            android:text="通话记录"
+            android:textColor="#ffffffff"
+            android:textSize="19sp" />
+
+        <ImageButton
+            android:id="@+id/refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/rkcloud_av_title_bg"
+            android:gravity="center_vertical"
+            android:minWidth="50dip"
+            android:src="@drawable/rkcloud_av_img_refresh" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/callloglist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="#00000000"
+        android:divider="@drawable/rkcloud_av_listview_divider"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="false"
+        android:listSelector="#00000000"
+        android:scrollbars="none"
+        android:scrollingCache="false" >
+    </ListView>
+
+</LinearLayout>

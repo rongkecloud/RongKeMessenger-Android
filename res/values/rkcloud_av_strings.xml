@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="rkcloud_av_tip">提示</string>
+    <string name="rkcloud_av_calllog_clear_confirm">您确认清空所有通话记录吗？</string>
+    <string name="rkcloud_av_dial_withaudio">发起语音通话</string>
+    <string name="rkcloud_av_dial_withvideo">发起视频通话</string>
+    <string name="rk_video_bottom">视频</string>
+    <string name="rkcloud_av_calllog_context_audiodial">发起语音通话</string>
+    <string name="rkcloud_av_calllog_context_videodial">发起视频通话</string>
+    <string name="rkcloud_av_calllog_context_deletesingle">删除当前通话记录</string>
+    <string name="rkcloud_av_calllog_context_deleteall">删除所有通话记录</string>
+    <string name="rkcloud_av_calllog_type_out">呼出</string>
+    <string name="rkcloud_av_calllog_type_in">呼入</string>
+    <string name="rkcloud_av_calllog_type_missed">未接</string>
+    <string name="rkcloud_av_btn_confirm">确定</string>
+    <string name="rkcloud_av_btn_cancel">取消</string>
+    <string name="rkcloud_av_btn_answer">接听</string>
+    <string name="rkcloud_av_btn_hangup">挂断</string>
+    <string name="rkcloud_av_btn_handsfree">免提</string>
+    <string name="rkcloud_av_btn_mute">静音</string>
+    <string name="rkcloud_av_btn_switchcamera">切换摄像头</string>
+    <string name="rkcloud_av_btn_tovideo">切到视频聊天</string>
+    <string name="rkcloud_av_btn_toaudio">切到语音聊天</string>
+    <string name="rkcloud_av_notification_title_out">云视互动当前通话</string>
+    <string name="rkcloud_av_notification_title_in">云视互动当前通话</string>
+    <string name="rkcloud_av_notification_title_missed">云视互动未接来电</string>
+    <string name="rkcloud_av_tip_caller_connect">通话正在建立中...</string>
+    <string name="rkcloud_av_tip_caller_wait">正在等待对方接受邀请...</string>
+    <string name="rkcloud_av_tip_callee_inviteaudio">邀请您进行语音聊天</string>
+    <string name="rkcloud_av_tip_callee_invitevideo">邀请您进行视频聊天</string>
+    <string name="rkcloud_av_tip_remote_tovideo">对方已经切换为视频聊天</string>
+    <string name="rkcloud_av_tip_remote_toaudio">对方已经切换为语音聊天</string>
+    
+    <string name="rkcloud_av_callfailed_paramerror">呼叫失败：参数错误。</string>
+    <string name="rkcloud_av_callfailed_sdkfailed">呼叫失败：SDK未初始化或初始化失败。</string>
+    <string name="rkcloud_av_callfailed_unsupport">呼叫失败：暂不支持音视频通话。</string>
+    <string name="rkcloud_av_callfailed_curr_hascall">呼叫失败：您当前正在通话中。</string>
+    <string name="rkcloud_av_callfailed_curr_hasgsmcall">呼叫失败：您当前有系统电话。</string>
+    <string name="rkcloud_av_callfailed_curr_hasmeeting">呼叫失败：您当前有正在进行的多人语音会议。</string>
+    <string name="rkcloud_av_callfailed_forbid_toyourself">呼叫失败：禁止呼叫自己。</string>
+    
+    <string name="rkcloud_av_callfailed_noanswer">对方无人接听。</string>
+    <string name="rkcloud_av_callfailed_calling">对方正在通话中。</string>
+    <string name="rkcloud_av_callfailed_unline">对方不在线。</string>
+    <string name="rkcloud_av_callfailed_reject">对方拒绝接听。</string>
+    <string name="rkcloud_av_callfailed_cancel">通话已取消。</string>
+    <string name="rkcloud_av_callfailed_calleereject">您拒接通话。</string>
+    <string name="rkcloud_av_callfailed_otherreason">无法建立通话。</string>
+    <string name="rkcloud_av_callfailed_frequent_operation">您的操作过于频繁，请稍后再试。</string>
+    
+    <string name="rkcloud_av_hangup">通话结束。</string>
+    <!-- 向即时通信聊天页面添加消息 -->
+    <string name="rkcloud_av_msg_caller_callcanel">已取消</string>
+    <string name="rkcloud_av_msg_caller_calleeunline">对方不在线</string>
+    <string name="rkcloud_av_msg_caller_calleenoanswer">无人应答</string>
+    <string name="rkcloud_av_msg_caller_calleecalling">对方通话中</string>
+    <string name="rkcloud_av_msg_caller_calleereject">对方已拒接</string>
+    <string name="rkcloud_av_msg_caller_callfailed">呼叫失败</string>
+    <string name="rkcloud_av_msg_callee_calleereject">已拒接</string>
+    <string name="rkcloud_av_msg_callduration">通话时长 <xliff:g id="duration">%s</xliff:g></string>
+    <string name="rkcloud_av_msg_callmissed">未接来电</string>
+    <string name="rkcloud_av_floatwin_click_frequently">点击过于频繁了，请稍候再试。</string>
+
+</resources>

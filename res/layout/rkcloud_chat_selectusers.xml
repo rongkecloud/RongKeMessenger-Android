@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true" >
+
+    <include
+        android:id="@+id/layout_title"
+        layout="@layout/rkcloud_chat_title_layout" />
+
+    <!-- 搜索区域 -->
+
+    <com.rongkecloud.chat.demo.ui.widget.RKCloudChatSearchEditText
+        android:id="@+id/searchedittext"
+        style="@style/rkcloud_chat_search_edittext_style"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/layout_title"
+        android:layout_marginRight="@dimen/rkcloud_chat_sidebar_width" />
+
+    <!-- 已选中成员区域 -->
+
+    <LinearLayout
+        android:id="@+id/footer_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+        <com.rongkecloud.test.ui.widget.RoundedImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@drawable/rkcloud_chat_listview_divider" />
+
+        <LinearLayout
+            android:id="@+id/selectedzone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff9f9f9"
+            android:orientation="horizontal" >
+
+            <HorizontalScrollView
+                android:id="@+id/h_scrollview"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="12dip"
+                android:layout_weight="1"
+                android:scrollbars="none" >
+
+                <LinearLayout
+                    android:id="@+id/selected_linearlayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <GridView
+                        android:id="@+id/selected_gridview"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:cacheColorHint="#00000000"
+                        android:columnWidth="@dimen/rkcloud_chat_selectuser_columnwidth"
+                        android:horizontalSpacing="@dimen/rkcloud_chat_selectuser_gridview_horizontalspacing"
+                        android:listSelector="#00000000"
+                        android:paddingBottom="5dip"
+                        android:paddingTop="5dip"
+                        android:stretchMode="none" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <Button
+                android:id="@+id/btn_confirm"
+                style="@style/rkcloud_chat_btn_style"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dip"
+                android:text="@string/rkcloud_chat_btn_confirm" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer_layout"
+        android:layout_below="@id/searchedittext" >
+
+        <ProgressBar
+            android:id="@+id/loading_progressbar"
+            style="@android:style/Widget.ProgressBar.Inverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/emptytv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/rkcloud_chat_selectuser_data_empty"
+            android:textColor="#ff808080"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/listview"
+            style="@style/rkcloud_chat_ListviewStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:paddingLeft="0dip"
+            android:divider="@null" />
+
+        <TextView
+            android:id="@+id/selectedalpha"
+            android:layout_width="70dip"
+            android:layout_height="70dip"
+            android:layout_centerInParent="true"
+            android:background="@drawable/rkcloud_chat_show_selectedalpha_bg"
+            android:gravity="center"
+            android:textColor="#ffffffff"
+            android:textSize="50sp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <com.rongkecloud.chat.demo.ui.widget.RKCloudChatSideBar
+        android:id="@+id/sidebar"
+        android:layout_width="@dimen/rkcloud_chat_sidebar_width"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer_layout"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/layout_title"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="0dip" />
+
+</RelativeLayout>

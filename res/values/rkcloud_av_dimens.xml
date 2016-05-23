@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- 用户信息区域使用的数值 -->
+    <dimen name="rkcloud_av_userinfozone_paddingleft">10dip</dimen>
+    <dimen name="rkcloud_av_userinfozone_margintop">30dip</dimen>
+    <dimen name="rkcloud_av_headerimg_width">120dip</dimen>
+    <dimen name="rkcloud_av_headerimg_height">120dip</dimen>
+    <dimen name="rkcloud_av_username_textsize">24sp</dimen>   
+    <dimen name="rkcloud_av_callstatus_textsize">16sp</dimen>
+    <!-- 缩小图标使用的数据 -->
+    <dimen name="rkcloud_av_shrink_margintop">30dip</dimen>
+    <dimen name="rkcloud_av_shrink_marginleft">0dip</dimen>
+    <!-- 定时器使用的数值 -->
+    <dimen name="rkcloud_av_timer_margintop">200dip</dimen>
+    <dimen name="rkcloud_av_timer_textsize">24dip</dimen>
+    
+	<!-- 悬浮窗相关的值 -->
+	<dimen name="rkcloud_av_floatwin_margintop">30dip</dimen>
+	<dimen name="rkcloud_av_floatwin_marginright">10dip</dimen>
+	<dimen name="rkcloud_av_floatwin_smallimg_width">30dip</dimen>
+	<dimen name="rkcloud_av_floatwin_smallimg_height">40dip</dimen>	
+    
+    <!-- 操作按钮使用的数值 -->
+    <dimen name="rkcloud_av_btnzone_paddingtop">10dip</dimen>
+	<dimen name="rkcloud_av_btn_bg_width">60dip</dimen>
+	<dimen name="rkcloud_av_btn_bg_height">60dip</dimen>
+	<dimen name="rkcloud_av_btn_bg_radius">30dip</dimen>
+	<dimen name="rkcloud_av_btn_textsize">14sp</dimen>	
+</resources>

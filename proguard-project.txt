@@ -1,0 +1,102 @@
+#忽略警告和错误
+-dontwarn
+-dontoptimize
+-dontpreverify
+
+-verbose 
+
+#设置版本号
+-target 1.0
+
+# 指定根目录
+-basedirectory '.\'
+
+-dontskipnonpubliclibraryclasses
+#指定不去忽略包可见的库类的成员
+-dontskipnonpubliclibraryclassmembers
+
+#专家级别的可选项，优化项过滤器
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+
+#优化几轮
+-optimizationpasses 5
+
+#混淆时不会产生不区分大小写的类名
+-dontusemixedcaseclassnames
+
+#保护给定的可选属性
+-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
+-keepclasseswithmembernames,includedescriptorclasses class * {
+    native <methods>;
+}
+-keepclassmembernames class * {
+    java.lang.Class class$(java.lang.String);
+    java.lang.Class class$(java.lang.String, boolean);
+}
+
+#保留lib库的内容不变
+-keep class android.support.v4.**{*;}
+-keep class com.rongkecloud.sdkbase.**{*;}
+-keep class com.rongkecloud.chat.**{*;}
+-keep class com.rongkecloud.av.**{*;}
+-keep class com.rongkecloud.multiVoice.**{*;}
+-keep class com.rongke.jni.**{*;}
+
+#保留android相关的子类
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Activity{
+	public void *(android.view.View);
+}
+-keep public class * extends android.support.v4.app.FragmentActivity{
+	public void *(android.view.View);
+}
+-keep public class * extends android.support.v4.app.Fragment{
+	public void *(android.view.View);
+}
+-keep class * extends android.os.Handler
+-keep public class * extends android.widget.BaseAdapter
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class com.google.vending.licensing.ILicensingService
+-keep public class com.android.vending.licensing.ILicensingService
+
+
+-keep public class * extends android.view.View {
+	void set*(***);
+    *** get*();
+}
+
+-keepclassmembers class * extends android.content.Context {
+    public protected <fields>;
+	public protected <methods>;	
+}
+
+-keepclassmembers class * implements android.os.Parcelable {
+    public static final android.os.Parcelable$Creator *;
+}
+
+#保留R文件
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+
+#保留public的类和接口
+-keep public class com.rongkecloud.test.**{
+	public protected <fields>;
+	public protected <methods>;	
+}
+-keep public class com.rongkecloud.chat.demo.**{
+	public protected <fields>;
+	public protected <methods>;
+}
+
+-keep public class com.rongke.cloud.av.demo.**{
+	public <fields>;
+	public <methods>;
+}
+
+-keep public class com.rongke.cloud.meeting.demo.**{
+	public <fields>;
+	public <methods>;
+}

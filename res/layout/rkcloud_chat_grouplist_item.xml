@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rkcloud_chat_listview_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/rkcloud_chat_listview_item_paddingtop"
+    android:paddingLeft="@dimen/rkcloud_chat_listview_item_paddingleft"
+    android:paddingRight="@dimen/rkcloud_chat_listview_item_paddingleft"
+    android:paddingTop="@dimen/rkcloud_chat_listview_item_paddingtop" >
+
+    <com.rongkecloud.test.ui.widget.RoundedImageView
+        android:id="@+id/headerphoto"
+        android:layout_width="@dimen/rkcloud_chat_address_headerimg_width"
+        android:layout_height="@dimen/rkcloud_chat_address_headerimg_height"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginRight="4dip"
+        android:scaleType="fitCenter"
+        android:src="@drawable/rkcloud_chat_img_header_mutlichat_default" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_weight="1"
+        android:ellipsize="middle"
+        android:singleLine="true"
+        android:textColor="@color/rkcloud_chat_address_name_textcolor"
+        android:textSize="@dimen/rkcloud_chat_address_name_textsize" />
+
+</LinearLayout>

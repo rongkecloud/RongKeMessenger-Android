@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@color/bg_content"
+			  android:orientation="vertical"
+			  android:focusable="true"
+			  android:focusableInTouchMode="true">
+
+	<include
+			android:id="@+id/layout_title"
+			layout="@layout/rkcloud_chat_title_layout"/>
+
+	<!-- 搜索区域 -->
+
+	<com.rongkecloud.chat.demo.ui.widget.RKCloudChatSearchEditText
+			android:id="@+id/searchedittext"
+			style="@style/rkcloud_chat_search_edittext_style"
+			android:layout_width="fill_parent"/>
+
+	<TextView
+			android:id="@+id/chatlist_desc_white"
+			android:layout_width="fill_parent"
+			android:layout_height="10dip"
+			android:background="@color/rkcloud_chat_ui_white_bgcolor"
+			android:visibility="gone"/>
+
+	<ListView
+			android:id="@+id/listview"
+			style="@style/rkcloud_chat_ListviewStyle"
+			android:background="@color/rkcloud_chat_ui_white_bgcolor"
+			android:paddingLeft="0dip"
+			android:divider="@null"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"/>
+
+</LinearLayout>
