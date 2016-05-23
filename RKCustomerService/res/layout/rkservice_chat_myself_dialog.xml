@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/rkservice_chat_dialog_bg"
+              android:minWidth="260dip"
+              android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_gravity="center_vertical"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip"
+            android:singleLine="true"
+            android:textColor="#333333"/>
+
+    <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffffff"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/message"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:gravity="left|center"
+                android:textColor="#ff424242"
+                android:textSize="15sp"/>
+
+        <LinearLayout
+                android:id="@+id/dialogview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:orientation="horizontal"
+                android:visibility="gone"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/but_zone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffffff"
+            android:orientation="horizontal"
+            android:paddingBottom="10dip"
+            android:paddingTop="10dip">
+
+        <Button
+                android:id="@+id/negativeButton"
+                style="@style/rkservice_chat_btn_style"
+                android:layout_width="0.0dip"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="3.0dip"
+                android:layout_weight="1.0"
+                android:textColor="#333333"
+                android:background="@drawable/rkservice_chat_cancle_btn_bg"/>
+
+        <Button
+                android:id="@+id/positiveButton"
+                style="@style/rkservice_chat_btn_style"
+                android:layout_width="0dip"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="3.0dip"
+                android:layout_weight="1.0"/>
+    </LinearLayout>
+
+</LinearLayout>

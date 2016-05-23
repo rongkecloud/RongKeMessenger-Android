@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle">
+    <corners android:radius="1dip"/>
+    <solid android:color="@color/rkservice_chat_leavemessage_edittext_bgcolor"/>
+    <stroke
+            android:width="1px"
+            android:color="@color/rkservice_chat_leavemessage_edittext_sidecolor"/>
+</shape>

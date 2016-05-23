@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/rkservice_chat_titlezone_height">
+
+    <!-- title区域 -->
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:src="@drawable/rkservice_chat_img_return"
+            android:id="@+id/title_return_img"
+            android:paddingLeft="@dimen/rkservice_chat_titlezone_returnimg_paddingleft"
+            android:paddingRight="@dimen/rkservice_chat_titlezone_returnimg_paddingleft"/>
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:id="@+id/title_txt"
+            android:textSize="@dimen/rkservice_chat_titlezone_title_textsize"
+            android:paddingLeft="30dip"
+            android:paddingRight="30dip"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textColor="@color/rkservice_chat_titlezone_title_textcolor"/>
+
+</RelativeLayout>

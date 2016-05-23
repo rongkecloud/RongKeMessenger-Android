@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <include layout="@layout/rkservice_chat_msg_item_time"/>
+
+    <RelativeLayout
+            style="@style/rkservice_chat_MmsItemStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="0dip"
+            android:paddingRight="0dip"
+            android:layout_marginLeft="30dip"
+            android:layout_marginRight="30dip">
+
+        <!-- 消息显示的内容 -->
+        <com.rongkecloud.customerservice.ui.widget.textview.RKServiceChatWordClickTextView
+                android:id="@+id/msg_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/rkservice_chat_msg_tip_textcolor"
+                android:layout_centerVertical="true"
+                android:lineSpacingExtra="2dip"
+                android:layout_toLeftOf="@+id/msg_tip_evaluate_btn"/>
+
+        <Button
+                android:layout_alignParentRight="true"
+                android:id="@+id/msg_tip_evaluate_btn"
+                style="@style/rkservice_chat_btn_style"
+                android:text="@string/rkservice_chat_btn_evaluate"
+                android:layout_marginLeft="5dip"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

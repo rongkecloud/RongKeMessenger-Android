@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="270dip"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <ListView
+            android:id="@+id/select_info_listview"
+            android:layout_width="270dip"
+            android:layout_height="fill_parent"
+            style="@style/rkservice_chat_ListviewStyle"
+            android:divider="@color/rkservice_chat_listview_divide_color"
+            android:dividerHeight="1px"/>
+
+    <ImageView
+            style="@style/rkservice_chat_listview_divide_style"/>
+</LinearLayout>

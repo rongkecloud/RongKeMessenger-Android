@@ -1,0 +1,175 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:rkchat="http://schemas.android.com/apk/res-auto">
+
+    <!-- 弹出框样式 -->
+    <style name="rkservice_chat_Dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
+        <item name="android:background">@drawable/rkservice_chat_dialog_bg</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@drawable/rkservice_chat_dialog_bg</item>
+    </style>
+
+    <!-- 列表的统一样式 -->
+    <style name="rkservice_chat_ListviewStyle">
+        <item name="android:cacheColorHint">#00000000</item>
+        <item name="android:listSelector">#00000000</item>
+        <item name="android:scrollingCache">false</item>
+        <item name="android:fastScrollEnabled">false</item>
+        <item name="android:fadeScrollbars">false</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <!-- 列表分隔线的样式 -->
+    <style name="rkservice_chat_listview_divide_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:src">@color/rkservice_chat_listview_divide_color</item>
+    </style>
+
+    <!-- 查看图片时按钮使用的样式 -->
+    <style name="rkservice_chat_viewimage_btn_style">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:minWidth">40sp</item>
+        <item name="android:minHeight">40sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- 录音对话框样式 -->
+    <style name="rkservice_chat_recordDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/black</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <!-- 使用的按钮样式 -->
+    <style name="rkservice_chat_btn_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--<item name="android:gravity">center</item>-->
+        <item name="android:textColor">@color/rkservice_chat_titlezone_title_textcolor</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingLeft">10dip</item>
+        <item name="android:paddingRight">10dip</item>
+        <item name="android:paddingTop">3dip</item>
+        <item name="android:paddingBottom">3dip</item>
+    </style>
+
+    <!-- 消息聊天页面使用的样式  begin -->
+    <!-- 消息条目的统一样式 -->
+    <style name="rkservice_chat_MmsItemStyle">
+        <item name="android:paddingTop">4dip</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:paddingRight">5dip</item>
+        <item name="android:paddingBottom">4dip</item>
+    </style>
+
+    <!-- MMS消息中头像样式 -->
+    <style name="rkservice_chat_MmsHeaderPhotoStyle">
+        <item name="android:layout_width">@dimen/rkservice_chat_msg_headerimage_width</item>
+        <item name="android:layout_height">@dimen/rkservice_chat_msg_headerimage_height</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:src">@drawable/rkservice_chat_ic_defaultuseravatar</item>
+    </style>
+
+    <style name="rkservice_chat_MmsSenderPhotoStyle" parent="@style/rkservice_chat_MmsHeaderPhotoStyle">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_marginLeft">3dip</item>
+    </style>
+
+    <style name="rkservice_chat_MmsReceiverPhotoStyle" parent="@style/rkservice_chat_MmsHeaderPhotoStyle">
+        <item name="android:layout_marginRight">3dip</item>
+    </style>
+
+    <!-- 提示显示的样式 -->
+    <style name="rkservice_chat_MmsTipStyle">
+        <item name="android:background">@color/rkservice_chat_msg_tip_bgcolor</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">2dip</item>
+        <item name="android:paddingBottom">2dip</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:paddingRight">5dip</item>
+        <item name="android:textColor">@color/rkservice_chat_msg_tip_textcolor</item>
+        <item name="android:textSize">@dimen/rkservice_chat_msg_tip_textsize</item>
+    </style>
+
+    <!-- 留言LinearLayout使用的样式 -->
+
+    <style name="rkservice_chat_leavemessage_linearlayout_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">@dimen/rkservice_chat_listview_item_paddingleft</item>
+        <item name="android:paddingRight">@dimen/rkservice_chat_listview_item_paddingleft</item>
+        <item name="android:layout_marginTop">@dimen/rkservice_chat_listview_item_paddingleft</item>
+    </style>
+
+    <!-- 留言Textview使用的样式 -->
+
+    <style name="rkservice_chat_leavemessage_textview_desc_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/rkservice_chat_leavemessage_textcolor</item>
+        <item name="android:paddingLeft">@dimen/rkservice_chat_listview_item_paddingleft</item>
+        <item name="android:paddingRight">@dimen/rkservice_chat_listview_item_paddingleft</item>
+        <item name="android:layout_marginTop">@dimen/rkservice_chat_listview_item_paddingleft</item>
+        <item name="android:textSize">@dimen/rkservice_chat_leavemessage_textsize</item>
+    </style>
+
+    <!-- 留言Textview使用的样式 -->
+
+    <style name="rkservice_chat_leavemessage_textview_style">
+        <item name="android:layout_width">@dimen/rkservice_chat_leavemessage_textwidth</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/rkservice_chat_leavemessage_textcolor</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:textSize">@dimen/rkservice_chat_leavemessage_textsize</item>
+    </style>
+
+    <!-- 留言EditText使用的样式 -->
+
+    <style name="rkservice_chat_leavemessage_edittext_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/rkservice_chat_leavemessage_edittext_bg</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/rkservice_chat_leavemessage_textcolor</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:padding">@dimen/rkservice_chat_leavemessage_edittext_padding</item>
+        <item name="android:layout_marginTop">@dimen/rkservice_chat_leavemessage_edittext_padding</item>
+        <item name="android:layout_marginBottom">@dimen/rkservice_chat_leavemessage_edittext_padding</item>
+        <item name="android:layout_marginLeft">@dimen/rkservice_chat_leavemessage_edittext_marginleft</item>
+        <item name="android:layout_marginRight">@dimen/rkservice_chat_leavemessage_edittext_marginleft</item>
+    </style>
+
+    <!-- 聊天页面背景样式 -->
+
+    <style name="rkservice_chat_msgbg_style">
+        <item name="android:windowBackground">@color/rkservice_chat_msg_bgcolor</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- 设置弹出窗口的属性，frame叠加，isfloat是否浮动，tarnslucent是否半透明，dim是背景是否变暗 -->
+    <style name="rkservice_chat_Theme_audioDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+</resources>

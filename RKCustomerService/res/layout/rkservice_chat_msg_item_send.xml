@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:rkchat="http://schemas.android.com/apk/res-auto"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <include layout="@layout/rkservice_chat_msg_item_time"/>
+
+    <RelativeLayout
+            style="@style/rkservice_chat_MmsItemStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        <!-- 头像 -->
+
+        <ImageView
+                android:id="@+id/senderphoto"
+                style="@style/rkservice_chat_MmsSenderPhotoStyle"/>
+
+        <!-- 消息全部内容显示区域 -->
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/rkservice_chat_msg_item_margintop"
+                android:layout_marginTop="3dip"
+                android:layout_toLeftOf="@id/senderphoto"
+                android:gravity="center_vertical">
+
+            <!-- 占位 -->
+
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"/>
+
+            <!-- 消息状态 -->
+
+            <TextView
+                    android:id="@+id/msgstatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ff3c6b00"
+                    android:textSize="11sp"
+                    android:visibility="gone"/>
+
+            <!-- 重发图标 -->
+
+            <ImageView
+                    android:id="@+id/btn_resend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+            <!-- 消息体显示区域 -->
+
+            <com.rongkecloud.customerservice.ui.widget.RKServiceChatSameSizeFrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dip">
+
+                <RelativeLayout
+                        android:id="@+id/layout_body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:descendantFocusability="blocksDescendants"
+                        android:focusable="true"/>
+                <!-- 上传区域的布局 -->
+
+                <RelativeLayout
+                        android:id="@+id/layout_download"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                    <!-- 进度条 -->
+
+                    <ProgressBar
+                            android:id="@+id/down_progressbar"
+                            android:layout_width="@dimen/rkservice_chat_msg_downprogress_width"
+                            android:layout_height="@dimen/rkservice_chat_msg_downprogress_width"
+                            android:layout_centerInParent="true"/>
+                    <!-- 进度值 -->
+
+                    <TextView
+                            android:id="@+id/download_percent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="0%"
+                            android:textColor="@color/rkservice_chat_msg_textcolor"
+                            android:textSize="@dimen/rkservice_chat_msg_downprogress_textsize_s"/>
+                </RelativeLayout>
+            </com.rongkecloud.customerservice.ui.widget.RKServiceChatSameSizeFrameLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

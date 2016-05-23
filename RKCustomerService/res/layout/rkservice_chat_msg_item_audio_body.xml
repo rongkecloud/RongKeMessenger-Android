@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/rkservice_chat_msg_content_paddingleft"
+    android:paddingRight="@dimen/rkservice_chat_msg_content_paddingright">
+
+    <ImageView
+        android:id="@+id/audio_playicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dip" />
+
+    <TextView
+        android:id="@+id/audio_duration"
+        android:layout_width="50dip"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="@color/rkservice_chat_msg_textcolor"
+        android:textSize="18sp" />
+
+</LinearLayout>
