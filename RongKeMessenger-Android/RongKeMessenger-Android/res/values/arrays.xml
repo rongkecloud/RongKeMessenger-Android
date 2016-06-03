@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 设置头像选项 -->
+    <string-array name="take_photo">
+        <item>拍照</item>
+        <item>获取本地图片</item>
+        <item>取消</item>
+    </string-array>
+    
+    <!-- 操作分组 -->
+    <string-array name="contact_manager_group_main">
+        <item>创建分组</item>
+        <item>选择好友</item>
+    </string-array>
+    
+    <!-- 操作分组 -->
+    <string-array name="contact_manager_group_item">
+        <item>创建分组</item>
+        <item>选择好友</item>
+        <item>修改分组</item>
+        <item>删除分组</item>
+    </string-array>
+    
+    <!-- 性别 -->
+    <string-array name="setting_sex">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+    
+    <!-- 意见反馈 -->
+    <string-array name="setting_feedback">
+        <item>软件问题</item>
+        <item>界面问题</item>
+        <item>其他问题</item>
+    </string-array>
+
+    <!-- 铃声 -->
+    <string-array name="setting_sound">
+        <item>系统铃声</item>
+        <item>自定义铃声</item>
+    </string-array>
+</resources>
