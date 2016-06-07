@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="226dp"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/file_body"
+        android:paddingBottom="@dimen/rkservice_chat_dp_10"
+        android:paddingTop="@dimen/rkservice_chat_dp_10"
+        android:paddingLeft="@dimen/rkservice_chat_dp_10"
+        android:paddingRight="@dimen/rkservice_chat_dp_18"
+        android:layout_width="226dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rkservice_chat_bubble_file_mask_right"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rkservice_chat_ic_file"/>
+
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/file_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="middle"
+                android:textColor="#ff333333"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:layout_marginTop="3dp"
+                android:id="@+id/file_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="1.2M"
+                android:textColor="#ff333333"
+                android:textSize="11sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:layout_marginTop="@dimen/rkservice_chat_dp_5"
+        android:id="@+id/progress"
+        android:layout_marginLeft="@dimen/rkservice_chat_dp_12"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:indeterminateOnly="false"
+        android:max="100"
+        android:progress="50"
+        android:progressDrawable="@drawable/rkservice_chat_progressbar_drawable"/>
+
+</LinearLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <!-- title区域相关尺寸的定义 -->
+    <dimen name="rkservice_chat_titlezone_height">48dip</dimen>
+    <dimen name="rkservice_chat_titlezone_title_textsize">19sp</dimen>
+    <dimen name="rkservice_chat_titlezone_returnimg_paddingleft">8dip</dimen>
+    <dimen name="rkservice_chat_titlezone_rightbtn_minwidth">50dip</dimen>
+    <dimen name="rkservice_chat_listview_item_paddingleft">8dip</dimen>
+    <dimen name="rkservice_chat_listview_item_paddingtop">8dip</dimen>
+    
+    <!-- 网络异常使用的尺寸 -->
+    <dimen name="rkservice_chat_nonetwork_textsize">15sp</dimen>
+    <dimen name="rkservice_chat_nonetwork_marginleft">10dip</dimen>
+    <dimen name="rkservice_chat_nonetwork_margintop">10dip</dimen>
+
+    <!-- 表情在不同位置显示的尺寸 -->
+    <dimen name="rkservice_chat_emoji_width">30dip</dimen>
+    <dimen name="rkservice_chat_emoji_height">30dip</dimen>
+    <dimen name="rkservice_chat_emoji_inchatlist_width">16dip</dimen>
+    <dimen name="rkservice_chat_emoji_inchatlist_height">16dip</dimen>
+    <dimen name="rkservice_chat_emoji_inmsglist_width">24dip</dimen>
+    <dimen name="rkservice_chat_emoji_inmsglist_height">24dip</dimen>
+    <dimen name="rkservice_chat_emoji_inedittext_width">22dip</dimen>
+    <dimen name="rkservice_chat_emoji_inedittext_height">22dip</dimen>
+
+    <!-- 消息列表页面图片的高度 -->
+    <dimen name="rkservice_chat_msg_top_height">70dip</dimen>
+    <dimen name="rkservice_chat_msg_top_textsize">20sp</dimen>
+    <dimen name="rkservice_chat_msg_attachzone_height">200dip</dimen>
+    <dimen name="rkservice_chat_msg_attachimg_width">60dip</dimen>
+    <dimen name="rkservice_chat_msg_attachimg_height">60dip</dimen>
+    <dimen name="rkservice_chat_msg_item_margintop">5dip</dimen>
+    <dimen name="rkservice_chat_msg_headerimage_width">40dip</dimen>
+    <dimen name="rkservice_chat_msg_headerimage_height">40dip</dimen>
+    <dimen name="rkservice_chat_msg_tip_textsize">12sp</dimen>
+    <dimen name="rkservice_chat_msg_tip_ope_textsize">14sp</dimen>
+    <dimen name="rkservice_chat_msg_name_textsize">15sp</dimen> 
+    <dimen name="rkservice_chat_msg_downprogress_width">25dip</dimen>
+    <dimen name="rkservice_chat_msg_downprogress_textsize">12sp</dimen>
+    <dimen name="rkservice_chat_msg_downprogress_textsize_s">10sp</dimen>
+    <dimen name="rkservice_chat_msg_content_paddingtop">0dip</dimen>
+    <dimen name="rkservice_chat_msg_content_paddingBottom">1dip</dimen>
+    <dimen name="rkservice_chat_msg_content_paddingleft">8dip</dimen> 
+    <dimen name="rkservice_chat_msg_content_paddingright">8dip</dimen>  
+    <dimen name="rkservice_chat_msg_image_portrait_height">120dip</dimen>
+    <dimen name="rkservice_chat_msg_image_landscape_height">60dip</dimen>
+    
+    <dimen name="rkservice_chat_msg_points_marginleft">2dip</dimen>
+    <dimen name="rkservice_chat_msg_gridvide_space">5dip</dimen>
+    <dimen name="rkservice_chat_sidebar_width">26dip</dimen>
+
+    <dimen name="rkservice_chat_dp_5">5dp</dimen>
+    <dimen name="rkservice_chat_dp_2">2dp</dimen>
+    <dimen name="rkservice_chat_dp_10">10dp</dimen>
+    <dimen name="rkservice_chat_dp_12">12dp</dimen>
+    <dimen name="rkservice_chat_dp_18">18dp</dimen>
+
+	<!-- 录音页面使用的数值 -->
+   	<dimen name="rkservice_chat_record_btn_bg_width">60dip</dimen>
+	<dimen name="rkservice_chat_record_btn_bg_height">60dip</dimen>
+	<dimen name="rkservice_chat_record_btn_bg_radius">30dip</dimen>
+    
+    <!-- 留言使用的数据 -->
+    <dimen name="rkservice_chat_leavemessage_content_magin">10dip</dimen>
+    <dimen name="rkservice_chat_leavemessage_textwidth">50dip</dimen>
+    <dimen name="rkservice_chat_leavemessage_textsize">16sp</dimen>
+    <dimen name="rkservice_chat_leavemessage_edittext_padding">10dip</dimen>
+    <dimen name="rkservice_chat_leavemessage_edittext_marginleft">30dip</dimen>
+    <dimen name="rkservice_chat_leavemessage_button_marginleft">40dip</dimen>
+
+    <color name="rkservice_chat_listview_item_normal_bgcolor">#ffffff</color>
+    <color name="rkservice_chat_listview_item_pressed_bgcolor">#ff4cd964</color>
+
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rkservice_chat_emoji_bg"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/emoji"
+        android:layout_width="@dimen/rkservice_chat_emoji_width"
+        android:layout_height="@dimen/rkservice_chat_emoji_height"
+        android:layout_marginBottom="23dip"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="23dip"
+        android:scaleType="fitXY" />
+
+</RelativeLayout>

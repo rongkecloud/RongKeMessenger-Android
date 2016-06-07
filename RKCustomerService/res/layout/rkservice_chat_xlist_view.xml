@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:background="@color/rkservice_chat_msg_ui_bgcolor"
+        android:layout_height="match_parent">
+
+    <com.rongkecloud.customerservice.ui.widget.xlistview.XListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@style/rkservice_chat_listview_divide_style"
+            android:dividerHeight="10dp"
+            android:scrollingCache="false">
+    </com.rongkecloud.customerservice.ui.widget.xlistview.XListView>
+
+
+    <LinearLayout
+            android:id="@+id/empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/rkservice_chat_null_text"
+                android:textColor="#FF333333"
+                android:textSize="22sp"/>
+    </LinearLayout>
+</FrameLayout>
