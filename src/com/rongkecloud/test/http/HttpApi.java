@@ -4,8 +4,6 @@ interface HttpApi {
     // api对应的ip和端口
 	public static final String ROOT_HOST_NAME = "demo.rongkecloud.com";
 	public static final int ROOT_HOST_PORT = 80;
-    /*public static final String ROOT_HOST_NAME = "192.168.1.163";
-    public static final int ROOT_HOST_PORT = 8083;*/
 
 	public static final String API_PATH = "/rkdemo/";
 	// 修改密码

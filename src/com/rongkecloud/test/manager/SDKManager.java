@@ -94,7 +94,7 @@ public class SDKManager implements RKCloudFatalExceptionCallBack{
 		String rkcloudPwd = RKCloudDemo.config.getString(ConfigKey.LOGIN_RKCLOUD_PWD, null);
 		if(!TextUtils.isEmpty(rkcloudAccount) && !TextUtils.isEmpty(rkcloudPwd)){
             // 设置Debug模式为打开状态
-            RKCloud.setDebugMode(false);
+            RKCloud.setDebugMode(true);
          // 设置SDK的日志回调
             RKCloud.setRKCloudLogCallBack(new RKCloudLogCallBack() {
 				@Override
