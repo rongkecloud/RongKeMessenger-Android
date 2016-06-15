@@ -311,29 +311,29 @@
 			</intent-filter>
 		</receiver>
 
-		<service android:name="com.rongkecloud.android.lps.LPSDaemonService"
-				 android:exported="false"
-				 android:process=":remote"/>
+		<service
+				android:name="com.rongkecloud.android.lps.RKPushService"
+				android:exported="false"
+				android:process=":remote" />
+		<service
+				android:name="com.rongkecloud.android.lps.RKPushNotifyService"
+				android:enabled="true"
+				android:exported="false" />
 
-		<receiver android:name="com.rongkecloud.android.lps.RKServiceBroadcastReceiver"
-				  android:enabled="true"
-				  android:exported="false">
-
-			<intent-filter android:priority="90000">
+		<receiver
+				android:name="com.rongkecloud.android.lps.RKPushBroadcastReceiver"
+				android:enabled="true"
+				android:exported="false" >
+			<intent-filter android:priority="90000" >
 				<action android:name="android.intent.action.USER_PRESENT" />
 			</intent-filter>
-
 			<intent-filter>
-				<action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-				<action android:name="android.net.wifi.RSSI_CHANGED"/>
-				<action android:name="android.net.wifi.STATE_CHANGE"/>
-				<action android:name="android.net.wifi.WIFI_STATE_CHANGED"/>
+				<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+				<action android:name="android.net.wifi.RSSI_CHANGED" />
+				<action android:name="android.net.wifi.STATE_CHANGE" />
+				<action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
 			</intent-filter>
-
 			<intent-filter>
-				<action android:name="lps.message.receive" />
-				<action android:name="lps.connection.state.change" />
-				<action android:name="lps.auth.result.broadcast" />
 				<action android:name="lps.reconnect" />
 				<action android:name="lps.ping" />
 
