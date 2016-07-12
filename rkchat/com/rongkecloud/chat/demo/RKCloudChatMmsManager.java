@@ -172,7 +172,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	{
 		if (null == mChatManager)
 		{
-			return new ArrayList<RKCloudChatBaseChat>();
+			return new ArrayList();
 		}
 		return mChatManager.queryAllGroups();
 	}
@@ -186,7 +186,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	{
 		if (null == mChatManager)
 		{
-			return new ArrayList<RKCloudChatBaseChat>();
+			return new ArrayList();
 		}
 		return mChatManager.queryAllMyCreatedGroups();
 	}
@@ -200,7 +200,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	{
 		if (null == mChatManager)
 		{
-			return new ArrayList<RKCloudChatBaseChat>();
+			return new ArrayList();
 		}
 		return mChatManager.queryAllMyAttendedGroups();
 	}
@@ -327,7 +327,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	{
 		if (null == mChatManager)
 		{
-			return new ArrayList<RKCloudChatBaseChat>();
+			return new ArrayList();
 		}
 		return mChatManager.queryAllChats();
 	}
@@ -549,7 +549,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	{
 		if (null == mChatManager)
 		{
-			return new ArrayList<RKCloudChatBaseMessage>();
+			return new ArrayList();
 		}
 		if (minMsgId > 0)
 		{
@@ -575,7 +575,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	{
 		if (null == mChatManager)
 		{
-			return new ArrayList<RKCloudChatBaseMessage>();
+			return new ArrayList();
 		}
 		return mChatManager.queryLocalHistoryChatMsgs(chatId, maxMsgId, limit);
 	}
@@ -730,6 +730,10 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	 */
 	public List<HashMap<RKCloudChatBaseChat, List<RKCloudChatBaseMessage>>> queryMessageKeyWord(String keyword)
 	{
+		if (null == mChatManager)
+		{
+			return new ArrayList();
+		}
 		return mChatManager.queryMessageKeyWord(keyword);
 	}
 
@@ -746,6 +750,10 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	 */
 	public List<RKCloudChatBaseMessage> queryLocalChatMsgs(String chatId, String msgId, long onceCount)
 	{
+		if (null == mChatManager)
+		{
+			return new ArrayList();
+		}
 		return mChatManager.queryLocalChatMsgs(chatId, msgId, onceCount);
 	}
 
@@ -763,7 +771,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	{
 		if (null == mChatManager)
 		{
-			return new ArrayList<RKCloudChatBaseMessage>();
+			return new ArrayList();
 		}
 		return mChatManager.queryNewChatMsgs(chatId, minMsgId, limit);
 	}
@@ -1716,6 +1724,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	@Override
 	public void onMsgHasChanged(String msgSerialNum)
 	{
+		updateUnreadMsgCountsInMain();
 		sendHandlerMsg(RKCloudChatUiHandlerMessage.MSG_STATUS_HAS_CHANGED, msgSerialNum);
 	}
 }
