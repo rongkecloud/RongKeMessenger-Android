@@ -84,41 +84,43 @@ public class SDKManager implements RKCloudFatalExceptionCallBack{
 	public void bindUiHandler(Handler handler) {
 		mUiHandler = handler;
 	}
-	
-	/**
-	 * 初始化云视互动sdk
-	 */
-	public void initSDK(){
-		FileLog.d(TAG, "initSDK--begin");
-		String rkcloudAccount = RKCloudDemo.config.getString(ConfigKey.LOGIN_NAME, null);
-		String rkcloudPwd = RKCloudDemo.config.getString(ConfigKey.LOGIN_RKCLOUD_PWD, null);
-		if(!TextUtils.isEmpty(rkcloudAccount) && !TextUtils.isEmpty(rkcloudPwd)){
-            // 设置Debug模式为打开状态
-            RKCloud.setDebugMode(true);
-         // 设置SDK的日志回调
-            RKCloud.setRKCloudLogCallBack(new RKCloudLogCallBack() {
-				@Override
-				public void onLog(int logLevel, String tag, String content) {
-					switch(logLevel){
-					case Log.VERBOSE:
-					case Log.DEBUG:
-					case Log.INFO:
-					case Log.WARN:
-					case Log.ERROR:
-						FileLog.log("SDK-"+tag, content);
-						break;
-					}
-				}
-			});
-            
-            // 云视互动SDK初始化
-            RKCloud.init(RKCloudDemo.context, rkcloudAccount, rkcloudPwd, new InitCallBack(){
-                @Override
-                public void onSuccess() {
-					Message msg = mHandler.obtainMessage();
-					msg.what = SDK_INIT_WHAT;
-					msg.arg1 = RKCloudBaseErrorCode.RK_SUCCESS;
-					msg.sendToTarget();
+
+					/**
+					 * 初始化云视互动sdk
+					 */
+				public void initSDK(){
+					FileLog.d(TAG, "initSDK--begin");
+					String rkcloudAccount = RKCloudDemo.config.getString(ConfigKey.LOGIN_NAME, null);
+					String rkcloudPwd = RKCloudDemo.config.getString(ConfigKey.LOGIN_RKCLOUD_PWD, null);
+					RKCloud.setRootHost("101.200.143.20",8000);/**集测*/
+//		RKCloud.setRootHost("192.168.1.162",8080);/**内网*/
+					if(!TextUtils.isEmpty(rkcloudAccount) && !TextUtils.isEmpty(rkcloudPwd)){
+						// 设置Debug模式为打开状态
+						RKCloud.setDebugMode(true);
+						// 设置SDK的日志回调
+						RKCloud.setRKCloudLogCallBack(new RKCloudLogCallBack() {
+							@Override
+							public void onLog(int logLevel, String tag, String content) {
+								switch(logLevel){
+									case Log.VERBOSE:
+									case Log.DEBUG:
+									case Log.INFO:
+									case Log.WARN:
+									case Log.ERROR:
+										FileLog.log("SDK-"+tag, content);
+										break;
+								}
+							}
+						});
+
+						// 云视互动SDK初始化
+						RKCloud.init(RKCloudDemo.context, rkcloudAccount, rkcloudPwd, new InitCallBack(){
+							@Override
+							public void onSuccess() {
+								Message msg = mHandler.obtainMessage();
+								msg.what = SDK_INIT_WHAT;
+								msg.arg1 = RKCloudBaseErrorCode.RK_SUCCESS;
+								msg.sendToTarget();
                 }
  
                 @Override
