@@ -191,9 +191,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 	private int mUnreadCnt = 0;// 未读条数
 	private boolean mScrollStatus = false;// 滚动条是否有滚动，用于控制定位使用
 
-	/** 撤回消息时间限制 单位：毫秒 2分钟 */
-	private int mRevokeMsgTimeLimit = 2 * 60 * 1000;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -1663,7 +1660,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 
 		// 增加“撤回”
 		if (RKCloudChatBaseMessage.MSG_DIRECTION.SEND == msgObj.getDirection() && msgObj.getSender().equals(RKCloud.getUserName()) && MSG_STATUS.SEND_SENDED == msgObj.getStatus()
-				&& (System.currentTimeMillis() - msgObj.getCreatedTime() <= mRevokeMsgTimeLimit))
+				&& (System.currentTimeMillis() - msgObj.getCreatedTime() <= RKCloud.getRevokeMessageTimeout()))
 		{
 			ids.add(CONTEXT_MENU_REVOKE);
 			contents.add(getString(R.string.rkcloud_chat_msglist_context_revoke));
