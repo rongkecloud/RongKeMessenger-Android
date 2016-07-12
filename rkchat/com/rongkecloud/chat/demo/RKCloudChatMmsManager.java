@@ -1692,7 +1692,10 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			}
 			for (RKCloudChatBaseMessage msgObj : datas)
 			{
-				mChatManager.sendArrivedReceipt(msgObj.getMsgSerialNum());
+				if(chatObj instanceof  SingleChat)
+				{
+					mChatManager.sendArrivedReceipt(msgObj.getMsgSerialNum());
+				}
 				if (!syncContactDatas.contains(msgObj.getSender()))
 				{
 					syncContactDatas.add(msgObj.getSender());
@@ -1713,7 +1716,10 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		{
 			return;
 		}
-		mChatManager.sendArrivedReceipt(msgObj.getMsgSerialNum());
+		if(chatObj instanceof  SingleChat)
+		{
+			mChatManager.sendArrivedReceipt(msgObj.getMsgSerialNum());
+		}
 		// 发送通知
 		if (!chatObj.getChatId().equalsIgnoreCase(mUnNeedSendNotifyChatId) && chatObj.getRemindStatus())
 		{

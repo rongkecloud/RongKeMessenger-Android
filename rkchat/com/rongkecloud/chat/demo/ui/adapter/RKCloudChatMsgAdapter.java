@@ -470,7 +470,10 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 						{
 							if (MSG_STATUS.RECEIVE_RECEIVED == msgObj.getStatus())
 							{
-								mMmsManager.notifyOtherMsgHasReaded(msgObj.getMsgSerialNum());
+								if(mChatClassObj == SingleChat.class)
+								{
+									mMmsManager.notifyOtherMsgHasReaded(msgObj.getMsgSerialNum());
+								}
 							}
 						}
 						if (msgObj instanceof CustomMessage)
@@ -478,7 +481,10 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 							// TODO 自定义消息是否需要已读处理，默认是需要的
 							if (MSG_STATUS.RECEIVE_RECEIVED == msgObj.getStatus())
 							{
-								mMmsManager.notifyOtherMsgHasReaded(msgObj.getMsgSerialNum());
+								if(mChatClassObj == SingleChat.class)
+								{
+									mMmsManager.notifyOtherMsgHasReaded(msgObj.getMsgSerialNum());
+								}
 							}
 
 						}
@@ -841,7 +847,10 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 				Intent intent = new Intent(mContext, RKCloudChatViewImagesActivity.class);
 				intent.putExtra(RKCloudChatViewImagesActivity.INTENT_KEY_MSGOBJ, msgObj);
 				mContext.startActivity(intent);
-				RKCloudChatMessageManager.getInstance(mContext).sendReadedReceipt(msgObj.getMsgSerialNum());
+				if(mChatClassObj == SingleChat.class)
+				{
+					RKCloudChatMessageManager.getInstance(mContext).sendReadedReceipt(msgObj.getMsgSerialNum());
+				}
 
 			}
 			else if (msgObj instanceof AudioMessage || msgObj instanceof VideoMessage || msgObj instanceof FileMessage)
