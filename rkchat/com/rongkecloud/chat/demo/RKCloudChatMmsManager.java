@@ -1562,7 +1562,11 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	 */
 	public void notifyOtherMsgHasReaded(String msgSerialNum)
 	{
-
+		if(TextUtils.isEmpty(msgSerialNum))
+		{
+			return;
+		}
+		mChatManager.sendReadedReceipt(msgSerialNum);
 	}
 
 	/**
@@ -1688,13 +1692,13 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			}
 			for (RKCloudChatBaseMessage msgObj : datas)
 			{
+				mChatManager.sendArrivedReceipt(msgObj.getMsgSerialNum());
 				if (!syncContactDatas.contains(msgObj.getSender()))
 				{
 					syncContactDatas.add(msgObj.getSender());
 				}
 			}
 		}
-
 		updateUnreadMsgCountsInMain();
 		sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_RECEIVED_MOREMMS, handlerMsgObj);
 
@@ -1709,7 +1713,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		{
 			return;
 		}
-
+		mChatManager.sendArrivedReceipt(msgObj.getMsgSerialNum());
 		// 发送通知
 		if (!chatObj.getChatId().equalsIgnoreCase(mUnNeedSendNotifyChatId) && chatObj.getRemindStatus())
 		{

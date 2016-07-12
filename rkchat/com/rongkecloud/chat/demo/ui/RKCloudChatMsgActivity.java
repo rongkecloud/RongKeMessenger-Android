@@ -60,6 +60,7 @@ import com.rongkecloud.chat.demo.ui.widget.record.RKCloudChatRecordPopupWindow;
 import com.rongkecloud.multiVoice.RKCloudMeetingCallState;
 import com.rongkecloud.multiVoice.RKCloudMeetingInfo;
 import com.rongkecloud.sdkbase.RKCloud;
+import com.rongkecloud.serviceclient.RKServiceChatMessageManager;
 import com.rongkecloud.test.R;
 
 import java.io.File;
@@ -2347,6 +2348,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			String msgSerialNum = (String) msg.obj;
 			if (!TextUtils.isEmpty(msgSerialNum))
 			{
+				RKCloudChatMessageManager.getInstance(this).sendReadedReceipt(msgSerialNum);
 				// 先同步信息
 				syncMsgContent(msgSerialNum);
 				if (0 == msg.arg1 && msgSerialNum.equals(lastAudioSerialNum))

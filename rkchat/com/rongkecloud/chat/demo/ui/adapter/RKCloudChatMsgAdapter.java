@@ -841,6 +841,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 				Intent intent = new Intent(mContext, RKCloudChatViewImagesActivity.class);
 				intent.putExtra(RKCloudChatViewImagesActivity.INTENT_KEY_MSGOBJ, msgObj);
 				mContext.startActivity(intent);
+				RKCloudChatMessageManager.getInstance(mContext).sendReadedReceipt(msgObj.getMsgSerialNum());
 
 			}
 			else if (msgObj instanceof AudioMessage || msgObj instanceof VideoMessage || msgObj instanceof FileMessage)
