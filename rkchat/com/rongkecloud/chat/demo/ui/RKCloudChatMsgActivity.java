@@ -192,6 +192,8 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 	private int mUnreadCnt = 0;// 未读条数
 	private boolean mScrollStatus = false;// 滚动条是否有滚动，用于控制定位使用
 
+	private String singleId;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -1207,7 +1209,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 
 	private void initData(Bundle savedInstanceState, Intent intent)
 	{
-		String singleId = intent.getStringExtra(INTENT_KEY_MSGLIST_CHATID);
+		singleId = intent.getStringExtra(INTENT_KEY_MSGLIST_CHATID);
 		String groupId = intent.getStringExtra(INTENT_KEY_MSGLIST_GROUPID);
 		if (null != intent.getStringExtra(INTENT_KEY_MSGLIST_MSGID))
 		{
@@ -2348,7 +2350,10 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			String msgSerialNum = (String) msg.obj;
 			if (!TextUtils.isEmpty(msgSerialNum))
 			{
-				RKCloudChatMessageManager.getInstance(this).sendReadedReceipt(msgSerialNum);
+				if(!TextUtils.isEmpty(singleId))
+				{
+					RKCloudChatMessageManager.getInstance(this).sendReadedReceipt(msgSerialNum);
+				}
 				// 先同步信息
 				syncMsgContent(msgSerialNum);
 				if (0 == msg.arg1 && msgSerialNum.equals(lastAudioSerialNum))
