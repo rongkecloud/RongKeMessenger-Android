@@ -99,7 +99,7 @@ public class RKCloudChatSelectUsersActivity extends RKCloudChatBaseActivity impl
 	private int mGridViewHSpecing;
 	private String mCurrAccount;
 	private BackgroundColorSpan backgroundColorSpan;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

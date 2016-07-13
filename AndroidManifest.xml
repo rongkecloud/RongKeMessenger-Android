@@ -145,6 +145,12 @@
 				android:screenOrientation="portrait"
 				android:theme="@android:style/Theme.NoTitleBar"
 				android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <!-- 群转让选择会话成员页面 -->
+        <activity
+                android:name="com.rongkecloud.chat.demo.ui.RKCloudChatTransferGroupSelectUsersActivity"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.NoTitleBar"
+                android:windowSoftInputMode="stateHidden|adjustPan"/>
 		<!-- 搜索消息会话列表页面 -->
 		<activity
 				android:name="com.rongkecloud.chat.demo.ui.RKCloudChatSearchChatListActivity"

@@ -19,6 +19,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 import com.rongkecloud.chat.GroupChat;
+import com.rongkecloud.chat.LocalMessage;
 import com.rongkecloud.chat.RKCloudChatBaseChat;
 import com.rongkecloud.chat.RKCloudChatErrorCode;
 import com.rongkecloud.chat.demo.RKCloudChatContactManager;
@@ -46,6 +47,8 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 	// 定义从其它UI返回的结果类型值
 	private static final int INTENT_FORWARD_KEY_SELECT_USER = 1;// 选择成员
 	public static final int INTENT_FORWARD_KEY_SET_BGIMG = 2;// 设置背景图片
+	//群转让 进入选择成员界面的requestcode
+	private static final int INTENT_REQUEST_CODE_SELECT_USER = 3;
 	
 	public static final String USER_INVITE_FLAG = "+1";// 邀请成员时的特殊号码
 	public static final String USER_KICK_FLAG = "-1";// 邀请成员时的特殊号码
@@ -53,6 +56,8 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 	// 定义查询使用的相关类型
 	private static final int QUERY_TYPE_GROUP_USERS = 1;// 获取群内所有成员
 	private static final int QUERY_TYPE_QUERY_CONTACTS = 2;// 查询联系人信息
+
+
 	
 	// 需要从消息列表传递的参数项
 	public static final String INTENT_GROUP_CHATID = "group_chatid";
@@ -68,6 +73,7 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 	private LinearLayout mSetBgImgLayout;// 设置聊天背景
 	private LinearLayout mClearMsgLayout;// 清空消息
 	private Button mQuitBnt;// 退出并删除会话 或解散群
+	private LinearLayout mTransferGroupLayout;// 群转让布局
 	
 	// 成员变量
 	private String mChatId; // 会话ID
@@ -208,6 +214,22 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 			dialog.show();
 			
 		}
+		else if(R.id.layout_transferGroup == id)
+		{
+			//群转让
+			Intent intent = new Intent(this, RKCloudChatTransferGroupSelectUsersActivity.class);
+			ArrayList<String> tempList = new ArrayList<>(mDatas.size());
+			tempList.addAll(mDatas);
+			if(null != tempList && tempList.size() > 0)
+			{
+				tempList.remove(mCurrAccount);
+				tempList.remove(USER_INVITE_FLAG);
+				tempList.remove(USER_KICK_FLAG);
+				intent.putStringArrayListExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_GROUP_USERS,tempList);
+			}
+			intent.putExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_GROUP_ID,mChatId);
+			startActivityForResult(intent,INTENT_REQUEST_CODE_SELECT_USER);
+		}
 	}
 	
 	@Override
@@ -237,6 +259,19 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 				finish();
 			}
 			break;
+
+		case INTENT_REQUEST_CODE_SELECT_USER:
+			String account = data.getStringExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_TO_ACCOUNT);
+			if(TextUtils.isEmpty(account))
+			{
+				return;
+			}
+			if(!account.equals(mCurrAccount))
+			{
+				mTransferGroupLayout.setVisibility(View.GONE);
+				findViewById(R.id.transferGroup_underline).setVisibility(View.GONE);
+			}
+			break;
 		}
 	}
 	
@@ -258,6 +293,7 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 		mSetBgImgLayout = (LinearLayout) findViewById(R.id.layout_setbgimg);
 		mClearMsgLayout = (LinearLayout) findViewById(R.id.layout_clearmsg);
 		mQuitBnt = (Button) findViewById(R.id.quit);
+		mTransferGroupLayout = (LinearLayout) findViewById(R.id.layout_transferGroup);
 				
 		// 设置监听
 		mGroupNameLayout.setOnClickListener(this);
@@ -267,6 +303,7 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 		mSetBgImgLayout.setOnClickListener(this);
 		mClearMsgLayout.setOnClickListener(this);
 		mQuitBnt.setOnClickListener(this);
+		mTransferGroupLayout.setOnClickListener(this);
 		mGridView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -477,12 +514,16 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 		mGroupNameTV.setText(mGroupChatObj.getChatShowName());
 		// 设置邀请方式的显示与隐藏
 		if(!TextUtils.isEmpty(mGroupChatObj.getGroupCreater()) && mGroupChatObj.getGroupCreater().equalsIgnoreCase(mCurrAccount)){
+			mTransferGroupLayout.setVisibility(View.VISIBLE);
 			mInviteAuthLayout.setVisibility(View.VISIBLE);
+			findViewById(R.id.transferGroup_underline).setVisibility(View.VISIBLE);
 			findViewById(R.id.inviteauth_underline).setVisibility(View.VISIBLE);
 			mInviteAuth = mGroupChatObj.getInviteAuth();
 			mInviteAuthImg.setSelected(mInviteAuth);
 		}else{
+			mTransferGroupLayout.setVisibility(View.GONE);
 			mInviteAuthLayout.setVisibility(View.GONE);
+			findViewById(R.id.transferGroup_underline).setVisibility(View.GONE);
 			findViewById(R.id.inviteauth_underline).setVisibility(View.GONE);
 		}
 		// 设置提醒方式

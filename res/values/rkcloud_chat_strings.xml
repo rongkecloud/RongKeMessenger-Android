@@ -61,6 +61,7 @@
     <!-- 会话管理使用的内容 -->
     <string name="rkcloud_chat_manage_title">会话管理(<xliff:g id="count">%d</xliff:g>)</string>
     <string name="rkcloud_chat_manage_groupname_tip">群名称</string>
+    <string name="rkcloud_chat_manage_transferGroup_tip">群转让</string>
     <string name="rkcloud_chat_manage_inviteauth_tip">邀请权限</string>
     <string name="rkcloud_chat_manage_inviteauth_failed_unauth">群主未开通邀请权限功能。</string>
     <string name="rkcloud_chat_manage_settop_tip">置顶聊天</string>
@@ -73,6 +74,7 @@
     <string name="rkcloud_chat_manage_quit_confirm">您确认退出当前群吗？</string>
     <string name="rkcloud_chat_manage_resolve_confirm">您确认解散当前群吗？</string>
     <string name="rkcloud_chat_manage_kickuser_confirm">您确认踢除 \'<xliff:g id="name">%s</xliff:g>\' 吗？</string>
+    <string name="rkcloud_chat_manage_transfer_group_tip">您已将群主转让给 \'<xliff:g id="name">%s</xliff:g>\'</string>
 
     <!-- 消息列表页面使用的相关内容 -->
     <string name="rkcloud_chat_msgstatus_send_sending">待发</string>
