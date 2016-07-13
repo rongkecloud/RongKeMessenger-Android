@@ -2350,10 +2350,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			String msgSerialNum = (String) msg.obj;
 			if (!TextUtils.isEmpty(msgSerialNum))
 			{
-				if(!TextUtils.isEmpty(singleId))
-				{
-					RKCloudChatMessageManager.getInstance(this).sendReadedReceipt(msgSerialNum);
-				}
 				// 先同步信息
 				syncMsgContent(msgSerialNum);
 				if (0 == msg.arg1 && msgSerialNum.equals(lastAudioSerialNum))

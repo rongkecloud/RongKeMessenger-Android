@@ -1558,15 +1558,15 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	/**
 	 * 通知对端消息已读
 	 * 
-	 * @param msgSerialNum
+	 * @param msgObj
 	 */
-	public void notifyOtherMsgHasReaded(String msgSerialNum)
+	public void notifyOtherMsgHasReaded(RKCloudChatBaseMessage msgObj)
 	{
-		if(TextUtils.isEmpty(msgSerialNum))
+		if(null == msgObj)
 		{
 			return;
 		}
-		mChatManager.sendReadedReceipt(msgSerialNum);
+		mChatManager.sendReadedReceipt(msgObj);
 	}
 
 	/**
@@ -1694,7 +1694,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			{
 				if(chatObj instanceof  SingleChat)
 				{
-					mChatManager.sendArrivedReceipt(msgObj.getMsgSerialNum());
+					mChatManager.sendArrivedReceipt(msgObj);
 				}
 				if (!syncContactDatas.contains(msgObj.getSender()))
 				{
@@ -1718,7 +1718,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		}
 		if(chatObj instanceof  SingleChat)
 		{
-			mChatManager.sendArrivedReceipt(msgObj.getMsgSerialNum());
+			mChatManager.sendArrivedReceipt(msgObj);
 		}
 		// 发送通知
 		if (!chatObj.getChatId().equalsIgnoreCase(mUnNeedSendNotifyChatId) && chatObj.getRemindStatus())

@@ -347,6 +347,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 		RelativeLayout loadLayout;// 下载布局
 		TextView loadProgress;// 下载进度值
 		ImageView playImg;// 视频播放图标
+		TextView msgStatus;//消息状态的回执显示
 
 		ItemViewBuffer(View view)
 		{
@@ -472,7 +473,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 							{
 								if(mChatClassObj == SingleChat.class)
 								{
-									mMmsManager.notifyOtherMsgHasReaded(msgObj.getMsgSerialNum());
+									mMmsManager.notifyOtherMsgHasReaded(msgObj);
 								}
 							}
 						}
@@ -483,7 +484,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 							{
 								if(mChatClassObj == SingleChat.class)
 								{
-									mMmsManager.notifyOtherMsgHasReaded(msgObj.getMsgSerialNum());
+									mMmsManager.notifyOtherMsgHasReaded(msgObj);
 								}
 							}
 
@@ -506,6 +507,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 			{
 				itemBuffer.sendStatus = (TextView) convertView.findViewById(R.id.msgstatus);
 				itemBuffer.sendBtn = (ImageView) convertView.findViewById(R.id.btn_resend);
+				itemBuffer.msgStatus = (TextView) convertView.findViewById(R.id.tv_status);
 			}
 			else
 			{
@@ -552,6 +554,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 				itemBuffer.contentBackground.setBackgroundResource(R.drawable.rkcloud_chat_msgsend_bg);
 				itemBuffer.sendStatus.setVisibility(View.GONE);
 				itemBuffer.sendBtn.setVisibility(View.GONE);
+				itemBuffer.msgStatus.setVisibility(View.GONE);
 				// 根据发送状态显示对应的内容
 				switch (msgObj.getStatus())
 				{
@@ -622,6 +625,14 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 							}
 						});
 						break;
+					case RECEIVE_RECEIVED:
+						itemBuffer.msgStatus.setVisibility(View.VISIBLE);
+						itemBuffer.msgStatus.setText(mContext.getString(R.string.rkcloud_chat_msgstatus_send_arrived));
+						break;
+					case READED:
+						itemBuffer.msgStatus.setVisibility(View.VISIBLE);
+						itemBuffer.msgStatus.setText(mContext.getString(R.string.rkcloud_chat_msgstatus_send_readed));
+						break;
 
 					default:
 						if (SingleChat.class.equals(mChatClassObj))
@@ -655,7 +666,6 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 							case RECEIVE_DOWNFAILED: // 图片下载失败
 								itemBuffer.newMsgSign.setVisibility(View.VISIBLE);
 								break;
-
 							case RECEIVE_DOWNING:// 下载中
 								itemBuffer.loadLayout.setVisibility(View.VISIBLE);
 								break;
@@ -849,7 +859,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 				mContext.startActivity(intent);
 				if(mChatClassObj == SingleChat.class)
 				{
-					RKCloudChatMessageManager.getInstance(mContext).sendReadedReceipt(msgObj.getMsgSerialNum());
+					RKCloudChatMessageManager.getInstance(mContext).sendReadedReceipt(msgObj);
 				}
 
 			}
@@ -863,6 +873,10 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 					{
 						RKCloudChatTools.showToastText(mContext, mContext.getString(R.string.rkcloud_chat_sdcard_error));
 						return;
+					}
+					if(null != msgObj)
+					{
+						RKCloudChatMessageManager.getInstance(mContext).sendReadedReceipt(msgObj);
 					}
 					// 下载媒体消息
 					itemBuffer.newMsgSign.setVisibility(View.GONE);

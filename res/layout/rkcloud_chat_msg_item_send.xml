@@ -63,6 +63,17 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
 
+            <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="aaaaaaaaa"
+                    android:singleLine="true"
+                    android:textSize="@dimen/rkcloud_chat_msg_tip_textsize"
+                    android:textColor="@color/rkcloud_chat_msg_name_textcolor"
+                    android:visibility="gone"
+                   />
+
             <!-- 消息体显示区域 -->
 
             <com.rongkecloud.chat.demo.ui.widget.RKCloudChatSameSizeFrameLayout
