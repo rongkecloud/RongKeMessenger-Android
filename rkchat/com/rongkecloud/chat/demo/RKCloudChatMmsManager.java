@@ -1562,7 +1562,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	 */
 	public void notifyOtherMsgHasReaded(RKCloudChatBaseMessage msgObj)
 	{
-		if(null == msgObj)
+		if (null == msgObj)
 		{
 			return;
 		}
@@ -1618,6 +1618,12 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	public void onGroupInfoChanged(String groupId)
 	{
 		sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED, groupId);
+	}
+
+	@Override
+	public void onGroupInfoChanged(String groupId, int type)
+	{
+
 	}
 
 	@Override
@@ -1692,7 +1698,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			}
 			for (RKCloudChatBaseMessage msgObj : datas)
 			{
-				if(chatObj instanceof  SingleChat)
+				if (chatObj instanceof SingleChat)
 				{
 					mChatManager.sendArrivedReceipt(msgObj);
 				}
@@ -1716,7 +1722,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		{
 			return;
 		}
-		if(chatObj instanceof  SingleChat)
+		if (chatObj instanceof SingleChat)
 		{
 			mChatManager.sendArrivedReceipt(msgObj);
 		}

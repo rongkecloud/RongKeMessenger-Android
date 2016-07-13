@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MiPush_SDK_Client_3_0_3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../rongkecloud-sdkbase-android/libs/MiPush_SDK_Client_3_0_3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
