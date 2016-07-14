@@ -75,6 +75,7 @@
     <string name="rkcloud_chat_manage_resolve_confirm">您确认解散当前群吗？</string>
     <string name="rkcloud_chat_manage_kickuser_confirm">您确认踢除 \'<xliff:g id="name">%s</xliff:g>\' 吗？</string>
     <string name="rkcloud_chat_manage_transfer_group_tip">您已将群主转让给 \'<xliff:g id="name">%s</xliff:g>\'</string>
+    <string name="rkcloud_chat_manage_transfer_group_tip_other">群主转让给 \'<xliff:g id="name">%s</xliff:g>\'</string>
 
     <!-- 消息列表页面使用的相关内容 -->
     <string name="rkcloud_chat_msgstatus_send_sending">待发</string>

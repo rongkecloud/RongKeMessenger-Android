@@ -36,6 +36,8 @@ import com.rongkecloud.chat.interfaces.RKCloudChatRequestCallBack;
 import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.ui.MainActivity;
+import com.rongkecloud.test.utility.Print;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -1621,9 +1623,32 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	}
 
 	@Override
-	public void onGroupInfoChanged(String groupId, int type)
+	public void onGroupInfoChanged(final String groupId, int type)
 	{
+		Print.e(TAG,"----------groupId===" + groupId + ", type===" + type);
+		if(RKCloudChatBaseChat.CHANGE_TYPE_GROUP_TRANSFER == type)
+		{
+			RKCloudChatMessageManager.getInstance(mContext).queryGroupInfo(groupId, new RKCloudChatRequestCallBack()
+			{
+				@Override public void onSuccess(Object results)
+				{
+					GroupChat chatObj = (GroupChat)results;
+					String createAccount = chatObj.getGroupCreater();
+					LocalMessage localMessage = LocalMessage.buildReceivedMsg(groupId,String.format(mContext.getString(R.string.rkcloud_chat_manage_transfer_group_tip_other),createAccount),groupId);
+					addLocalMsg(localMessage,GroupChat.class);
+				}
 
+				@Override public void onProgress(int value)
+				{
+
+				}
+
+				@Override public void onFailed(int errorCode, Object object)
+				{
+					RKCloudChatTools.showToastText(mContext, String.valueOf(object));
+				}
+			});
+		}
 	}
 
 	@Override

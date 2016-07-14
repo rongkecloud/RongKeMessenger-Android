@@ -142,7 +142,6 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 						setResult(RESULT_OK,intent);
 						LocalMessage msg = LocalMessage.buildSendMsg(mGroupId,String.format(getString(R.string.rkcloud_chat_manage_transfer_group_tip),obj.getShowName()), RKCloud.getUserName());
 						long result = mChatMessageManager.addLocalMsg(msg,GroupChat.class);
-						Print.e("aaaaa","result======" + result);
 						finish();
 					}
 
