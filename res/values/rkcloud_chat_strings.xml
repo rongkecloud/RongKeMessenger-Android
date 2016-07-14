@@ -58,9 +58,14 @@
     <string name="rkcloud_chat_creategroupname_hint">请输入群名称</string>
     <string name="rkcloud_chat_creategroupname_tempname">临时群</string>
 
+    <!-- 修改群备注使用的内容 -->
+    <string name="rkcloud_chat_modifygroupdesc_title">修改群描述</string>
+    <string name="rkcloud_chat_modifygroupdesc_hint">请输入群描述</string>
+
     <!-- 会话管理使用的内容 -->
     <string name="rkcloud_chat_manage_title">会话管理(<xliff:g id="count">%d</xliff:g>)</string>
     <string name="rkcloud_chat_manage_groupname_tip">群名称</string>
+    <string name="rkcloud_chat_manage_groupdesc_tip">群描述</string>
     <string name="rkcloud_chat_manage_transferGroup_tip">群转让</string>
     <string name="rkcloud_chat_manage_inviteauth_tip">邀请权限</string>
     <string name="rkcloud_chat_manage_inviteauth_failed_unauth">群主未开通邀请权限功能。</string>

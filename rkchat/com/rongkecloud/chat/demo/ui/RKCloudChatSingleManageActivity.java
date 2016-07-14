@@ -1,28 +1,16 @@
 package com.rongkecloud.chat.demo.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import com.rongkecloud.chat.RKCloudChatBaseChat;
 import com.rongkecloud.chat.RKCloudChatErrorCode;
 import com.rongkecloud.chat.SingleChat;
@@ -40,6 +28,11 @@ import com.rongkecloud.chat.demo.ui.loadimages.RKCloudChatImageResult;
 import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.ui.widget.RoundedImageView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 单聊会话的管理页面
@@ -122,17 +115,11 @@ public class RKCloudChatSingleManageActivity extends RKCloudChatBaseActivity imp
 				mSetTopImg.setSelected(!isSelected);
 			}
 			
-		}else if(R.id.isremind == id){ // 是否提醒
-			boolean isSelected = mIsRemindImg.isSelected();
-			if(mMmsManager.isRemindInGroup(mChatId, !isSelected) > 0){
-				if (null != mSingleChatObj) {
-					RKCloudChatBaseChat chatObj = mMmsManager.queryChat(mChatId);
-					mSingleChatObj.copyData(chatObj);
-				}
-				mIsRemindImg.setSelected(!isSelected);
-			}
-			
-		}else if(R.id.layout_setbgimg == id){ // 设置聊天背景
+		}
+//		else if(R.id.isremind == id){ // 是否提醒
+//			boolean isSelected = mIsRemindImg.isSelected();
+//		}
+		else if(R.id.layout_setbgimg == id){ // 设置聊天背景
 			Intent bgIntent = new Intent(this, RKCloudChatSetMsgBgActivity.class);
 			bgIntent.putExtra(RKCloudChatSetMsgBgActivity.INTENT_CHAT_ID, mChatId);
 			startActivityForResult(bgIntent, INTENT_FORWARD_KEY_SET_BGIMG);

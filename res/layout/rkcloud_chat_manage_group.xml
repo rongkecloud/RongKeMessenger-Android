@@ -51,7 +51,7 @@
             <!-- 群组名称 -->
 
             <LinearLayout
-                android:id="@+id/layout_groupremark"
+                android:id="@+id/layout_groupname"
                 style="@style/rkcloud_chat_setting_item_style" >
 
                 <TextView
@@ -61,7 +61,7 @@
                     android:text="@string/rkcloud_chat_manage_groupname_tip" />
 
                 <TextView
-                    android:id="@+id/groupremark"
+                    android:id="@+id/groupname"
                     style="@style/rkcloud_chat_setting_item_content_witharrow_style"
                     android:layout_width="0dip"
                     android:layout_height="fill_parent"
@@ -71,7 +71,7 @@
             <!-- 分隔线 -->
 
             <RelativeLayout
-                    android:id="@+id/groupremark_underline"
+                    android:id="@+id/groupname_underline"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
@@ -81,7 +81,40 @@
                 <ImageView style="@style/rkcloud_chat_listview_divide_style" />
             </RelativeLayout>
 
-            <!-- 邀请权限 -->
+            <!-- 群描述 -->
+
+            <LinearLayout
+                    android:id="@+id/layout_groupdesc"
+                    style="@style/rkcloud_chat_setting_item_style" >
+
+                <TextView
+                        style="@style/rkcloud_chat_setting_item_tip_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:text="@string/rkcloud_chat_manage_groupdesc_tip" />
+
+                <TextView
+                        android:id="@+id/groupdesc"
+                        style="@style/rkcloud_chat_setting_item_content_witharrow_style"
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+            </LinearLayout>
+
+            <!-- 分隔线 -->
+
+            <RelativeLayout
+                    android:id="@+id/groupdesc_underline"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
+                    android:clickable="false"
+                    android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft" >
+
+                <ImageView style="@style/rkcloud_chat_listview_divide_style" />
+            </RelativeLayout>
+
+            <!-- 群转让 -->
 
             <LinearLayout
                     android:id="@+id/layout_transferGroup"

@@ -67,6 +67,9 @@ public class RKCloudChatUiHandlerMessage {
 	public static final int RESPONSE_KICKUSER = MSG_BASE + 223;// 踢人
 	public static final int CALLBACK_KICKOUT = MSG_BASE + 224;// 被踢出群
 	public static final int CALLBACK_GROUP_DISSOLVED = MSG_BASE + 225;// 群被解散
+	public static final int CALLBACK_MODIFY_GROUP_NAME = MSG_BASE + 226;// 修改群名称
+	public static final int CALLBACK_MODIFY_GROUP_DESC = MSG_BASE + 227;// 修改群备注
+	public static final int RESPONSE_MASK_GROUP_REMIND = MSG_BASE + 228;// 屏蔽群信息
 	
 	public static final int RESPONSE_MODIFY_GROUP_INVITEAUTH = MSG_BASE + 230;// 修改邀请权限
 	public static final int CALLBACK_GROUP_INFO_CHANGED = MSG_BASE + 231;// 群信息有变更

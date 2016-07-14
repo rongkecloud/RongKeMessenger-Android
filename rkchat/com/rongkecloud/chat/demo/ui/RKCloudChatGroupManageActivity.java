@@ -19,7 +19,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 import com.rongkecloud.chat.GroupChat;
-import com.rongkecloud.chat.LocalMessage;
 import com.rongkecloud.chat.RKCloudChatBaseChat;
 import com.rongkecloud.chat.RKCloudChatErrorCode;
 import com.rongkecloud.chat.demo.RKCloudChatContactManager;
@@ -66,6 +65,8 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 	private GridView mGridView;// 头像组件	
 	private LinearLayout mGroupNameLayout;// 会话名称布局
 	private TextView mGroupNameTV; // 会话名称
+	private LinearLayout mGroupDescLayout;// 群描述布局
+	private TextView mGroupDescTV; // 群描述
 	private LinearLayout mInviteAuthLayout;// 邀请权限布局
 	private ImageView mInviteAuthImg;
 	private ImageView mSetTopImg;// 是否置顶聊天
@@ -147,9 +148,12 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 		cancelDelStatus();
 		
 		int id = v.getId();
-		if(R.id.layout_groupremark == id){ // 修改会话名称
-			modifyGroupRemark(mGroupChatObj.getChatShowName());
+		if(R.id.layout_groupname == id){ // 修改会话名称
+			modifyGroupName(mGroupChatObj.getChatShowName());
 			
+		}else if(R.id.layout_groupdesc == id){ // 修改群描述
+			modifyGroupDescription(mGroupChatObj.getChatShowName());
+
 		}else if(R.id.inviteauth == id){ // 邀请权限
 			boolean isSelected = mInviteAuthImg.isSelected();
 			showProgressDialog();
@@ -166,14 +170,8 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 			}
 		}else if(R.id.isremind == id){ // 是否提醒
 			boolean isSelected = mIsRemindImg.isSelected();
-			if(mMmsManager.isRemindInGroup(mChatId, !isSelected) > 0){
-				if (null != mGroupChatObj) {
-					RKCloudChatBaseChat chatObj = mMmsManager.queryChat(mChatId);
-					mGroupChatObj.copyData(chatObj);
-				}
-				mIsRemindImg.setSelected(!isSelected);
-			}
-			
+			mMmsManager.maskGroupMsgRemind(mChatId, isSelected);
+
 		}else if(R.id.layout_setbgimg == id){ // 设置聊天背景
 			Intent bgIntent = new Intent(this, RKCloudChatSetMsgBgActivity.class);
 			bgIntent.putExtra(RKCloudChatSetMsgBgActivity.INTENT_CHAT_ID, mChatId);
@@ -284,8 +282,10 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
         text_title_content = (TextView)findViewById(R.id.text_title_content);
 
 		mGridView = (GridView) findViewById(R.id.gridview);
-		mGroupNameLayout = (LinearLayout) findViewById(R.id.layout_groupremark);
-		mGroupNameTV = (TextView) findViewById(R.id.groupremark);
+		mGroupNameLayout = (LinearLayout) findViewById(R.id.layout_groupname);
+		mGroupNameTV = (TextView) findViewById(R.id.groupname);
+		mGroupDescLayout = (LinearLayout) findViewById(R.id.layout_groupdesc);
+		mGroupDescTV = (TextView) findViewById(R.id.groupdesc);
 		mInviteAuthLayout = (LinearLayout) findViewById(R.id.layout_inviteauth);
 		mInviteAuthImg = (ImageView) findViewById(R.id.inviteauth);
 		mSetTopImg = (ImageView) findViewById(R.id.settop);
@@ -392,10 +392,10 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 		dialog.show();
 	}
 	
-	/*
+	/**
 	 * 修改会话名称 
 	 */
-	private void modifyGroupRemark(final String groupName){
+	private void modifyGroupName(final String groupName){
 		final EditText groupNameET = new EditText(this);	
 		groupNameET.setBackgroundResource(R.drawable.rkcloud_chat_edittext_bg);
 		groupNameET.setSingleLine();
@@ -415,9 +415,8 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 			public void onClick(DialogInterface dialog, int whichButton) {
 				String content = groupNameET.getText().toString().trim();
 				if(!content.equals(groupName)){
-					mMmsManager.modifyGroupRemark(mChatId, content);
-					mGroupChatObj.setGroupRemark(content);
-					mGroupNameTV.setText(content);
+					showProgressDialog();
+					mMmsManager.modifyGroupName(mChatId, content);
 				}
 			}
 		});		
@@ -439,6 +438,54 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 			public void afterTextChanged(Editable arg0) {
 			}
 		});			
+	}
+
+	/**
+	 * 修改群描述
+	 */
+	private void modifyGroupDescription(final String groupDesc){
+		final EditText groupDescET = new EditText(this);
+		groupDescET.setBackgroundResource(R.drawable.rkcloud_chat_edittext_bg);
+		groupDescET.setSingleLine();
+		groupDescET.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+		InputFilter filter = new InputFilter.LengthFilter(30);
+		groupDescET.setFilters(new InputFilter[] {filter});
+		groupDescET.setText(groupDesc);
+		groupDescET.setHint(R.string.rkcloud_chat_modifygroupdesc_hint);
+		groupDescET.setCursorVisible(true);
+		groupDescET.setSelected(true);
+		groupDescET.setSelection(groupDescET.getText().toString().trim().length());
+
+		final RKCloudChatCustomDialog.Builder dialog = new RKCloudChatCustomDialog.Builder(this);
+		dialog.setTitle(R.string.rkcloud_chat_modifygroupdesc_title);
+		dialog.setNegativeButton(R.string.rkcloud_chat_btn_cancel, null);
+		dialog.setPositiveButton(R.string.rkcloud_chat_btn_confirm, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				String content = groupDescET.getText().toString().trim();
+				if(!content.equals(groupDesc)){
+					showProgressDialog();
+					mMmsManager.modifyGroupDescription(mChatId, content);
+				}
+			}
+		});
+
+		dialog.addContentView(groupDescET);
+		dialog.create().show();
+		// 设置输入框内容改变事件
+		groupDescET.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+				dialog.setPositiveButtonEnabled(TextUtils.isEmpty(arg0.toString().trim()) ? false : true);
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+			}
+
+			@Override
+			public void afterTextChanged(Editable arg0) {
+			}
+		});
 	}
 	
 	/*
@@ -698,6 +745,34 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 					mContacts.put(account, mContactManager.getContactInfo(account));
 					break;
 				}
+			}
+		}else if(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME == msg.what){//修改群名称
+			closeProgressDialog();
+			if(RKCloudChatErrorCode.RK_SUCCESS == msg.arg1){
+				if (null != mGroupChatObj) {
+					RKCloudChatBaseChat chatObj = mMmsManager.queryChat(mChatId);
+					mGroupChatObj.copyData(chatObj);
+					mGroupChatObj.setGroupName(mGroupChatObj.getGroupName());
+					mGroupNameTV.setText(mGroupChatObj.getGroupName());
+				}
+			}
+		}else if(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC == msg.what){//修改群描述
+			closeProgressDialog();
+			if(RKCloudChatErrorCode.RK_SUCCESS == msg.arg1){
+				if (null != mGroupChatObj) {
+					RKCloudChatBaseChat chatObj = mMmsManager.queryChat(mChatId);
+					mGroupChatObj.copyData(chatObj);
+					mGroupChatObj.setGroupDescription(mGroupChatObj.getGroupDescription());
+					mGroupDescTV.setText(mGroupChatObj.getGroupDescription());
+				}
+			}
+		}else if(RKCloudChatUiHandlerMessage.RESPONSE_MASK_GROUP_REMIND == msg.what){//屏蔽群信息
+			if(RKCloudChatErrorCode.RK_SUCCESS == msg.arg1){
+				if (null != mGroupChatObj) {
+					RKCloudChatBaseChat chatObj = mMmsManager.queryChat(mChatId);
+					mGroupChatObj.copyData(chatObj);
+				}
+				mIsRemindImg.setSelected(!mGroupChatObj.getRemindStatus());
 			}
 		}
 	}

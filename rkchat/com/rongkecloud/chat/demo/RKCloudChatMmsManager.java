@@ -37,7 +37,6 @@ import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.ui.MainActivity;
 import com.rongkecloud.test.utility.Print;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -363,40 +362,6 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			return 0;
 		}
 		return mChatManager.setChatIsTop(chatId, isTop);
-	}
-
-	/**
-	 * @function 设置会话是否需要提醒功能
-	 * @param chatId
-	 *            String 会话ID
-	 * @param isRemind
-	 *            boolean true: 提醒 false: 不提醒
-	 * @return >0 更新成功 <0 更新失败
-	 */
-	public long isRemindInGroup(String chatId, boolean isRemind)
-	{
-		if (null == mChatManager)
-		{
-			return 0;
-		}
-		return mChatManager.setRemindStatusInChat(chatId, isRemind);
-	}
-
-	/**
-	 * @function 修改群名称
-	 * @param groupId
-	 *            String 群ID
-	 * @param remark
-	 *            String 群名称
-	 * @return >0 更新成功 <0 更新失败
-	 */
-	public long modifyGroupRemark(String groupId, String remark)
-	{
-		if (null == mChatManager)
-		{
-			return 0;
-		}
-		return mChatManager.modifyGroupRemark(groupId, remark);
 	}
 
 	/**
@@ -916,6 +881,43 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			public void onProgress(int value)
 			{
 				sendHandlerMsg(RKCloudChatUiHandlerMessage.RESPONSE_REVOKE_MMS, value, msgSerialNum);
+			}
+		});
+	}
+
+	/**
+	 * @function 设置会话是否需要提醒功能
+	 * @param chatId
+	 *            String 会话ID
+	 * @param isRemind
+	 *            boolean true: 提醒 false: 不提醒
+	 * @return >0 更新成功 <0 更新失败
+	 */
+	public void maskGroupMsgRemind(String chatId, boolean isRemind)
+	{
+		if (null == mChatManager)
+		{
+			sendHandlerMsg(RKCloudChatUiHandlerMessage.RESPONSE_REVOKE_MMS, RKCloudChatErrorCode.RK_SDK_UNINIT);
+			return;
+		}
+		mChatManager.maskGroupMsgRemind(chatId, isRemind, new RKCloudChatRequestCallBack()
+		{
+			@Override
+			public void onSuccess(Object results)
+			{
+
+			}
+
+			@Override
+			public void onProgress(int value)
+			{
+
+			}
+
+			@Override
+			public void onFailed(int errorCode, Object object)
+			{
+
 			}
 		});
 	}
@@ -1459,6 +1461,76 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			@Override
 			public void onProgress(int value)
 			{
+			}
+		});
+	}
+
+	/**
+	 * @function 修改群名称
+	 * @param groupId
+	 *            String 群ID
+	 * @param name
+	 *            String 群名称
+	 */
+	public void modifyGroupName(String groupId, String name)
+	{
+		if (null == mChatManager)
+		{
+			sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME, RKCloudChatErrorCode.RK_SDK_UNINIT);
+			return;
+		}
+		mChatManager.modifyGroupName(groupId, name, new RKCloudChatRequestCallBack()
+		{
+			@Override
+			public void onSuccess(Object results)
+			{
+				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME, RKCloudChatErrorCode.RK_SDK_UNINIT, results);
+			}
+
+			@Override
+			public void onProgress(int value)
+			{
+			}
+
+			@Override
+			public void onFailed(int errorCode, Object object)
+			{
+				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME, RKCloudChatErrorCode.RK_SDK_UNINIT);
+			}
+		});
+	}
+
+	/**
+	 * @function 修改群名称
+	 * @param groupId
+	 *            String 群ID
+	 * @param desc
+	 *            String 群备注
+	 */
+	public void modifyGroupDescription(String groupId, String desc)
+	{
+		if (null == mChatManager)
+		{
+			sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC, RKCloudChatErrorCode.RK_SDK_UNINIT);
+			return;
+		}
+		mChatManager.modifyGroupDescription(groupId, desc, new RKCloudChatRequestCallBack()
+		{
+			@Override
+			public void onSuccess(Object results)
+			{
+				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC, RKCloudChatErrorCode.RK_SDK_UNINIT, results);
+			}
+
+			@Override
+			public void onProgress(int value)
+			{
+			}
+
+			@Override
+			public void onFailed(int errorCode, Object object)
+			{
+				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC, RKCloudChatErrorCode.RK_SDK_UNINIT);
 			}
 		});
 	}

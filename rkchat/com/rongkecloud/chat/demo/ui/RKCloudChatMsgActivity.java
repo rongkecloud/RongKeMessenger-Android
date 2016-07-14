@@ -60,7 +60,6 @@ import com.rongkecloud.chat.demo.ui.widget.record.RKCloudChatRecordPopupWindow;
 import com.rongkecloud.multiVoice.RKCloudMeetingCallState;
 import com.rongkecloud.multiVoice.RKCloudMeetingInfo;
 import com.rongkecloud.sdkbase.RKCloud;
-import com.rongkecloud.serviceclient.RKServiceChatMessageManager;
 import com.rongkecloud.test.R;
 
 import java.io.File;
@@ -1663,7 +1662,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 
 		// 增加“撤回”
 		if (RKCloudChatBaseMessage.MSG_DIRECTION.SEND == msgObj.getDirection() && msgObj.getSender().equals(RKCloud.getUserName()) && MSG_STATUS.SEND_SENDED == msgObj.getStatus()
-				&& (System.currentTimeMillis() - msgObj.getCreatedTime() <= RKCloud.getRevokeMessageTimeout()))
+				&& (System.currentTimeMillis() - msgObj.getCreatedTime() <= RKCloud.getRevokeMessageTimeout() * 1000))
 		{
 			ids.add(CONTEXT_MENU_REVOKE);
 			contents.add(getString(R.string.rkcloud_chat_msglist_context_revoke));

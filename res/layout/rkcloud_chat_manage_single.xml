@@ -84,7 +84,8 @@
 
             <LinearLayout
                 android:id="@+id/layout_isremind"
-                style="@style/rkcloud_chat_setting_item_style" >
+                style="@style/rkcloud_chat_setting_item_style"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/rkcloud_chat_setting_item_tip_style"
