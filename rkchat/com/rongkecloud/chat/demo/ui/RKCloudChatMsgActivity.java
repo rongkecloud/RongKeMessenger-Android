@@ -2386,7 +2386,11 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			}
 
 		}
-		else if (RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED == what)
+		else if (RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED == what
+				|| RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME == msg.what
+				|| RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC == msg.what
+				|| RKCloudChatUiHandlerMessage.RESPONSE_GROUP_POPULATION_CHANGED == msg.what
+				|| RKCloudChatUiHandlerMessage.RESPONSE_MODIFY_GROUP_INVITEAUTH == msg.what)
 		{
 			if (mChatId.equalsIgnoreCase((String) msg.obj))
 			{

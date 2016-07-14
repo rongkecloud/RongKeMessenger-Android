@@ -417,7 +417,7 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 				String content = groupNameET.getText().toString().trim();
 				if(!content.equals(groupName)){
 					showProgressDialog();
-					mMmsManager.modifyGroupName(mChatId, content);
+					mMmsManager.modifyGroupName(content, mChatId);
 				}
 			}
 		});		
@@ -720,7 +720,8 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 					RKCloudChatTools.showToastText(this, getString(R.string.rkcloud_chat_operation_failed));
 				}
 			}
-		}else if(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED == msg.what){
+		}else if(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED == msg.what
+				|| RKCloudChatUiHandlerMessage.RESPONSE_GROUP_POPULATION_CHANGED == msg.what){
 			if(mChatId.equalsIgnoreCase((String)msg.obj)){
 				refreshGroupInfo();
 			}

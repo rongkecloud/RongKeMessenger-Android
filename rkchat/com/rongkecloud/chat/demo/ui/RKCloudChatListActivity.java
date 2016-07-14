@@ -460,7 +460,11 @@ public class RKCloudChatListActivity extends RKCloudChatBaseActivity implements 
 			mLoadingPB.setVisibility(View.GONE);
 			mAdapter.notifyDataSetChanged();
 			
-		}else if(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED==msg.what 
+		}else if(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED==msg.what
+				|| RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME == msg.what
+				|| RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC == msg.what
+				|| RKCloudChatUiHandlerMessage.RESPONSE_GROUP_POPULATION_CHANGED == msg.what
+				|| RKCloudChatUiHandlerMessage.RESPONSE_MODIFY_GROUP_INVITEAUTH == msg.what
 				|| RKCloudChatUiHandlerMessage.RESPONSE_SEND_MMS==msg.what
 				|| RKCloudChatUiHandlerMessage.RESPONSE_RESEND_MMS==msg.what
 				|| RKCloudChatUiHandlerMessage.CALLBACK_RECEIVED_MMS==msg.what 

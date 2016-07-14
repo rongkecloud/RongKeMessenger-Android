@@ -70,11 +70,12 @@ public class RKCloudChatUiHandlerMessage {
 	public static final int CALLBACK_MODIFY_GROUP_NAME = MSG_BASE + 226;// 修改群名称
 	public static final int CALLBACK_MODIFY_GROUP_DESC = MSG_BASE + 227;// 修改群备注
 	public static final int RESPONSE_MASK_GROUP_REMIND = MSG_BASE + 228;// 屏蔽群信息
-	
-	public static final int RESPONSE_MODIFY_GROUP_INVITEAUTH = MSG_BASE + 230;// 修改邀请权限
-	public static final int CALLBACK_GROUP_INFO_CHANGED = MSG_BASE + 231;// 群信息有变更
-	public static final int CALLBACK_GROUP_USERS_CHANGED = MSG_BASE + 232;// 群内成员有变化
-	public static final int CALLBACK_ALL_GROUP_INFO_COMPLETE = MSG_BASE + 233;// 所有群及群成员信息同步完成
+	public static final int RESPONSE_GROUP_POPULATION_CHANGED = MSG_BASE + 229;// 群人数有变化
+
+	public static final int RESPONSE_MODIFY_GROUP_INVITEAUTH = MSG_BASE + 240;// 修改邀请权限
+	public static final int CALLBACK_GROUP_INFO_CHANGED = MSG_BASE + 241;// 群信息有变更
+	public static final int CALLBACK_GROUP_USERS_CHANGED = MSG_BASE + 242;// 群内成员有变化
+	public static final int CALLBACK_ALL_GROUP_INFO_COMPLETE = MSG_BASE + 243;// 所有群及群成员信息同步完成
 
 	
 	

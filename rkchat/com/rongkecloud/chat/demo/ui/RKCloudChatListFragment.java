@@ -631,7 +631,11 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 			mAdapter.notifyDataSetChanged();
 
 		}
-		else if (RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED == msg.what || RKCloudChatUiHandlerMessage.RESPONSE_SEND_MMS == msg.what
+		else if (RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED == msg.what
+				|| RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME == msg.what
+				|| RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC == msg.what
+				|| RKCloudChatUiHandlerMessage.RESPONSE_GROUP_POPULATION_CHANGED == msg.what
+				|| RKCloudChatUiHandlerMessage.RESPONSE_MODIFY_GROUP_INVITEAUTH == msg.what || RKCloudChatUiHandlerMessage.RESPONSE_SEND_MMS == msg.what
 				|| RKCloudChatUiHandlerMessage.RESPONSE_RESEND_MMS == msg.what || RKCloudChatUiHandlerMessage.CALLBACK_RECEIVED_MMS == msg.what
 				|| RKCloudChatUiHandlerMessage.CALLBACK_KICKOUT == msg.what || RKCloudChatUiHandlerMessage.CALLBACK_RECEIVED_MOREMMS == msg.what
 				|| RKCloudChatUiHandlerMessage.CALLBACK_GROUP_DISSOLVED == msg.what || RKCloudChatUiHandlerMessage.DELETE_SINGLE_CHAT == msg.what

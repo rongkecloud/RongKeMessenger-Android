@@ -1472,14 +1472,14 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	 * @param name
 	 *            String 群名称
 	 */
-	public void modifyGroupName(String groupId, String name)
+	public void modifyGroupName(String name, String groupId)
 	{
 		if (null == mChatManager)
 		{
 			sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME, RKCloudChatErrorCode.RK_SDK_UNINIT);
 			return;
 		}
-		mChatManager.modifyGroupName(groupId, name, new RKCloudChatRequestCallBack()
+		mChatManager.modifyGroupName(name, groupId, new RKCloudChatRequestCallBack()
 		{
 			@Override
 			public void onSuccess(Object results)
@@ -1697,30 +1697,38 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	@Override
 	public void onGroupInfoChanged(final String groupId, int type)
 	{
-		Print.e(TAG,"----------groupId===" + groupId + ", type===" + type);
-		if(RKCloudChatBaseChat.CHANGE_TYPE_GROUP_TRANSFER == type)
+		Print.e(TAG, "----------groupId===" + groupId + ", type===" + type);
+		if (RKCloudChatBaseChat.CHANGE_TYPE_GROUP_NAME == type)
 		{
-			RKCloudChatMessageManager.getInstance(mContext).queryGroupInfo(groupId, new RKCloudChatRequestCallBack()
-			{
-				@Override public void onSuccess(Object results)
-				{
-					GroupChat chatObj = (GroupChat)results;
-					String createAccount = chatObj.getGroupCreater();
-					LocalMessage localMessage = LocalMessage.buildReceivedMsg(groupId,String.format(mContext.getString(R.string.rkcloud_chat_manage_transfer_group_tip_other),createAccount),groupId);
-					addLocalMsg(localMessage,GroupChat.class);
-					sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED, groupId);
-				}
+			sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME, groupId);
+		}
 
-				@Override public void onProgress(int value)
-				{
+		if (RKCloudChatBaseChat.CHANGE_TYPE_GROUP_DESCRIPTION == type)
+		{
+			sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC, groupId);
+		}
 
-				}
+		if (RKCloudChatBaseChat.CHANGE_TYPE_GROUP_TRANSFER == type)
+		{
+			String createAccount = ((GroupChat) queryChat(groupId)).getGroupCreater();
+			LocalMessage localMessage = LocalMessage.buildReceivedMsg(groupId, String.format(mContext.getString(R.string.rkcloud_chat_manage_transfer_group_tip_other), createAccount), groupId);
+			addLocalMsg(localMessage, GroupChat.class);
+			sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED, groupId);
+		}
 
-				@Override public void onFailed(int errorCode, Object object)
-				{
-					RKCloudChatTools.showToastText(mContext, String.valueOf(object));
-				}
-			});
+		if (RKCloudChatBaseChat.CHANGE_TYPE_GROUP_POPULATION == type)
+		{
+			sendHandlerMsg(RKCloudChatUiHandlerMessage.RESPONSE_GROUP_POPULATION_CHANGED, groupId);
+		}
+
+		if (RKCloudChatBaseChat.CHANGE_TYPE_GROUP_JOIN_AUTHORITY == type)
+		{
+			sendHandlerMsg(RKCloudChatUiHandlerMessage.RESPONSE_MODIFY_GROUP_INVITEAUTH, groupId);
+		}
+
+		if (RKCloudChatBaseChat.CHANGE_TYPE_GROUP_INFO == type)
+		{
+			sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED, groupId);
 		}
 	}
 
