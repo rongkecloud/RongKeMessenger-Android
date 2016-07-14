@@ -1636,6 +1636,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 					String createAccount = chatObj.getGroupCreater();
 					LocalMessage localMessage = LocalMessage.buildReceivedMsg(groupId,String.format(mContext.getString(R.string.rkcloud_chat_manage_transfer_group_tip_other),createAccount),groupId);
 					addLocalMsg(localMessage,GroupChat.class);
+					sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED, groupId);
 				}
 
 				@Override public void onProgress(int value)
