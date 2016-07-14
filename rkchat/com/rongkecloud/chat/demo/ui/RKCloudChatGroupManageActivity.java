@@ -169,8 +169,9 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 				mSetTopImg.setSelected(!isSelected);
 			}
 		}else if(R.id.isremind == id){ // 是否提醒
+			showProgressDialog();
 			boolean isSelected = mIsRemindImg.isSelected();
-			mMmsManager.maskGroupMsgRemind(mChatId, isSelected);
+			mMmsManager.maskGroupMsgRemind(mChatId, !isSelected);
 
 		}else if(R.id.layout_setbgimg == id){ // 设置聊天背景
 			Intent bgIntent = new Intent(this, RKCloudChatSetMsgBgActivity.class);
@@ -771,12 +772,13 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 				}
 			}
 		}else if(RKCloudChatUiHandlerMessage.RESPONSE_MASK_GROUP_REMIND == msg.what){//屏蔽群信息
+			closeProgressDialog();
 			if(RKCloudChatErrorCode.RK_SUCCESS == msg.arg1){
 				if (null != mGroupChatObj) {
 					RKCloudChatBaseChat chatObj = mMmsManager.queryChat(mChatId);
 					mGroupChatObj.copyData(chatObj);
+					mIsRemindImg.setSelected(mGroupChatObj.getRemindStatus());
 				}
-				mIsRemindImg.setSelected(!mGroupChatObj.getRemindStatus());
 			}
 		}
 	}
