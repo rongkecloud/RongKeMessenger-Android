@@ -897,7 +897,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	{
 		if (null == mChatManager)
 		{
-			sendHandlerMsg(RKCloudChatUiHandlerMessage.RESPONSE_REVOKE_MMS, RKCloudChatErrorCode.RK_SDK_UNINIT);
+			sendHandlerMsg(RKCloudChatUiHandlerMessage.RESPONSE_MASK_GROUP_REMIND, RKCloudChatErrorCode.RK_SDK_UNINIT);
 			return;
 		}
 		mChatManager.maskGroupMsgRemind(chatId, isRemind, new RKCloudChatRequestCallBack()
@@ -905,7 +905,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			@Override
 			public void onSuccess(Object results)
 			{
-
+				sendHandlerMsg(RKCloudChatUiHandlerMessage.RESPONSE_MASK_GROUP_REMIND, RKCloudChatErrorCode.RK_SUCCESS);
 			}
 
 			@Override
@@ -917,7 +917,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			@Override
 			public void onFailed(int errorCode, Object object)
 			{
-
+				sendHandlerMsg(RKCloudChatUiHandlerMessage.RESPONSE_MASK_GROUP_REMIND, errorCode);
 			}
 		});
 	}
@@ -1484,7 +1484,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			@Override
 			public void onSuccess(Object results)
 			{
-				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME, RKCloudChatErrorCode.RK_SDK_UNINIT, results);
+				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME, RKCloudChatErrorCode.RK_SUCCESS, results);
 			}
 
 			@Override
@@ -1495,7 +1495,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			@Override
 			public void onFailed(int errorCode, Object object)
 			{
-				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME, RKCloudChatErrorCode.RK_SDK_UNINIT);
+				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME, errorCode);
 			}
 		});
 	}
@@ -1507,19 +1507,19 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	 * @param desc
 	 *            String 群备注
 	 */
-	public void modifyGroupDescription(String groupId, String desc)
+	public void modifyGroupDescription(String desc, String groupId)
 	{
 		if (null == mChatManager)
 		{
 			sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC, RKCloudChatErrorCode.RK_SDK_UNINIT);
 			return;
 		}
-		mChatManager.modifyGroupDescription(groupId, desc, new RKCloudChatRequestCallBack()
+		mChatManager.modifyGroupDescription(desc, groupId, new RKCloudChatRequestCallBack()
 		{
 			@Override
 			public void onSuccess(Object results)
 			{
-				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC, RKCloudChatErrorCode.RK_SDK_UNINIT, results);
+				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC, RKCloudChatErrorCode.RK_SUCCESS, results);
 			}
 
 			@Override
@@ -1530,7 +1530,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			@Override
 			public void onFailed(int errorCode, Object object)
 			{
-				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC, RKCloudChatErrorCode.RK_SDK_UNINIT);
+				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC, errorCode);
 			}
 		});
 	}

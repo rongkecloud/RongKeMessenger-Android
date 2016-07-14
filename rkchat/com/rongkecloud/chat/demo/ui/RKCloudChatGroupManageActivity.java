@@ -152,7 +152,7 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 			modifyGroupName(mGroupChatObj.getChatShowName());
 			
 		}else if(R.id.layout_groupdesc == id){ // 修改群描述
-			modifyGroupDescription(mGroupChatObj.getChatShowName());
+			modifyGroupDescription(mGroupChatObj.getGroupDescription());
 
 		}else if(R.id.inviteauth == id){ // 邀请权限
 			boolean isSelected = mInviteAuthImg.isSelected();
@@ -297,6 +297,7 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 				
 		// 设置监听
 		mGroupNameLayout.setOnClickListener(this);
+		mGroupDescLayout.setOnClickListener(this);
 		mInviteAuthImg.setOnClickListener(this);
 		mSetTopImg.setOnClickListener(this);
 		mIsRemindImg.setOnClickListener(this);
@@ -464,7 +465,7 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 				String content = groupDescET.getText().toString().trim();
 				if(!content.equals(groupDesc)){
 					showProgressDialog();
-					mMmsManager.modifyGroupDescription(mChatId, content);
+					mMmsManager.modifyGroupDescription(content, mChatId);
 				}
 			}
 		});
@@ -559,6 +560,8 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
         text_title_content.setText(getString(R.string.rkcloud_chat_manage_title, mGroupChatObj.getUserCounts()));
         // 设置群名称
 		mGroupNameTV.setText(mGroupChatObj.getChatShowName());
+		// 设置群描述
+		mGroupDescTV.setText(mGroupChatObj.getGroupDescription());
 		// 设置邀请方式的显示与隐藏
 		if(!TextUtils.isEmpty(mGroupChatObj.getGroupCreater()) && mGroupChatObj.getGroupCreater().equalsIgnoreCase(mCurrAccount)){
 			mTransferGroupLayout.setVisibility(View.VISIBLE);
