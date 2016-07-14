@@ -365,6 +365,10 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 		{
 			type = ITEM_STYLE_TIP;
 		}
+		else if(RKCloudChatBaseMessage.MSG_TYPE_LOCAL == msgObj.getType())
+		{
+			type = ITEM_STYLE_TIP;
+		}
 		else
 		{
 			type = getItemViewType(position);
