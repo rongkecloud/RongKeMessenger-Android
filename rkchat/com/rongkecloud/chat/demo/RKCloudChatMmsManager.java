@@ -1849,4 +1849,72 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		updateUnreadMsgCountsInMain();
 		sendHandlerMsg(RKCloudChatUiHandlerMessage.MSG_STATUS_HAS_CHANGED, msgSerialNum);
 	}
+
+
+	/**
+	 * 检查是否包含群成员
+	 * @param content
+	 * @return
+	 */
+	public boolean containsAtUsername(String content,List<String> accountList){
+		if(TextUtils.isEmpty(content)){
+			return false;
+		}
+		for(String account : accountList){
+			String nick = account;//用户账号
+			RKCloudChatContact conactInfo = RKCloudChatContactManager.getInstance(mContext).getContactInfo(account);
+			if(null != conactInfo)
+			{
+				nick = RKCloudChatContactManager.getInstance(mContext).getContactName(account);//用户名称
+			}
+			if(content.contains(nick)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * 检查是否是所有群成员
+	 * @param content
+	 * @return
+	 */
+	public boolean containsAtAll(String content){
+		String atAll = "@" + mContext.getString(R.string.rkcloud_chat_all_members);
+		if(content.contains(atAll)){
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 检查所有有效的@用户
+	 * 为了避免 @123456（应该是@16）这种情况出现
+	 * @param content
+	 * @return
+	 */
+	public List<String> getAtMessageUsernames(String content,List<String> accountList){
+		if(TextUtils.isEmpty(content)){
+			return null;
+		}
+
+		List<String> list = null;
+		for(String account : accountList){
+			String nick = account;
+			RKCloudChatContact conactInfo = RKCloudChatContactManager.getInstance(mContext).getContactInfo(account);
+			if(null != conactInfo)
+			{
+				nick = RKCloudChatContactManager.getInstance(mContext).getContactName(account);
+			}
+			if(content.contains(nick))
+			{
+				if(list == null)
+				{
+					list = new ArrayList<String>();
+				}
+				list.add(account);
+				}
+			}
+			return list;
+	}
 }

@@ -758,6 +758,7 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 			TextView convNameTV; // 会话名称
 			TextView unReadMsgCntTV;// 未读消息条数
 			TextView lastMsgContentTV;// 最后一条消息的内容
+			TextView mentionedTV;//@显示
 			TextView lastmsgDateTV;// 最后一条消息日期
 			TextView lastmsgTimeTV;// 最后一条消息时间
 			TextView msgFailedTV; // 消息发送失败时的显示内容
@@ -769,6 +770,7 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 				convNameTV = (TextView) convertView.findViewById(R.id.name);
 				unReadMsgCntTV = (TextView) convertView.findViewById(R.id.txt_msg_count_unread);
 				lastMsgContentTV = (TextView) convertView.findViewById(R.id.msgcontent);
+				mentionedTV = (TextView) convertView.findViewById(R.id.tv_mentioned);
 				lastmsgDateTV = (TextView) convertView.findViewById(R.id.lastmsgdate);
 				lastmsgTimeTV = (TextView) convertView.findViewById(R.id.lastmsgtime);
 				msgFailedTV = (TextView) convertView.findViewById(R.id.msgfailed);
@@ -917,6 +919,17 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 					}
 					else
 					{
+						if(chatObj instanceof GroupChat)
+						{
+							if(msgObj instanceof TextMessage && !TextUtils.isEmpty(((TextMessage)msgObj).getAtUser()))
+							{
+								mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
+							}
+							else
+							{
+								mItemBuffer.mentionedTV.setVisibility(View.GONE);
+							}
+						}
 						mItemBuffer.lastMsgContentTV.setText(showContent);
 					}
 				}

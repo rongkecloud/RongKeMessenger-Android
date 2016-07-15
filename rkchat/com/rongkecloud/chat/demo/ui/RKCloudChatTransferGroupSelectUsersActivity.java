@@ -14,10 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-import com.rongkecloud.chat.GroupChat;
-import com.rongkecloud.chat.LocalMessage;
-import com.rongkecloud.chat.RKCloudChatMessageManager;
-import com.rongkecloud.chat.demo.RKCloudChatConstants;
+import com.rongkecloud.chat.*;
 import com.rongkecloud.chat.demo.RKCloudChatContactManager;
 import com.rongkecloud.chat.demo.RKCloudChatUiHandlerMessage;
 import com.rongkecloud.chat.demo.entity.RKCloudChatContact;
@@ -44,6 +41,7 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 	public static final String INTENT_KEY_GROUP_USERS = "group_users";//群成员使用的key
 	public static final String INTENT_KEY_GROUP_ID = "group_id";//群组ID使用的key
 	public static final String INTENT_KEY_TO_ACCOUNT = "to_account";//传递新群主账号使用的key
+	public static final String INTENT_KEY_FROM_MSG_ACTIVITY = "msg_activity";//来自于聊天页面
 	// UI组件
 	private ListView mListView;
 	private ProgressBar mLoadingPB;
@@ -140,15 +138,14 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 						intent.putExtra(INTENT_KEY_TO_ACCOUNT,obj.rkAccount);
 						setResult(RESULT_OK,intent);
 						LocalMessage msg = LocalMessage.buildSendMsg(mGroupId,String.format(getString(R.string.rkcloud_chat_manage_transfer_group_tip),obj.getShowName()), RKCloud.getUserName());
-                        msg.setExtension(RKCloudChatConstants.FLAG_LOCAL_TIPMESSAGE);
-                        long result = mChatMessageManager.addLocalMsg(msg,GroupChat.class);
+						long result = mChatMessageManager.addLocalMsg(msg,GroupChat.class);
 						finish();
 					}
 
-					@Override public void onProgress(int value)
-					{
+						@Override public void onProgress(int value)
+						{
 
-					}
+						}
 
 					@Override public void onFailed(int errorCode, Object object)
 					{

@@ -124,6 +124,8 @@
     <string name="rkcloud_chat_enter_mutlimeeting">点击进入多人语音会议室</string>
     <string name="rkcloud_chat_revoke_message_self">你撤回了一条消息</string>
     <string name="rkcloud_chat_revoke_message_other">“<xliff:g id="name">%s</xliff:g>”撤回了一条消息</string>
+    <string name="rkcloud_chat_all_members">所有成员</string>
+    <string name="rkcloud_chat_mentioned_me">[有人@我]</string>
 
     <!-- 通知栏使用的内容 -->
     <string name="rkcloud_chat_notify_unreadcnt_title">云视互动即时通信</string>

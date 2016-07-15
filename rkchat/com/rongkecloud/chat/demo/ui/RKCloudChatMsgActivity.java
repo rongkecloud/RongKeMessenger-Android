@@ -61,6 +61,10 @@ import com.rongkecloud.multiVoice.RKCloudMeetingCallState;
 import com.rongkecloud.multiVoice.RKCloudMeetingInfo;
 import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
+import com.rongkecloud.test.utility.Print;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.io.File;
 import java.sql.Date;
@@ -97,6 +101,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 	static final int INTENT_RESULT_CHOOSE_PICTURE = 2;// 选择图片
 	static final int INTENT_RESULT_CHOOSE_VIDEO = 3;// 录制视频
 	static final int INTENT_RESULT_CHOOSE_ATTACHEMENT = 4;// 选择附件
+	static final int INTENT_REQUEST_CODE_SELECT_USER = 5;//进入选择成员界面
 
 	// 分段加载历史数据使用的相关变量
 	private long lastLoadMsgCreaingId = 0;// 记录已加载消息中自增ID值最小的一个消息ID值
@@ -192,6 +197,8 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 	private boolean mScrollStatus = false;// 滚动条是否有滚动，用于控制定位使用
 
 	private String singleId;
+
+	private List<String> mRemindContact;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -340,7 +347,38 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			String content = mSmiliesEditText.getText().toString().trim();
 			if (!TextUtils.isEmpty(content))
 			{
+				/*TODO 先判断是都包含@all 如果是直接传的全部  如果不是  在@单个成员
+				* 参数 content
+				* list<String>  群成员账号数据
+				* */
 				TextMessage textObj = TextMessage.buildMsg(mChatId, content);
+				if(mChatObj instanceof GroupChat)
+				{
+					GroupChat groupChat = (GroupChat)mChatObj;
+					if(groupChat.getGroupCreater().equals(mCurrAccount) && mMmsManager.containsAtAll(content))
+					{
+						//是群主并且@所有人
+						textObj.setAtUser("all");
+					}
+					else if(mMmsManager.containsAtUsername(content,mRemindContact))
+					{
+						//@单个成员
+						List<String> tempList = mMmsManager.getAtMessageUsernames(content,mRemindContact);
+						JSONArray array = null;
+						for(String account : tempList)
+						{
+							if(!TextUtils.isEmpty(account) && null != mContactManager.getContactInfo(account))
+							{
+								if(null == array)
+								{
+									array = new JSONArray();
+								}
+								array.put(account);
+							}
+						}
+						textObj.setAtUser(array.toString());
+					}
+				}
 				textObj.setmMsgSummary(textObj.getContent());
 				sendMms(textObj);
 				mSmiliesEditText.setText(null);// 清空输入框内容
@@ -565,6 +603,22 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 				FileMessage fileObj = FileMessage.buildMsg(mChatId, filePath);
 				fileObj.setmMsgSummary(getString(R.string.rkcloud_chat_notify_file));
 				sendMms(fileObj);
+			}
+		}
+		else if(INTENT_REQUEST_CODE_SELECT_USER == requestCode)
+		{
+			String account = null != data ? data.getStringExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_TO_ACCOUNT) : "";
+			if(!TextUtils.isEmpty(account))
+			{
+				if(null == mRemindContact)
+				{
+					mRemindContact = new ArrayList<>();
+				}
+				mRemindContact.add(account);
+				int start = mSmiliesEditText.getSelectionStart();
+				Editable editable = mSmiliesEditText.getEditableText();
+				editable.insert(start, mContactManager.getContactName(account));
+				mSmiliesEditText.setSelection(mSmiliesEditText.getText().length());
 			}
 		}
 	}
@@ -1156,11 +1210,31 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 					mSendBnt.setVisibility(View.VISIBLE);
 					mAttachSwitch.setVisibility(View.GONE);
 				}
+				Print.e(TAG, "onTextChanged:" + s + "-" + "-start===" + start + "-before===" + before + "-count===" + count);
+				if(mChatObj instanceof GroupChat)
+				{
+					Print.e(TAG,"sub result===============" + s.toString().substring(start));
+					if(count == 1 && "@".equals(String.valueOf(s.charAt(start))))
+					{
+						Intent intent = new Intent(RKCloudChatMsgActivity.this, RKCloudChatTransferGroupSelectUsersActivity.class);
+						intent.putExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_FROM_MSG_ACTIVITY,true);
+						List<String> accounts = mMmsManager.queryGroupUsers(mChatObj.getChatId());
+						if(null != accounts && accounts.size() > 0)
+						{
+							ArrayList<String> tempList = new ArrayList<String>(accounts.size());
+							tempList.addAll(accounts);
+							intent.putStringArrayListExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_GROUP_USERS, tempList);
+						}
+						intent.putExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_GROUP_ID,mChatId);
+						startActivityForResult(intent,INTENT_REQUEST_CODE_SELECT_USER);
+					}
+				}
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after)
 			{
+				Print.e(TAG, "beforeTextChanged:" + s + "-" + "-start===" + start + "-after===" + after + "-count===" + count);
 			}
 
 			@Override
