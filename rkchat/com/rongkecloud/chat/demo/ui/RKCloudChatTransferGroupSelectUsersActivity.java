@@ -125,20 +125,46 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 				{
 					return;
 				}
-				final RKCloudChatContact obj = mDatas.get(position);
-				if(null == obj)
-				{
-					return;
-				}
+
 				if(isMsgActivity)
 				{
+					String account = "";
+					if(isGroupCreater)
+					{
+						if(position == 0)
+						{
+							account = "all";
+						}
+						else
+						{
+							position = position - 1;
+							if(null == mDatas.get(position))
+							{
+								return;
+							}
+							account =  mDatas.get(position).rkAccount;
+						}
+					}
+					else
+					{
+						if(null == mDatas.get(position))
+						{
+							return;
+						}
+						account =  mDatas.get(position).rkAccount;
+					}
 					Intent intent = getIntent();
-					intent.putExtra(INTENT_KEY_TO_ACCOUNT,obj.rkAccount);
+					intent.putExtra(INTENT_KEY_TO_ACCOUNT,account);
 					setResult(RESULT_OK,intent);
 					finish();
 				}
 				else
 				{
+					final RKCloudChatContact obj = mDatas.get(position);
+					if(null == obj)
+					{
+						return;
+					}
 					showProgressDialog();
 					final RKCloudChatMessageManager mChatMessageManager = RKCloudChatMessageManager.getInstance(RKCloudChatTransferGroupSelectUsersActivity.this);
 					mChatMessageManager.transferGroup(mGroupId, obj.rkAccount, new RKCloudChatRequestCallBack()

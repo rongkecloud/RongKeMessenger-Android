@@ -610,7 +610,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			String account = null != data ? data.getStringExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_TO_ACCOUNT) : "";
 			if(!TextUtils.isEmpty(account))
 			{
-				if(null == mRemindContact)
+				if(null == mRemindContact && !account.equals("all"))
 				{
 					mRemindContact = new ArrayList<>();
 				}
@@ -2311,6 +2311,13 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			{
 				RKCloudChatTools.showToastText(this, getString(R.string.rkcloud_chat_network_off));
 
+			}
+			else if(RKCloudChatErrorCode.RK_SUCCESS == msg.arg1)
+			{
+				if(null != mRemindContact)
+				{
+					mRemindContact.clear();
+				}
 			}
 			mAdapter.removeDowningProgress(msgSerialNum);
 			syncMsgContent(msgSerialNum);// 同步消息
