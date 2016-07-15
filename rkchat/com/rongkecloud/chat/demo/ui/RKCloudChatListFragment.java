@@ -923,7 +923,10 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 						{
 							if(msgObj instanceof TextMessage && !TextUtils.isEmpty(((TextMessage)msgObj).getAtUser()))
 							{
-								mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
+								if(((TextMessage)msgObj).getAtUser().equals("all") || ((TextMessage)msgObj).getAtUser().equals(RKCloud.getUserName()))
+								{
+									mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
+								}
 							}
 							else
 							{
