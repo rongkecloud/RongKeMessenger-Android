@@ -1,9 +1,5 @@
 package com.rongke.cloud.av.demo.ui;
 
-import java.io.File;
-import java.lang.ref.WeakReference;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -25,17 +21,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.rongke.cloud.av.demo.RKCloudAVContactManager;
 import com.rongke.cloud.av.demo.RKCloudAVDemoManager;
 import com.rongke.cloud.av.demo.RKCloudAVUiHandlerMessage;
 import com.rongke.cloud.av.demo.entity.RKCloudAVContact;
-import com.rongke.cloud.av.demo.tools.RKCloudAVScreenUtils;
 import com.rongke.cloud.av.demo.tools.RKCloudAVUtils;
 import com.rongkecloud.av.RKCloudAVCallInfo;
 import com.rongkecloud.av.RKCloudAVCallState;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.ui.widget.RoundedImageView;
+
+import java.io.File;
+import java.lang.ref.WeakReference;
+import java.util.List;
 
 public class RKCloudAVDemoActivity extends Activity implements OnClickListener, SensorEventListener{
 	private static final String TAG = RKCloudAVDemoActivity.class.getSimpleName();
@@ -125,8 +123,6 @@ public class RKCloudAVDemoActivity extends Activity implements OnClickListener, 
 		if(RKCloudAVCallState.AV_CALL_STATE_ANSWER == mAVManager.getAVCallInfo().callState){
 			updateCallTime();
 		}else{
-			// 点亮屏幕
-			RKCloudAVScreenUtils.getInstance(this).screenOn();
 			// 设置音量键调节的音量类型
 			setVolumeControlStream(AudioManager.STREAM_RING);
 		}
@@ -152,7 +148,7 @@ public class RKCloudAVDemoActivity extends Activity implements OnClickListener, 
 		super.onPause();
 		mSensorManager.unregisterListener(this);
 		lightScreen();
-	};
+	}
 	
 	@Override
 	protected void onStop() {
