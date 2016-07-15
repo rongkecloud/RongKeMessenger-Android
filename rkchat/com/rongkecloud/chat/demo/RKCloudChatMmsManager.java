@@ -1860,6 +1860,10 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		if(TextUtils.isEmpty(content)){
 			return false;
 		}
+		if(null == accountList || accountList.size() == 0)
+		{
+			return false;
+		}
 		for(String account : accountList){
 			String nick = account;//用户账号
 			RKCloudChatContact conactInfo = RKCloudChatContactManager.getInstance(mContext).getContactInfo(account);

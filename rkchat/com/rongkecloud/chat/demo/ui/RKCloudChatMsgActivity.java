@@ -1210,10 +1210,8 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 					mSendBnt.setVisibility(View.VISIBLE);
 					mAttachSwitch.setVisibility(View.GONE);
 				}
-				Print.e(TAG, "onTextChanged:" + s + "-" + "-start===" + start + "-before===" + before + "-count===" + count);
 				if(mChatObj instanceof GroupChat)
 				{
-					Print.e(TAG,"sub result===============" + s.toString().substring(start));
 					if(count == 1 && "@".equals(String.valueOf(s.charAt(start))))
 					{
 						Intent intent = new Intent(RKCloudChatMsgActivity.this, RKCloudChatTransferGroupSelectUsersActivity.class);
