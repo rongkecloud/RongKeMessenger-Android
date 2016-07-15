@@ -39,6 +39,9 @@ import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.ui.widget.RoundedImageView;
 import com.rongkecloud.test.utility.Print;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -923,11 +926,39 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 						if(chatObj instanceof GroupChat)
 						{
 							Print.e("aaa","((TextMessage)msgObj).getAtUser()=====" + ((TextMessage)msgObj).getAtUser());
-							if(msgObj instanceof TextMessage && !TextUtils.isEmpty(((TextMessage)msgObj).getAtUser()))
+							if(msgObj instanceof TextMessage)
 							{
-								if(((TextMessage)msgObj).getAtUser().equals("all") || ((TextMessage)msgObj).getAtUser().equals(RKCloud.getUserName()))
+								if(!TextUtils.isEmpty(((TextMessage)msgObj).getAtUser()))
 								{
-									mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
+									try
+									{
+										JSONArray array = new JSONArray(((TextMessage)msgObj).getAtUser());
+										Print.e("aaa","JSONArray=====" + array.toString());
+										String currAccount = RKCloud.getUserName();
+										if(!msgObj.getSender().equals(currAccount))
+										{
+											if(null != array && array.length() > 0)
+											{
+												boolean isCurrentuser = false;
+												for (int i = 0; i < array.length(); i++)
+												{
+													isCurrentuser = array.getString(i).equals(currAccount);
+												}
+												if(((TextMessage)msgObj).getAtUser().contains("all") || isCurrentuser)
+												{
+													mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
+												}
+											}
+										}
+									}
+									catch(JSONException e)
+									{
+										e.printStackTrace();
+									}
+								}
+								else
+								{
+									mItemBuffer.mentionedTV.setVisibility(View.GONE);
 								}
 							}
 							else

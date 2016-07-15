@@ -358,7 +358,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 					if(groupChat.getGroupCreater().equals(mCurrAccount) && mMmsManager.containsAtAll(content))
 					{
 						//是群主并且@所有人
-						textObj.setAtUser("all");
+						textObj.setAtUser(new JSONArray().put("all").toString());
 					}
 					else if(mMmsManager.containsAtUsername(content,mRemindContact))
 					{
@@ -614,10 +614,13 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 				{
 					mRemindContact = new ArrayList<>();
 				}
-				mRemindContact.add(account);
+				if(null != mRemindContact)
+				{
+					mRemindContact.add(account);
+				}
 				int start = mSmiliesEditText.getSelectionStart();
 				Editable editable = mSmiliesEditText.getEditableText();
-				editable.insert(start, mContactManager.getContactName(account));
+				editable.insert(start, account.equals("all") ? getString(R.string.rkcloud_chat_all_members) : mContactManager.getContactName(account));
 				mSmiliesEditText.setSelection(mSmiliesEditText.getText().length());
 			}
 		}
