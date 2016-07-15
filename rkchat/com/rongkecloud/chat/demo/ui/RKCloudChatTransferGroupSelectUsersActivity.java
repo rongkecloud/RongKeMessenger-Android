@@ -42,6 +42,7 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 	public static final String INTENT_KEY_GROUP_ID = "group_id";//群组ID使用的key
 	public static final String INTENT_KEY_TO_ACCOUNT = "to_account";//传递新群主账号使用的key
 	public static final String INTENT_KEY_FROM_MSG_ACTIVITY = "msg_activity";//来自于聊天页面
+	public static final String INTENT_KEY_IS_GROUP_CREATER = "is_group_creater";//传递是否是群主使用的key
 	// UI组件
 	private ListView mListView;
 	private ProgressBar mLoadingPB;
@@ -56,6 +57,8 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 	private RKCloudChatSelectUsersAdapter mAdapter;
 	private BackgroundColorSpan backgroundColorSpan;
 	private String mGroupId;
+	private boolean isGroupCreater;
+	private boolean isMsgActivity;
 
 	private QueryHandlerThread mQuerThread;// 查询数据的线程
 	private static final int QUERY_TYPE_SEARCH = 1;// 搜索
@@ -127,32 +130,43 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 				{
 					return;
 				}
-				showProgressDialog();
-				final RKCloudChatMessageManager mChatMessageManager = RKCloudChatMessageManager.getInstance(RKCloudChatTransferGroupSelectUsersActivity.this);
-				mChatMessageManager.transferGroup(mGroupId, obj.rkAccount, new RKCloudChatRequestCallBack()
+				if(isMsgActivity)
 				{
-					@Override public void onSuccess(Object results)
+					Intent intent = getIntent();
+					intent.putExtra(INTENT_KEY_TO_ACCOUNT,obj.rkAccount);
+					setResult(RESULT_OK,intent);
+					finish();
+				}
+				else
+				{
+					showProgressDialog();
+					final RKCloudChatMessageManager mChatMessageManager = RKCloudChatMessageManager.getInstance(RKCloudChatTransferGroupSelectUsersActivity.this);
+					mChatMessageManager.transferGroup(mGroupId, obj.rkAccount, new RKCloudChatRequestCallBack()
 					{
-						closeProgressDialog();
-						Intent intent = getIntent();
-						intent.putExtra(INTENT_KEY_TO_ACCOUNT,obj.rkAccount);
-						setResult(RESULT_OK,intent);
-						LocalMessage msg = LocalMessage.buildSendMsg(mGroupId,String.format(getString(R.string.rkcloud_chat_manage_transfer_group_tip),obj.getShowName()), RKCloud.getUserName());
-						long result = mChatMessageManager.addLocalMsg(msg,GroupChat.class);
-						finish();
-					}
+						@Override public void onSuccess(Object results)
+						{
+							closeProgressDialog();
+							Intent intent = getIntent();
+							intent.putExtra(INTENT_KEY_TO_ACCOUNT,obj.rkAccount);
+							setResult(RESULT_OK,intent);
+							LocalMessage msg = LocalMessage.buildSendMsg(mGroupId,String.format(getString(R.string.rkcloud_chat_manage_transfer_group_tip),obj.getShowName()), RKCloud.getUserName());
+							long result = mChatMessageManager.addLocalMsg(msg,GroupChat.class);
+							finish();
+						}
 
 						@Override public void onProgress(int value)
 						{
 
 						}
 
-					@Override public void onFailed(int errorCode, Object object)
-					{
-						closeProgressDialog();
-						RKCloudChatTools.showToastText(RKCloudChatTransferGroupSelectUsersActivity.this, String.valueOf(object));
-					}
-				});
+						@Override public void onFailed(int errorCode, Object object)
+						{
+							closeProgressDialog();
+							RKCloudChatTools.showToastText(RKCloudChatTransferGroupSelectUsersActivity.this, String.valueOf(object));
+						}
+					});
+				}
+
 			}
 		});
 
@@ -174,11 +188,29 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 
 	}
 
+	private void addHeadView()
+	{
+		View convertView = getLayoutInflater().inflate(R.layout.rkcloud_chat_selectusers_item, null);
+		TextView categoryName = (TextView) convertView.findViewById(R.id.categoryname);
+		categoryName.setVisibility(View.GONE);
+		RoundedImageView headerPhotoView = (RoundedImageView) convertView.findViewById(R.id.headerphoto);
+		headerPhotoView.setImageResource(R.drawable.rkcloud_chat_img_header_default);
+		TextView nameTV = (TextView) convertView.findViewById(R.id.name);
+		nameTV.setText(getString(R.string.rkcloud_chat_all_members));
+		ImageView checkbox = (ImageView) convertView.findViewById(R.id.checkbox);
+		checkbox.setVisibility(View.GONE);
+		mListView.addHeaderView(convertView);
+	}
+
 	private void initData()
 	{
-
 		backgroundColorSpan = new BackgroundColorSpan(getResources().getColor(R.color.rkcloud_chat_search_result_highlightcolor));
-
+		isMsgActivity = getIntent().getBooleanExtra(INTENT_KEY_FROM_MSG_ACTIVITY,false);
+		isGroupCreater = getIntent().getBooleanExtra(INTENT_KEY_IS_GROUP_CREATER,false);
+		if(isGroupCreater)
+		{
+			addHeadView();
+		}
 		mContactManager = RKCloudChatContactManager.getInstance(this);
 		mGroupId = getIntent().getStringExtra(INTENT_KEY_GROUP_ID);
 		List<String> tempList = getIntent().getStringArrayListExtra(INTENT_KEY_GROUP_USERS);

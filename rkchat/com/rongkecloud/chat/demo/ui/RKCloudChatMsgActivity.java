@@ -1216,6 +1216,10 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 					{
 						Intent intent = new Intent(RKCloudChatMsgActivity.this, RKCloudChatTransferGroupSelectUsersActivity.class);
 						intent.putExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_FROM_MSG_ACTIVITY,true);
+						if(((GroupChat) mChatObj).getGroupCreater().equals(mCurrAccount))
+						{
+							intent.putExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_IS_GROUP_CREATER,true);
+						}
 						List<String> accounts = mMmsManager.queryGroupUsers(mChatObj.getChatId());
 						if(null != accounts && accounts.size() > 0)
 						{
