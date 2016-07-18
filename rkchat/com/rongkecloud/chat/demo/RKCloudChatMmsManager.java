@@ -1718,11 +1718,15 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 
 		if (RKCloudChatBaseChat.CHANGE_TYPE_GROUP_TRANSFER == type)
 		{
-			String createAccount = ((GroupChat) queryChat(groupId)).getGroupCreater();
-			LocalMessage localMessage = LocalMessage.buildReceivedMsg(groupId, String.format(mContext.getString(R.string.rkcloud_chat_manage_transfer_group_tip_other), createAccount), groupId);
-			localMessage.setExtension(RKCloudChatConstants.FLAG_LOCAL_TIPMESSAGE);
-			addLocalMsg(localMessage, GroupChat.class);
-			sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED, groupId);
+			GroupChat groupChat = (GroupChat) queryChat(groupId);
+			if(null != groupChat)
+			{
+				String createAccount = groupChat.getGroupCreater();
+				LocalMessage localMessage = LocalMessage.buildSendMsg(groupId, String.format(mContext.getString(R.string.rkcloud_chat_manage_transfer_group_tip_other), createAccount), groupId);
+				localMessage.setExtension(RKCloudChatConstants.FLAG_LOCAL_TIPMESSAGE);
+				addLocalMsg(localMessage, GroupChat.class);
+				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED, groupId);
+			}
 		}
 
 		if (RKCloudChatBaseChat.CHANGE_TYPE_GROUP_POPULATION == type)
