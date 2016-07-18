@@ -77,7 +77,6 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	private int mNotificationIdStart;// 通知ID的起始值
 	private Map<String, Long> mRecordDownMms;// 记录下载的媒体消息 key为消息编号，value为下载的开始时间
 
-	private Set<String> mRemindGroupData;
 
 	private RKCloudChatMmsManager(Context context)
 	{
@@ -88,11 +87,6 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		mRecordDownMms = new HashMap<String, Long>();
 		mNotificationIdStart = 50;
 		mMeetingDemoManager = RKCloudMeetingDemoManager.getInstance(mContext);
-		mRemindGroupData = RKCloudDemo.config.getStringSet(ConfigKey.KEY_GROUPS_AT_ME);
-		if(null == mRemindGroupData)
-		{
-			mRemindGroupData = new HashSet<String>();
-		}
 	}
 
 	public static RKCloudChatMmsManager getInstance(Context context)
@@ -1794,8 +1788,6 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			return;
 		}
 
-		int size = mRemindGroupData.size();
-
 		List<String> syncContactDatas = new ArrayList<String>();
 		List<RKCloudChatBaseMessage> datas = null;
 		List<RKCloudChatBaseMessage> handlerMsgObj = null;// handler返回的对象
@@ -1831,11 +1823,6 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 
 				pareAtMeMsg(chatObj,msgObj);
 			}
-		}
-
-		if(size != mRemindGroupData.size())
-		{
-			RKCloudDemo.config.setStringSet(ConfigKey.KEY_GROUPS_AT_ME,mRemindGroupData);
 		}
 
 		updateUnreadMsgCountsInMain();
@@ -1995,23 +1982,5 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 				}
 			}
 			return list;
-	}
-
-	public Set<String> getmRemindGroupData()
-	{
-		return mRemindGroupData;
-	}
-
-	public void removeFromRemindGroupData(String groupId)
-	{
-		if(TextUtils.isEmpty(groupId))
-		{
-			return;
-		}
-		if(mRemindGroupData.contains(groupId))
-		{
-			mRemindGroupData.remove(groupId);
-			RKCloudDemo.config.setStringSet(ConfigKey.KEY_GROUPS_AT_ME,mRemindGroupData);
-		}
 	}
 }

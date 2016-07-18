@@ -891,7 +891,7 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 				{
 					chatClassObj = GroupChat.class;
 				}
-
+				String msgId = RKCloudDemo.config.getString(chatObj.getChatId(),"");
 				if (MSG_STATUS.MESSAGE_REVOKE == msgObj.getStatus())
 				{
 					if (msgObj.getSender().equals(RKCloud.getUserName()))
@@ -906,6 +906,26 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 						}
 						RKCloudChatContact contactObj = mContacts.get(msgObj.getSender());
 						mItemBuffer.lastMsgContentTV.setText(mContext.getString(R.string.rkcloud_chat_revoke_message_other, null != contactObj ? contactObj.getShowName() : msgObj.getSender()));
+
+						/**
+						 * 撤回的消息不显示“有人@我”
+						 */
+						if(TextUtils.isEmpty(msgId))
+						{
+							mItemBuffer.mentionedTV.setVisibility(View.GONE);
+						}
+						else
+						{
+							if(msgId.equals(msgObj.getMsgSerialNum()) && msgObj.getStatus() == MSG_STATUS.MESSAGE_REVOKE)
+							{
+								mItemBuffer.mentionedTV.setVisibility(View.GONE);
+								RKCloudDemo.config.remove(chatObj.getChatId());
+							}
+							else
+							{
+								mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
+							}
+						}
 					}
 				}
 				else
@@ -926,44 +946,13 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 					{
 						if(chatObj instanceof GroupChat)
 						{
-//							if(mMmsManager.getmRemindGroupData().contains(chatObj.getChatId()))
-//							{
-//								mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
-//							}
-//							else
-//							{
-//								mItemBuffer.mentionedTV.setVisibility(View.GONE);
-//							}
 							if(TextUtils.isEmpty(RKCloudDemo.config.getString(chatObj.getChatId(),"")))
 							{
 								mItemBuffer.mentionedTV.setVisibility(View.GONE);
 							}
 							else
 							{
-								String msgId = RKCloudDemo.config.getString(chatObj.getChatId(),"");
-								if(TextUtils.isEmpty(msgId))
-								{
-									mItemBuffer.mentionedTV.setVisibility(View.GONE);
-								}
-								else
-								{
-									RKCloudChatBaseMessage lastMsgObj = chatObj.getLastMsgObj();
-									if(null != lastMsgObj)
-									{
-										if(msgId.equals(lastMsgObj.getMsgSerialNum()) && lastMsgObj.getStatus() == MSG_STATUS.MESSAGE_REVOKE)
-										{
-											mItemBuffer.mentionedTV.setVisibility(View.GONE);
-										}
-										else
-										{
-											mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
-										}
-									}
-									else
-									{
-										mItemBuffer.mentionedTV.setVisibility(View.GONE);
-									}
-								}
+								mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
 							}
 						}
 						mItemBuffer.lastMsgContentTV.setText(showContent);

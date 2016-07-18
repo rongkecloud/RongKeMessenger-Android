@@ -292,7 +292,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 
 		if(mChatObj instanceof GroupChat)
 		{
-//			mMmsManager.removeFromRemindGroupData(mChatId);
 			RKCloudDemo.config.remove(mChatId);
 		}
 	}
