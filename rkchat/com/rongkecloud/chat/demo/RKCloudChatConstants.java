@@ -22,4 +22,6 @@ public class RKCloudChatConstants {
 	public static final String FLAG_MEETING_MUTLIMEETING = "meeting_mutlimeeting";// 多人语音标识
 	public static final String FLAG_LOCAL_TIPMESSAGE = "local_tipmsg";// 本地提示类型的消息标识
 	public static final String FLAG_ADD_FRIEND_SUCCESS = "flag_addfriend_success";// 添加好友成功的标识
+
+	public static final String KEY_GROUP_ALL = "all";//@所有成员的key
 }

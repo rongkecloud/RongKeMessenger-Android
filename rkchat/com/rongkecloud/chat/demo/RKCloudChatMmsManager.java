@@ -35,15 +35,16 @@ import com.rongkecloud.chat.interfaces.RKCloudChatReceivedMsgCallBack;
 import com.rongkecloud.chat.interfaces.RKCloudChatRequestCallBack;
 import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
+import com.rongkecloud.test.system.ConfigKey;
+import com.rongkecloud.test.system.RKCloudDemo;
 import com.rongkecloud.test.ui.MainActivity;
 import com.rongkecloud.test.utility.Print;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 云视互动即时通信中消息相关的处理类，关联了SDK和Demo之间的交互
@@ -76,6 +77,8 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	private int mNotificationIdStart;// 通知ID的起始值
 	private Map<String, Long> mRecordDownMms;// 记录下载的媒体消息 key为消息编号，value为下载的开始时间
 
+	private Set<String> mRemindGroupData;
+
 	private RKCloudChatMmsManager(Context context)
 	{
 		mContext = context;
@@ -85,6 +88,11 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		mRecordDownMms = new HashMap<String, Long>();
 		mNotificationIdStart = 50;
 		mMeetingDemoManager = RKCloudMeetingDemoManager.getInstance(mContext);
+		mRemindGroupData = RKCloudDemo.config.getStringSet(ConfigKey.KEY_GROUPS_AT_ME);
+		if(null == mRemindGroupData)
+		{
+			mRemindGroupData = new HashSet<String>();
+		}
 	}
 
 	public static RKCloudChatMmsManager getInstance(Context context)
@@ -1712,6 +1720,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		{
 			String createAccount = ((GroupChat) queryChat(groupId)).getGroupCreater();
 			LocalMessage localMessage = LocalMessage.buildReceivedMsg(groupId, String.format(mContext.getString(R.string.rkcloud_chat_manage_transfer_group_tip_other), createAccount), groupId);
+			localMessage.setExtension(RKCloudChatConstants.FLAG_LOCAL_TIPMESSAGE);
 			addLocalMsg(localMessage, GroupChat.class);
 			sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED, groupId);
 		}
@@ -1781,6 +1790,8 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			return;
 		}
 
+		int size = mRemindGroupData.size();
+
 		List<String> syncContactDatas = new ArrayList<String>();
 		List<RKCloudChatBaseMessage> datas = null;
 		List<RKCloudChatBaseMessage> handlerMsgObj = null;// handler返回的对象
@@ -1808,12 +1819,21 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 				{
 					mChatManager.sendArrivedReceipt(msgObj);
 				}
+
 				if (!syncContactDatas.contains(msgObj.getSender()))
 				{
 					syncContactDatas.add(msgObj.getSender());
 				}
+
+				pareAtMeMsg(chatObj,msgObj);
 			}
 		}
+
+		if(size != mRemindGroupData.size())
+		{
+			RKCloudDemo.config.setStringSet(ConfigKey.KEY_GROUPS_AT_ME,mRemindGroupData);
+		}
+
 		updateUnreadMsgCountsInMain();
 		sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_RECEIVED_MOREMMS, handlerMsgObj);
 
@@ -1837,11 +1857,68 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		{
 			notifyNewReceivedMsg(chatObj, msgObj);
 		}
+		pareAtMeMsg(chatObj, msgObj);
 		updateUnreadMsgCountsInMain();
 		sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_RECEIVED_MMS, msgObj);
 		// 同步用户信息
 		RKCloudChatContactManager.getInstance(mContext).syncContactInfo(msgObj.getSender());
 	}
+
+	/**
+	 *  文本消息 包含@成员的处理
+	 * @param chatObj
+	 * @param msgObj
+	 */
+	private void pareAtMeMsg(RKCloudChatBaseChat chatObj, RKCloudChatBaseMessage msgObj)
+	{
+		if(chatObj instanceof GroupChat && msgObj instanceof TextMessage)
+		{
+			TextMessage msg = (TextMessage)msgObj;
+			if(!TextUtils.isEmpty(msg.getAtUser()))
+			{
+				//@ all的处理
+				if(msg.getAtUser().contains(RKCloudChatConstants.KEY_GROUP_ALL))
+				{
+					if(!mRemindGroupData.contains(chatObj.getChatId()))
+					{
+						mRemindGroupData.add(chatObj.getChatId());
+					}
+				}
+				else
+				{
+					//@ 某些成员的处理
+					try
+					{
+						JSONArray array = new JSONArray(msg.getAtUser());
+						String currAccount = RKCloud.getUserName();
+						/**
+						 * 是为了避免 群主自己@所有成员之后，群主自己还显示“[有人@我]”
+						 */
+						if(!msgObj.getSender().equals(currAccount))
+						{
+							for (int i = 0; i < array.length(); i++)
+							{
+								if(array.get(i).equals(currAccount))
+								{
+									//获取到服务器返回的 被@成员数据包含自己
+									if(!mRemindGroupData.contains(chatObj.getChatId()))
+									{
+										mRemindGroupData.add(chatObj.getChatId());
+										break;
+									}
+								}
+							}
+						}
+					}
+					catch (JSONException e)
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}
+
 
 	@Override
 	public void onMsgHasChanged(String msgSerialNum)
@@ -1920,5 +1997,23 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 				}
 			}
 			return list;
+	}
+
+	public Set<String> getmRemindGroupData()
+	{
+		return mRemindGroupData;
+	}
+
+	public void removeFromRemindGroupData(String groupId)
+	{
+		if(TextUtils.isEmpty(groupId))
+		{
+			return;
+		}
+		if(mRemindGroupData.contains(groupId))
+		{
+			mRemindGroupData.remove(groupId);
+			RKCloudDemo.config.setStringSet(ConfigKey.KEY_GROUPS_AT_ME,mRemindGroupData);
+		}
 	}
 }

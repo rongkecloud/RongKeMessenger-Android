@@ -925,39 +925,9 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 					{
 						if(chatObj instanceof GroupChat)
 						{
-							if(msgObj instanceof TextMessage)
+							if(mMmsManager.getmRemindGroupData().contains(chatObj.getChatId()))
 							{
-								if(!TextUtils.isEmpty(((TextMessage)msgObj).getAtUser()))
-								{
-									try
-									{
-										JSONArray array = new JSONArray(((TextMessage)msgObj).getAtUser());
-										String currAccount = RKCloud.getUserName();
-										if(!msgObj.getSender().equals(currAccount))
-										{
-											if(null != array && array.length() > 0)
-											{
-												boolean isCurrentuser = false;
-												for (int i = 0; i < array.length(); i++)
-												{
-													isCurrentuser = array.getString(i).equals(currAccount);
-												}
-												if(((TextMessage)msgObj).getAtUser().contains("all") || isCurrentuser)
-												{
-													mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
-												}
-											}
-										}
-									}
-									catch(JSONException e)
-									{
-										e.printStackTrace();
-									}
-								}
-								else
-								{
-									mItemBuffer.mentionedTV.setVisibility(View.GONE);
-								}
+								mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
 							}
 							else
 							{

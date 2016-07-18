@@ -288,6 +288,8 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 		hideKeyboard();
 		controllMoreOpeZoneOpen(false);
 		controllEmojiZoneOpen(false);
+
+		mMmsManager.removeFromRemindGroupData(mChatId);
 	}
 
 	@Override

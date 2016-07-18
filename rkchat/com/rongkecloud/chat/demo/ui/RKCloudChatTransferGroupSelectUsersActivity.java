@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 import com.rongkecloud.chat.*;
+import com.rongkecloud.chat.demo.RKCloudChatConstants;
 import com.rongkecloud.chat.demo.RKCloudChatContactManager;
 import com.rongkecloud.chat.demo.RKCloudChatUiHandlerMessage;
 import com.rongkecloud.chat.demo.entity.RKCloudChatContact;
@@ -176,7 +177,8 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 							intent.putExtra(INTENT_KEY_TO_ACCOUNT,obj.rkAccount);
 							setResult(RESULT_OK,intent);
 							LocalMessage msg = LocalMessage.buildSendMsg(mGroupId,String.format(getString(R.string.rkcloud_chat_manage_transfer_group_tip),obj.getShowName()), RKCloud.getUserName());
-							long result = mChatMessageManager.addLocalMsg(msg,GroupChat.class);
+							msg.setExtension(RKCloudChatConstants.FLAG_LOCAL_TIPMESSAGE);
+							mChatMessageManager.addLocalMsg(msg,GroupChat.class);
 							finish();
 						}
 

@@ -68,4 +68,9 @@ public interface ConfigKey {
      * 110*38 6PX 17SP BLOD WHITE
      * */
     public static final String SP_GUIDEPAGES_SHOW = "SP_GuidePages_Show";
+
+	/**
+	 * 操作“有人@我”的数据
+	 */
+	public static final String KEY_GROUPS_AT_ME = "key_groups_at_me";
 }
