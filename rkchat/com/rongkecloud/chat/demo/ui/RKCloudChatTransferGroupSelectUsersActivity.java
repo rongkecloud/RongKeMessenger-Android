@@ -134,7 +134,7 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 					{
 						if(position == 0)
 						{
-							account = "all";
+							account = RKCloudChatConstants.KEY_GROUP_ALL;
 						}
 						else
 						{

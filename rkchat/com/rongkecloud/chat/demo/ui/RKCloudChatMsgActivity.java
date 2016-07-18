@@ -300,6 +300,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 	protected void onStop()
 	{
 		super.onStop();
+		Print.e(TAG,"edittext text ====================" + mSmiliesEditText.getText().toString().trim());
 		mMmsManager.saveDraft(mChatId, mSmiliesEditText.getText().toString().trim());// 只有离开消息列表页面时才会保存草稿箱内容
 		// 关闭语音消息的播放，放在这里即使为待机状态仍可以继续播放语音消息
 		mAudioHelper.stopMsgOfAudio();
@@ -616,7 +617,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			String account = null != data ? data.getStringExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_TO_ACCOUNT) : "";
 			if(!TextUtils.isEmpty(account))
 			{
-				if(null == mRemindContact && !account.equals("all"))
+				if(null == mRemindContact && !account.equals(RKCloudChatConstants.KEY_GROUP_ALL))
 				{
 					mRemindContact = new ArrayList<>();
 				}
@@ -626,7 +627,8 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 				}
 				int start = mSmiliesEditText.getSelectionStart();
 				Editable editable = mSmiliesEditText.getEditableText();
-				editable.insert(start, account.equals("all") ? getString(R.string.rkcloud_chat_all_members) : mContactManager.getContactName(account));
+				editable.insert(start, account.equals(RKCloudChatConstants.KEY_GROUP_ALL) ? getString(R.string.rkcloud_chat_all_members) : mContactManager.getContactName(account));
+				mSmiliesEditText.setText(editable.toString());
 				mSmiliesEditText.setSelection(mSmiliesEditText.getText().length());
 			}
 		}
@@ -1232,6 +1234,10 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 						List<String> accounts = mMmsManager.queryGroupUsers(mChatObj.getChatId());
 						if(null != accounts && accounts.size() > 0)
 						{
+							if(accounts.contains(mCurrAccount))
+							{
+								accounts.remove(mCurrAccount);
+							}
 							ArrayList<String> tempList = new ArrayList<String>(accounts.size());
 							tempList.addAll(accounts);
 							intent.putStringArrayListExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_GROUP_USERS, tempList);

@@ -946,13 +946,27 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 					{
 						if(chatObj instanceof GroupChat)
 						{
-							if(TextUtils.isEmpty(RKCloudDemo.config.getString(chatObj.getChatId(),"")))
+							if(TextUtils.isEmpty(msgId))
 							{
 								mItemBuffer.mentionedTV.setVisibility(View.GONE);
 							}
 							else
 							{
-								mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
+								RKCloudChatBaseMessage msgobj = mMmsManager.queryChatMsg(msgId);
+								if(null == msgobj)
+								{
+									mItemBuffer.mentionedTV.setVisibility(View.GONE);
+									RKCloudDemo.config.remove(chatObj.getChatId());
+								}
+								else if(null != msgobj && msgobj.getStatus() == MSG_STATUS.MESSAGE_REVOKE)
+								{
+									mItemBuffer.mentionedTV.setVisibility(View.GONE);
+									RKCloudDemo.config.remove(chatObj.getChatId());
+								}
+								else
+								{
+									mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
+								}
 							}
 						}
 						mItemBuffer.lastMsgContentTV.setText(showContent);
