@@ -61,6 +61,7 @@ import com.rongkecloud.multiVoice.RKCloudMeetingCallState;
 import com.rongkecloud.multiVoice.RKCloudMeetingInfo;
 import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
+import com.rongkecloud.test.system.RKCloudDemo;
 import com.rongkecloud.test.utility.Print;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -291,7 +292,8 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 
 		if(mChatObj instanceof GroupChat)
 		{
-			mMmsManager.removeFromRemindGroupData(mChatId);
+//			mMmsManager.removeFromRemindGroupData(mChatId);
+			RKCloudDemo.config.remove(mChatId);
 		}
 	}
 
@@ -2335,6 +2337,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 		{// 撤销消息
 			closeProgressDialog();
 			String msgSerialNum = (String) msg.obj;
+
 			if (RKCloudChatErrorCode.CHAT_MMS_NOTEXIST == msg.arg1)
 			{
 				RKCloudChatTools.showToastText(this, getString(R.string.rkcloud_chat_unfound_resource));

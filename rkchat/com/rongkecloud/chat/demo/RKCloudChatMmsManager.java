@@ -1883,10 +1883,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 				//@ all的处理
 				if(msg.getAtUser().contains(RKCloudChatConstants.KEY_GROUP_ALL))
 				{
-					if(!mRemindGroupData.contains(chatObj.getChatId()))
-					{
-						mRemindGroupData.add(chatObj.getChatId());
-					}
+					RKCloudDemo.config.put(chatObj.getChatId(),msg.getMsgSerialNum());
 				}
 				else
 				{
@@ -1905,11 +1902,8 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 								if(array.get(i).equals(currAccount))
 								{
 									//获取到服务器返回的 被@成员数据包含自己
-									if(!mRemindGroupData.contains(chatObj.getChatId()))
-									{
-										mRemindGroupData.add(chatObj.getChatId());
-										break;
-									}
+									RKCloudDemo.config.put(chatObj.getChatId(),msg.getMsgSerialNum());
+									break;
 								}
 							}
 						}

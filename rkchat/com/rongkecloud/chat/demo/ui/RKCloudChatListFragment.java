@@ -37,6 +37,7 @@ import com.rongkecloud.chat.demo.ui.loadimages.RKCloudChatImageRequest.IMAGE_REQ
 import com.rongkecloud.chat.demo.ui.loadimages.RKCloudChatImageResult;
 import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
+import com.rongkecloud.test.system.RKCloudDemo;
 import com.rongkecloud.test.ui.widget.RoundedImageView;
 import com.rongkecloud.test.utility.Print;
 import org.json.JSONArray;
@@ -925,13 +926,44 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 					{
 						if(chatObj instanceof GroupChat)
 						{
-							if(mMmsManager.getmRemindGroupData().contains(chatObj.getChatId()))
+//							if(mMmsManager.getmRemindGroupData().contains(chatObj.getChatId()))
+//							{
+//								mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
+//							}
+//							else
+//							{
+//								mItemBuffer.mentionedTV.setVisibility(View.GONE);
+//							}
+							if(TextUtils.isEmpty(RKCloudDemo.config.getString(chatObj.getChatId(),"")))
 							{
-								mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
+								mItemBuffer.mentionedTV.setVisibility(View.GONE);
 							}
 							else
 							{
-								mItemBuffer.mentionedTV.setVisibility(View.GONE);
+								String msgId = RKCloudDemo.config.getString(chatObj.getChatId(),"");
+								if(TextUtils.isEmpty(msgId))
+								{
+									mItemBuffer.mentionedTV.setVisibility(View.GONE);
+								}
+								else
+								{
+									RKCloudChatBaseMessage lastMsgObj = chatObj.getLastMsgObj();
+									if(null != lastMsgObj)
+									{
+										if(msgId.equals(lastMsgObj.getMsgSerialNum()) && lastMsgObj.getStatus() == MSG_STATUS.MESSAGE_REVOKE)
+										{
+											mItemBuffer.mentionedTV.setVisibility(View.GONE);
+										}
+										else
+										{
+											mItemBuffer.mentionedTV.setVisibility(View.VISIBLE);
+										}
+									}
+									else
+									{
+										mItemBuffer.mentionedTV.setVisibility(View.GONE);
+									}
+								}
 							}
 						}
 						mItemBuffer.lastMsgContentTV.setText(showContent);
