@@ -76,18 +76,7 @@ public class Config {
 	public String getString(String key, String defaultValue) {
 		return mSp.getString(key, defaultValue);
 	}
-	public Set<String> getStringSet(String key)
-	{
-		return mSp.getStringSet(key,null);
-	}
 
-	public void setStringSet(String key,Set<String> results)
-	{
-		mSp.edit().remove(key).commit();
-		mSp.edit().putStringSet(key,results).commit();
-	}
-
-	
 	public boolean upgradeSP() {
 		if (getBoolean(ConfigKey.UPGRADE_AP, false))
 			return false;
