@@ -932,7 +932,6 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 									try
 									{
 										JSONArray array = new JSONArray(((TextMessage)msgObj).getAtUser());
-										Print.e("aaa","JSONArray=====" + array.toString());
 										String currAccount = RKCloud.getUserName();
 										if(!msgObj.getSender().equals(currAccount))
 										{
