@@ -289,7 +289,10 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 		controllMoreOpeZoneOpen(false);
 		controllEmojiZoneOpen(false);
 
-		mMmsManager.removeFromRemindGroupData(mChatId);
+		if(mChatObj instanceof GroupChat)
+		{
+			mMmsManager.removeFromRemindGroupData(mChatId);
+		}
 	}
 
 	@Override
