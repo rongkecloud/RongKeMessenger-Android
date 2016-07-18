@@ -925,7 +925,6 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 					{
 						if(chatObj instanceof GroupChat)
 						{
-							Print.e("aaa","((TextMessage)msgObj).getAtUser()=====" + ((TextMessage)msgObj).getAtUser());
 							if(msgObj instanceof TextMessage)
 							{
 								if(!TextUtils.isEmpty(((TextMessage)msgObj).getAtUser()))
