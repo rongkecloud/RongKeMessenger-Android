@@ -437,47 +437,51 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 			}
 			final View view = convertView;
 			final RKCloudChatContact obj = mDatas.get(position);
-			String currcatalogName = getFirstChar(obj);
-			String previousCataName = null;
-			if (0 != position)
+			if(null != obj)
 			{
-				previousCataName = getFirstChar(mDatas.get(position - 1));
-			}
-			// 分类名称显示的控制
-			if (TextUtils.isEmpty(previousCataName) || !currcatalogName.equalsIgnoreCase(previousCataName))
-			{
-				mItemBuffer.categoryName.setVisibility(View.VISIBLE);
-				mItemBuffer.categoryName.setText(currcatalogName);
-			}
-			else
-			{
-				mItemBuffer.categoryName.setVisibility(View.GONE);
-			}
-			// 分隔条的显示控制
-			if (position < mDatas.size() - 1)
-			{
-				String afterCataName = getFirstChar(mDatas.get(position));
-				if (currcatalogName.equalsIgnoreCase(afterCataName))
+				String currcatalogName = getFirstChar(obj);
+				String previousCataName = null;
+				if (0 != position)
 				{
-					mItemBuffer.divideView.setVisibility(View.VISIBLE);
+					previousCataName = getFirstChar(mDatas.get(position - 1));
+				}
+				// 分类名称显示的控制
+				if (TextUtils.isEmpty(previousCataName) || !currcatalogName.equalsIgnoreCase(previousCataName))
+				{
+					mItemBuffer.categoryName.setVisibility(View.VISIBLE);
+					mItemBuffer.categoryName.setText(currcatalogName);
 				}
 				else
 				{
-					mItemBuffer.divideView.setVisibility(View.GONE);
+					mItemBuffer.categoryName.setVisibility(View.GONE);
 				}
-			}
 
-			mItemBuffer.nameTV.setText(null != obj.highLightName ? obj.highLightName : obj.getShowName());
-			mItemBuffer.headerPhotoView.setImageResource(R.drawable.rkcloud_chat_img_header_default);
-			// 加载头像
-			if (!TextUtils.isEmpty(obj.getHeaderThumbImagePath()))
-			{
-				RKCloudChatImageRequest imageReq = new RKCloudChatImageRequest(IMAGE_REQUEST_TYPE.GET_CONTACT_HEADERIMG, obj.getHeaderThumbImagePath(), obj.rkAccount);
-				// 如果在缓存中则直接设置图片
-				RKCloudChatImageResult imgResult = RKCloudChatImageAsyncLoader.getInstance(RKCloudChatTransferGroupSelectUsersActivity.this).sendPendingRequestQuryCache(imageReq);
-				if (null != imgResult && null != imgResult.resource)
+				// 分隔条的显示控制
+				if (position < mDatas.size() - 1)
 				{
-					mItemBuffer.headerPhotoView.setImageDrawable(imgResult.resource);
+					String afterCataName = getFirstChar(mDatas.get(position));
+					if (currcatalogName.equalsIgnoreCase(afterCataName))
+					{
+						mItemBuffer.divideView.setVisibility(View.VISIBLE);
+					}
+					else
+					{
+						mItemBuffer.divideView.setVisibility(View.GONE);
+					}
+				}
+
+				mItemBuffer.nameTV.setText(null != obj.highLightName ? obj.highLightName : obj.getShowName());
+				mItemBuffer.headerPhotoView.setImageResource(R.drawable.rkcloud_chat_img_header_default);
+				// 加载头像
+				if (!TextUtils.isEmpty(obj.getHeaderThumbImagePath()))
+				{
+					RKCloudChatImageRequest imageReq = new RKCloudChatImageRequest(IMAGE_REQUEST_TYPE.GET_CONTACT_HEADERIMG, obj.getHeaderThumbImagePath(), obj.rkAccount);
+					// 如果在缓存中则直接设置图片
+					RKCloudChatImageResult imgResult = RKCloudChatImageAsyncLoader.getInstance(RKCloudChatTransferGroupSelectUsersActivity.this).sendPendingRequestQuryCache(imageReq);
+					if (null != imgResult && null != imgResult.resource)
+					{
+						mItemBuffer.headerPhotoView.setImageDrawable(imgResult.resource);
+					}
 				}
 			}
 
