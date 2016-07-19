@@ -969,6 +969,11 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 								}
 							}
 						}
+						else
+						{
+							mItemBuffer.mentionedTV.setVisibility(View.GONE);
+							RKCloudDemo.config.remove(chatObj.getChatId());
+						}
 						mItemBuffer.lastMsgContentTV.setText(showContent);
 					}
 				}
