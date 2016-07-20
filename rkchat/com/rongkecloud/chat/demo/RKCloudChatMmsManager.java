@@ -35,7 +35,6 @@ import com.rongkecloud.chat.interfaces.RKCloudChatReceivedMsgCallBack;
 import com.rongkecloud.chat.interfaces.RKCloudChatRequestCallBack;
 import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
-import com.rongkecloud.test.system.ConfigKey;
 import com.rongkecloud.test.system.RKCloudDemo;
 import com.rongkecloud.test.ui.MainActivity;
 import com.rongkecloud.test.utility.Print;
@@ -44,7 +43,10 @@ import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 云视互动即时通信中消息相关的处理类，关联了SDK和Demo之间的交互
@@ -76,7 +78,6 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	private Map<String, Integer> mNotificationChatIdCache = null;// 通知栏中按照会话ID分别通知时记录的信息，其中key为会话ID，value为对应的id值
 	private int mNotificationIdStart;// 通知ID的起始值
 	private Map<String, Long> mRecordDownMms;// 记录下载的媒体消息 key为消息编号，value为下载的开始时间
-
 
 	private RKCloudChatMmsManager(Context context)
 	{
@@ -1046,6 +1047,11 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		{
 			return;
 		}
+
+		if (noticeMsgObj.getSender().equals(RKCloud.getUserName()))
+		{
+			return;
+		}
 		// 不具备通知能力时返回
 		if (!RKCloudChatConfigManager.getInstance(mContext).getBoolean(RKCloudChatConfigManager.NEWMSG_SHOW_IN_NOTIFICATIONBAR))
 		{
@@ -1713,7 +1719,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		if (RKCloudChatBaseChat.CHANGE_TYPE_GROUP_TRANSFER == type)
 		{
 			GroupChat groupChat = (GroupChat) queryChat(groupId);
-			if(null != groupChat)
+			if (null != groupChat)
 			{
 				String createAccount = groupChat.getGroupCreater();
 				LocalMessage localMessage = LocalMessage.buildSendMsg(groupId, String.format(mContext.getString(R.string.rkcloud_chat_manage_transfer_group_tip_other), createAccount), groupId);
@@ -1821,7 +1827,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 					syncContactDatas.add(msgObj.getSender());
 				}
 
-				pareAtMeMsg(chatObj,msgObj);
+				pareAtMeMsg(chatObj, msgObj);
 			}
 		}
 
@@ -1856,25 +1862,26 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	}
 
 	/**
-	 *  文本消息 包含@成员的处理
+	 * 文本消息 包含@成员的处理
+	 * 
 	 * @param chatObj
 	 * @param msgObj
 	 */
 	private void pareAtMeMsg(RKCloudChatBaseChat chatObj, RKCloudChatBaseMessage msgObj)
 	{
-		if(chatObj instanceof GroupChat && msgObj instanceof TextMessage)
+		if (chatObj instanceof GroupChat && msgObj instanceof TextMessage)
 		{
-			TextMessage msg = (TextMessage)msgObj;
-			if(!TextUtils.isEmpty(msg.getAtUser()))
+			TextMessage msg = (TextMessage) msgObj;
+			if (!TextUtils.isEmpty(msg.getAtUser()))
 			{
-				//@ all的处理
-				if(msg.getAtUser().contains(RKCloudChatConstants.KEY_GROUP_ALL))
+				// @ all的处理
+				if (msg.getAtUser().contains(RKCloudChatConstants.KEY_GROUP_ALL))
 				{
-					RKCloudDemo.config.put(chatObj.getChatId(),msg.getMsgSerialNum());
+					RKCloudDemo.config.put(chatObj.getChatId(), msg.getMsgSerialNum());
 				}
 				else
 				{
-					//@ 某些成员的处理
+					// @ 某些成员的处理
 					try
 					{
 						JSONArray array = new JSONArray(msg.getAtUser());
@@ -1882,14 +1889,14 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 						/**
 						 * 是为了避免 群主自己@所有成员之后，群主自己还显示“[有人@我]”
 						 */
-						if(!msgObj.getSender().equals(currAccount))
+						if (!msgObj.getSender().equals(currAccount))
 						{
 							for (int i = 0; i < array.length(); i++)
 							{
-								if(array.get(i).equals(currAccount))
+								if (array.get(i).equals(currAccount))
 								{
-									//获取到服务器返回的 被@成员数据包含自己
-									RKCloudDemo.config.put(chatObj.getChatId(),msg.getMsgSerialNum());
+									// 获取到服务器返回的 被@成员数据包含自己
+									RKCloudDemo.config.put(chatObj.getChatId(), msg.getMsgSerialNum());
 									break;
 								}
 							}
@@ -1904,7 +1911,6 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		}
 	}
 
-
 	@Override
 	public void onMsgHasChanged(String msgSerialNum)
 	{
@@ -1912,28 +1918,32 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		sendHandlerMsg(RKCloudChatUiHandlerMessage.MSG_STATUS_HAS_CHANGED, msgSerialNum);
 	}
 
-
 	/**
 	 * 检查是否包含群成员
+	 * 
 	 * @param content
 	 * @return
 	 */
-	public boolean containsAtUsername(String content,List<String> accountList){
-		if(TextUtils.isEmpty(content)){
-			return false;
-		}
-		if(null == accountList || accountList.size() == 0)
+	public boolean containsAtUsername(String content, List<String> accountList)
+	{
+		if (TextUtils.isEmpty(content))
 		{
 			return false;
 		}
-		for(String account : accountList){
-			String nick = account;//用户账号
+		if (null == accountList || accountList.size() == 0)
+		{
+			return false;
+		}
+		for (String account : accountList)
+		{
+			String nick = account;// 用户账号
 			RKCloudChatContact conactInfo = RKCloudChatContactManager.getInstance(mContext).getContactInfo(account);
-			if(null != conactInfo)
+			if (null != conactInfo)
 			{
-				nick = RKCloudChatContactManager.getInstance(mContext).getContactName(account);//用户名称
+				nick = RKCloudChatContactManager.getInstance(mContext).getContactName(account);// 用户名称
 			}
-			if(content.contains(nick)){
+			if (content.contains(nick))
+			{
 				return true;
 			}
 		}
@@ -1942,45 +1952,51 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 
 	/**
 	 * 检查是否是所有群成员
+	 * 
 	 * @param content
 	 * @return
 	 */
-	public boolean containsAtAll(String content){
+	public boolean containsAtAll(String content)
+	{
 		String atAll = "@" + mContext.getString(R.string.rkcloud_chat_all_members);
-		if(content.contains(atAll)){
+		if (content.contains(atAll))
+		{
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * 检查所有有效的@用户
-	 * 为了避免 @123456（应该是@16）这种情况出现
+	 * 检查所有有效的@用户 为了避免 @123456（应该是@16）这种情况出现
+	 * 
 	 * @param content
 	 * @return
 	 */
-	public List<String> getAtMessageUsernames(String content,List<String> accountList){
-		if(TextUtils.isEmpty(content)){
+	public List<String> getAtMessageUsernames(String content, List<String> accountList)
+	{
+		if (TextUtils.isEmpty(content))
+		{
 			return null;
 		}
 
 		List<String> list = null;
-		for(String account : accountList){
+		for (String account : accountList)
+		{
 			String nick = account;
 			RKCloudChatContact conactInfo = RKCloudChatContactManager.getInstance(mContext).getContactInfo(account);
-			if(null != conactInfo)
+			if (null != conactInfo)
 			{
 				nick = RKCloudChatContactManager.getInstance(mContext).getContactName(account);
 			}
-			if(content.contains(nick))
+			if (content.contains(nick))
 			{
-				if(list == null)
+				if (list == null)
 				{
 					list = new ArrayList<String>();
 				}
 				list.add(account);
-				}
 			}
-			return list;
+		}
+		return list;
 	}
 }
