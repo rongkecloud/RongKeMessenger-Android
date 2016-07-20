@@ -1,18 +1,9 @@
 package com.rongkecloud.test.http;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-
+import android.content.Context;
+import android.text.TextUtils;
+import com.rongkecloud.test.http.Request.Method;
+import com.rongkecloud.test.utility.FileLog;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -27,12 +18,18 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.util.Log;
-
-import com.rongkecloud.test.http.Request.Method;
-import com.rongkecloud.test.utility.FileLog;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /***
  * 该类主要是处理大并发Http请求 * 
@@ -194,7 +191,7 @@ final class SynRequest{
 	/**
 	 * 分类处理HTTP 请求
 	 * 
-	 * @param request
+	 * @param req
 	 */
 	private void processRequest(Request req) {
 		Result result = new Result(req.type);
@@ -269,7 +266,7 @@ final class SynRequest{
 			result.opCode = HttpResponseCode.NO_NETWORK;
 		} finally {
 			if(null != httpResp){
-				FileLog.w(TAG, "close http entity");
+				FileLog.d(TAG, "close http entity");
 				HttpUtil.closeHttpEntity(httpResp.getEntity());
 			}
 			if(null != br){
