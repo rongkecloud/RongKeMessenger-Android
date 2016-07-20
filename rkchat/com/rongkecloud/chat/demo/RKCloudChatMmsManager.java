@@ -1649,6 +1649,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			return;
 		}
 		mChatManager.sendReadedReceipt(msgObj);
+		mChatManager.sendOtherDeviceReadedReceipt(msgObj);
 	}
 
 	/**
