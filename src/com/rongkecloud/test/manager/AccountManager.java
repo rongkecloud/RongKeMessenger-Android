@@ -14,6 +14,7 @@ import com.rongkecloud.test.system.ConfigKey;
 import com.rongkecloud.test.system.RKCloudDemo;
 import com.rongkecloud.test.ui.reminder.ReminderActivity;
 import com.rongkecloud.test.ui.reminder.ReminderBroadcast;
+import com.rongkecloud.test.utility.SystemInfo;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -153,6 +154,7 @@ public class AccountManager implements HttpFatalExceptionCallBack{
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("account", lowAccount);
 		params.put("pwd", pwd);
+		params.put("os", SystemInfo.getOsName());
 		request.params = params;
 		request.mHttpCallback = new HttpCallback() {				
 			@Override
