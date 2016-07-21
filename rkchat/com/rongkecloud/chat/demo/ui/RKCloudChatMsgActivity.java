@@ -64,8 +64,6 @@ import com.rongkecloud.test.R;
 import com.rongkecloud.test.system.RKCloudDemo;
 import com.rongkecloud.test.utility.Print;
 import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.JSONStringer;
 
 import java.io.File;
 import java.sql.Date;
@@ -81,9 +79,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 	public static final String INTENT_KEY_MSGLIST_MSGID = "msglist_msgid";// 搜索消息显示的消息ID
 
 	// 查询数据的类型
-	private static final int QUERY_TYPE_LOAD_DATA = 1;// 获取数据
 	private static final int QUERY_TYPE_LOAD_UNREAD_DATA = 2;// 获取未读数据
-	private static final int QUERY_TYPE_LOAD_HISTORY_DATA = 3;// 获取历史数据
 	private static final int QUERY_TYPE_LOAD_SEARCH_DATA = 4;// 获取搜索到的数据
 	private static final int QUERY_TYPE_LOAD_NEW_DATA = 5;// 获取新数据
 
@@ -102,7 +98,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 	static final int INTENT_RESULT_CHOOSE_PICTURE = 2;// 选择图片
 	static final int INTENT_RESULT_CHOOSE_VIDEO = 3;// 录制视频
 	static final int INTENT_RESULT_CHOOSE_ATTACHEMENT = 4;// 选择附件
-	static final int INTENT_REQUEST_CODE_SELECT_USER = 5;//进入选择成员界面
+	static final int INTENT_REQUEST_CODE_SELECT_USER = 5;// 进入选择成员界面
 
 	// 分段加载历史数据使用的相关变量
 	private long lastLoadMsgCreaingId = 0;// 记录已加载消息中自增ID值最小的一个消息ID值
@@ -240,7 +236,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 		}
 		else
 		{
-			startQuery(QUERY_TYPE_LOAD_DATA);
+			mMmsManager.getChatMsgs(mChatId, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
 		}
 
 		// TODO 与多人语音结合时使用
@@ -290,7 +286,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 		controllMoreOpeZoneOpen(false);
 		controllEmojiZoneOpen(false);
 
-		if(mChatObj instanceof GroupChat)
+		if (mChatObj instanceof GroupChat)
 		{
 			RKCloudDemo.config.remove(mChatId);
 		}
@@ -300,7 +296,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 	protected void onStop()
 	{
 		super.onStop();
-		Print.e(TAG,"edittext text ====================" + mSmiliesEditText.getText().toString().trim());
+		Print.e(TAG, "edittext text ====================" + mSmiliesEditText.getText().toString().trim());
 		mMmsManager.saveDraft(mChatId, mSmiliesEditText.getText().toString().trim());// 只有离开消息列表页面时才会保存草稿箱内容
 		// 关闭语音消息的播放，放在这里即使为待机状态仍可以继续播放语音消息
 		mAudioHelper.stopMsgOfAudio();
@@ -354,29 +350,29 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			String content = mSmiliesEditText.getText().toString().trim();
 			if (!TextUtils.isEmpty(content))
 			{
-				/*TODO 先判断是都包含@all 如果是直接传的全部  如果不是  在@单个成员
-				* 参数 content
-				* list<String>  群成员账号数据
-				* */
+				/*
+				 * TODO 先判断是都包含@all 如果是直接传的全部 如果不是 在@单个成员 参数 content
+				 * list<String> 群成员账号数据
+				 */
 				TextMessage textObj = TextMessage.buildMsg(mChatId, content);
-				if(mChatObj instanceof GroupChat)
+				if (mChatObj instanceof GroupChat)
 				{
-					GroupChat groupChat = (GroupChat)mChatObj;
-					if(groupChat.getGroupCreater().equals(mCurrAccount) && mMmsManager.containsAtAll(content))
+					GroupChat groupChat = (GroupChat) mChatObj;
+					if (groupChat.getGroupCreater().equals(mCurrAccount) && mMmsManager.containsAtAll(content))
 					{
-						//是群主并且@所有人
+						// 是群主并且@所有人
 						textObj.setAtUser(new JSONArray().put("all").toString());
 					}
-					else if(mMmsManager.containsAtUsername(content,mRemindContact))
+					else if (mMmsManager.containsAtUsername(content, mRemindContact))
 					{
-						//@单个成员
-						List<String> tempList = mMmsManager.getAtMessageUsernames(content,mRemindContact);
+						// @单个成员
+						List<String> tempList = mMmsManager.getAtMessageUsernames(content, mRemindContact);
 						JSONArray array = null;
-						for(String account : tempList)
+						for (String account : tempList)
 						{
-							if(!TextUtils.isEmpty(account) && null != mContactManager.getContactInfo(account))
+							if (!TextUtils.isEmpty(account) && null != mContactManager.getContactInfo(account))
 							{
-								if(null == array)
+								if (null == array)
 								{
 									array = new JSONArray();
 								}
@@ -612,16 +608,16 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 				sendMms(fileObj);
 			}
 		}
-		else if(INTENT_REQUEST_CODE_SELECT_USER == requestCode)
+		else if (INTENT_REQUEST_CODE_SELECT_USER == requestCode)
 		{
 			String account = null != data ? data.getStringExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_TO_ACCOUNT) : "";
-			if(!TextUtils.isEmpty(account))
+			if (!TextUtils.isEmpty(account))
 			{
-				if(null == mRemindContact && !account.equals(RKCloudChatConstants.KEY_GROUP_ALL))
+				if (null == mRemindContact && !account.equals(RKCloudChatConstants.KEY_GROUP_ALL))
 				{
 					mRemindContact = new ArrayList<>();
 				}
-				if(null != mRemindContact)
+				if (null != mRemindContact)
 				{
 					mRemindContact.add(account);
 				}
@@ -1221,20 +1217,20 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 					mSendBnt.setVisibility(View.VISIBLE);
 					mAttachSwitch.setVisibility(View.GONE);
 				}
-				if(mChatObj instanceof GroupChat)
+				if (mChatObj instanceof GroupChat)
 				{
-					if(count == 1 && "@".equals(String.valueOf(s.charAt(start))))
+					if (count == 1 && "@".equals(String.valueOf(s.charAt(start))))
 					{
 						Intent intent = new Intent(RKCloudChatMsgActivity.this, RKCloudChatTransferGroupSelectUsersActivity.class);
-						intent.putExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_FROM_MSG_ACTIVITY,true);
-						if(((GroupChat) mChatObj).getGroupCreater().equals(mCurrAccount))
+						intent.putExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_FROM_MSG_ACTIVITY, true);
+						if (((GroupChat) mChatObj).getGroupCreater().equals(mCurrAccount))
 						{
-							intent.putExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_IS_GROUP_CREATER,true);
+							intent.putExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_IS_GROUP_CREATER, true);
 						}
 						List<String> accounts = mMmsManager.queryGroupUsers(mChatObj.getChatId());
-						if(null != accounts && accounts.size() > 0)
+						if (null != accounts && accounts.size() > 0)
 						{
-							if(accounts.contains(mCurrAccount))
+							if (accounts.contains(mCurrAccount))
 							{
 								accounts.remove(mCurrAccount);
 							}
@@ -1242,8 +1238,8 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 							tempList.addAll(accounts);
 							intent.putStringArrayListExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_GROUP_USERS, tempList);
 						}
-						intent.putExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_GROUP_ID,mChatId);
-						startActivityForResult(intent,INTENT_REQUEST_CODE_SELECT_USER);
+						intent.putExtra(RKCloudChatTransferGroupSelectUsersActivity.INTENT_KEY_GROUP_ID, mChatId);
+						startActivityForResult(intent, INTENT_REQUEST_CODE_SELECT_USER);
 					}
 				}
 			}
@@ -1279,7 +1275,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 						// 加载历史数据
 						mLoadingHistoryData = true;
 						mLoadingHistoryLayout.setVisibility(View.VISIBLE);
-						startQuery(QUERY_TYPE_LOAD_HISTORY_DATA);
+						mMmsManager.getChatMsgs(mChatId, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
 					}
 					else if (mAllMsgsData.size() - 1 == view.getLastVisiblePosition() && !mLoadingNewData && !mLoadNewDataFinished)
 					{
@@ -1617,29 +1613,12 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 		@Override
 		public boolean handleMessage(Message msg)
 		{
-			if (msg.what == QUERY_TYPE_LOAD_DATA)
-			{
-				Message message = mUiHandler.obtainMessage();
-				message.what = RKCloudChatUiHandlerMessage.MSG_LOAD_DATA_FINISHED;
-				message.arg1 = 0;
-				message.obj = mMmsManager.queryMmsList(mChatId, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
-				message.sendToTarget();
-
-			}
-			else if (msg.what == QUERY_TYPE_LOAD_UNREAD_DATA)
+			if (msg.what == QUERY_TYPE_LOAD_UNREAD_DATA)
 			{
 				Message message = mUiHandler.obtainMessage();
 				message.what = RKCloudChatUiHandlerMessage.MSG_LOAD_DATA_FINISHED;
 				message.arg1 = 1;
 				message.obj = mMmsManager.queryMmsList(mChatId, unreadLeastMsgId, 0);
-				message.sendToTarget();
-
-			}
-			else if (msg.what == QUERY_TYPE_LOAD_HISTORY_DATA)
-			{
-				Message message = mUiHandler.obtainMessage();
-				message.what = RKCloudChatUiHandlerMessage.MSG_LOAD_HISTROY_DATA_FINISHED;
-				message.obj = mMmsManager.queryHistoryMmsList(mChatId, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
 				message.sendToTarget();
 
 			}
@@ -2242,15 +2221,10 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			}
 
 		}
-		else if (RKCloudChatUiHandlerMessage.MSG_LOAD_DATA_FINISHED == what)
-		{ // 数据查询完毕
+		else if (RKCloudChatUiHandlerMessage.RESPONSE_GET_CHAT_MMS == what)
+		{
+			// 数据查询完毕
 			loadListData((List<RKCloudChatBaseMessage>) msg.obj, msg.arg1 == 1);
-
-		}
-		else if (RKCloudChatUiHandlerMessage.MSG_LOAD_HISTROY_DATA_FINISHED == what)
-		{ // 历史数据加载完成
-			loadHistoryData((List<RKCloudChatBaseMessage>) msg.obj);
-
 		}
 		else if (RKCloudChatUiHandlerMessage.MSG_LOAD_SEARCH_DATA_FINISHED == what)
 		{ // 数据查询完毕
@@ -2327,9 +2301,9 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 				RKCloudChatTools.showToastText(this, getString(R.string.rkcloud_chat_network_off));
 
 			}
-			else if(RKCloudChatErrorCode.RK_SUCCESS == msg.arg1)
+			else if (RKCloudChatErrorCode.RK_SUCCESS == msg.arg1)
 			{
-				if(null != mRemindContact)
+				if (null != mRemindContact)
 				{
 					mRemindContact.clear();
 				}
@@ -2372,7 +2346,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 					// 重新查询
 					mLoadHistoryDataFinished = false;
 					lastLoadMsgCreaingId = 0;
-					startQuery(QUERY_TYPE_LOAD_DATA);
+					mMmsManager.getChatMsgs(mChatId, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
 					showUnreadCntTip(datas.size());
 
 				}
@@ -2485,10 +2459,8 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			}
 
 		}
-		else if (RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED == what
-				|| RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME == msg.what
-				|| RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC == msg.what
-				|| RKCloudChatUiHandlerMessage.RESPONSE_GROUP_POPULATION_CHANGED == msg.what
+		else if (RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED == what || RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME == msg.what
+				|| RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_DESC == msg.what || RKCloudChatUiHandlerMessage.RESPONSE_GROUP_POPULATION_CHANGED == msg.what
 				|| RKCloudChatUiHandlerMessage.RESPONSE_MODIFY_GROUP_INVITEAUTH == msg.what)
 		{
 			if (mChatId.equalsIgnoreCase((String) msg.obj))

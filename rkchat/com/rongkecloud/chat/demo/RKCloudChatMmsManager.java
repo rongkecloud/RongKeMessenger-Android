@@ -33,10 +33,12 @@ import com.rongkecloud.chat.demo.ui.base.RKCloudChatCustomDialog;
 import com.rongkecloud.chat.interfaces.RKCloudChatGroupCallBack;
 import com.rongkecloud.chat.interfaces.RKCloudChatReceivedMsgCallBack;
 import com.rongkecloud.chat.interfaces.RKCloudChatRequestCallBack;
+import com.rongkecloud.chat.interfaces.RKCloudChatResult;
 import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.system.RKCloudDemo;
 import com.rongkecloud.test.ui.MainActivity;
+import com.rongkecloud.test.utility.FileLog;
 import com.rongkecloud.test.utility.Print;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -744,6 +746,34 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			return new ArrayList();
 		}
 		return mChatManager.queryNewChatMsgs(chatId, minMsgId, limit);
+	}
+
+	/**
+	 * 获取会话消息
+	 * 
+	 * @param chatId
+	 *            会话id
+	 * @param msgId
+	 *            消息id
+	 * @param limit
+	 *            一次需要获取到的数量
+	 */
+	public void getChatMsgs(String chatId, long msgId, int limit)
+	{
+		if (null == mChatManager)
+		{
+			return;
+		}
+		FileLog.e(TAG, "chatId = " + chatId + ", msgId = " + msgId + ", limit = " + limit);
+		mChatManager.getChatMsgs(chatId, msgId, limit, new RKCloudChatResult<List<RKCloudChatBaseMessage>>()
+		{
+			@Override
+			public void onResult(List<RKCloudChatBaseMessage> value)
+			{
+				FileLog.e(TAG, "data = " + value);
+				sendHandlerMsg(RKCloudChatUiHandlerMessage.RESPONSE_GET_CHAT_MMS, RKCloudChatErrorCode.RK_SUCCESS, value);
+			}
+		});
 	}
 
 	/**

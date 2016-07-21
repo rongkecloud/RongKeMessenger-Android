@@ -50,6 +50,7 @@ public class RKCloudChatUiHandlerMessage {
 	public static final int FORWARD_QUERY_ALLCONTACTS_FINISH = MSG_BASE + 183;// 查询联系人信息完成
 	
 	/********************* 与http交互的类型 ***************************/
+	public static final int RESPONSE_GET_CHAT_MMS = MSG_BASE + 200;// 获取会话消息
 	public static final int RESPONSE_SEND_MMS = MSG_BASE + 201;// 发送消息
 	public static final int RESPONSE_FORWARD_MMS = MSG_BASE + 202;// 转发消息
 	public static final int RESPONSE_RESEND_MMS = MSG_BASE + 203;// 重新发送失败的消息
