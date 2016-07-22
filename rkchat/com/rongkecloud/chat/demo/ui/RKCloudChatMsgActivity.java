@@ -101,7 +101,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 	static final int INTENT_REQUEST_CODE_SELECT_USER = 5;// 进入选择成员界面
 
 	// 分段加载历史数据使用的相关变量
-	private long lastLoadMsgCreaingId = 0;// 记录已加载消息中自增ID值最小的一个消息ID值
+	private long lastLoadMsgCreaingId = -1;// 记录已加载消息中自增ID值最小的一个消息ID值
 	private boolean mLoadHistoryDataFinished = false;// 消息条数是否全部加载完成，默认表示未完成
 	private boolean mLoadingHistoryData = false;// 是否在加载历史消息中，默认不在
 
@@ -1360,7 +1360,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 		mFirstShowUnreadTip = true;
 		mUnreadCnt = 0;
 
-		lastLoadMsgCreaingId = 0;
+		lastLoadMsgCreaingId = -1;
 		remberViewMsgInChatId = null;
 		lastAudioSerialNum = null;
 		mCancelSendVoiceMsg = false;
@@ -2345,7 +2345,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 				{
 					// 重新查询
 					mLoadHistoryDataFinished = false;
-					lastLoadMsgCreaingId = 0;
+					lastLoadMsgCreaingId = -1;
 					mMmsManager.getChatMsgs(mChatId, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
 					showUnreadCntTip(datas.size());
 
