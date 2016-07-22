@@ -49,6 +49,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * 云视互动即时通信中消息相关的处理类，关联了SDK和Demo之间的交互
@@ -758,23 +759,34 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	 * @param limit
 	 *            一次需要获取到的数量
 	 */
-	public void getChatMsgs(String chatId, long msgId, int limit)
+	public List<RKCloudChatBaseMessage> getChatMsgs(String chatId, long msgId, int limit)
 	{
 		if (null == mChatManager)
 		{
-			return;
+			return new ArrayList<>();
 		}
+
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        final  List<RKCloudChatBaseMessage> messages = new ArrayList<>();
 		FileLog.e(TAG, "chatId = " + chatId + ", msgId = " + msgId + ", limit = " + limit);
 		mChatManager.getChatMsgs(chatId, msgId, limit, new RKCloudChatResult<List<RKCloudChatBaseMessage>>()
 		{
 			@Override
 			public void onResult(List<RKCloudChatBaseMessage> value)
 			{
+                messages.addAll(value);
+                countDownLatch.countDown();
 				FileLog.e(TAG, "data = " + value);
-				sendHandlerMsg(RKCloudChatUiHandlerMessage.RESPONSE_GET_CHAT_MMS, RKCloudChatErrorCode.RK_SUCCESS, value);
+//				sendHandlerMsg(RKCloudChatUiHandlerMessage.RESPONSE_GET_CHAT_MMS, RKCloudChatErrorCode.RK_SUCCESS, value);
 			}
 		});
-	}
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return  messages;
+    }
 
 	/**
 	 * 重新发送失败的消息
