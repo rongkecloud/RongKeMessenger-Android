@@ -9,7 +9,8 @@ interface HttpApi {
 //	public static final String ROOT_HOST_NAME = "101.200.143.20";
 	public static final int ROOT_HOST_PORT = 8083;
 	/**内网*/
-  public static final String ROOT_HOST_NAME = "192.168.1.163";
+//  public static final String ROOT_HOST_NAME = "192.168.1.163";
+  public static final String ROOT_HOST_NAME = "101.200.143.20";
 //  public static final String ROOT_HOST_NAME = "192.168.1.166";
 //  public static final int ROOT_HOST_PORT = 8083;
 

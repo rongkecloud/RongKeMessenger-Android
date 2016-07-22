@@ -759,7 +759,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	 * @param limit
 	 *            一次需要获取到的数量
 	 */
-	public List<RKCloudChatBaseMessage> getChatMsgs(String chatId, long msgId, int limit)
+	public List<RKCloudChatBaseMessage> getChatMsgs(String chatId, String chatType, long msgId, int limit)
 	{
 		if (null == mChatManager)
 		{
@@ -769,7 +769,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         final  List<RKCloudChatBaseMessage> messages = new ArrayList<>();
 		FileLog.e(TAG, "chatId = " + chatId + ", msgId = " + msgId + ", limit = " + limit);
-		mChatManager.getChatMsgs(chatId, msgId, limit, new RKCloudChatResult<List<RKCloudChatBaseMessage>>()
+		mChatManager.queryChatMsgs(chatId,chatType, msgId, limit, new RKCloudChatResult<List<RKCloudChatBaseMessage>>()
 		{
 			@Override
 			public void onResult(List<RKCloudChatBaseMessage> value)
