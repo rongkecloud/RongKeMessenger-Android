@@ -1637,7 +1637,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
             {
                 Message message = mUiHandler.obtainMessage();
                 message.what = RKCloudChatUiHandlerMessage.MSG_LOAD_HISTROY_DATA_FINISHED;
-                message.obj = mMmsManager.queryHistoryMmsList(mChatId, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
+                message.obj = mMmsManager.getChatMsgs(mChatId, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
                 message.sendToTarget();
 
             }
@@ -1653,7 +1653,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
             {
                 Message message = mUiHandler.obtainMessage();
                 message.what = RKCloudChatUiHandlerMessage.MSG_LOAD_NEW_DATA_FINISHED;
-                message.obj = mMmsManager.queryNewChatMsgs(mChatId, newLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
+                message.obj = mMmsManager.getChatMsgs(mChatId, newLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
                 message.sendToTarget();
             }
 
