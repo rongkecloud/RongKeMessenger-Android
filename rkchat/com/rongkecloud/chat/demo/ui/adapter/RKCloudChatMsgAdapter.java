@@ -672,6 +672,10 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 
 							case RECEIVE_DOWNED: // 下载完成
 							case READED: // 已读
+								if(mChatClassObj == SingleChat.class && !msgObj.isHistory())
+								{
+									mMmsManager.notifyOtherMsgHasReaded(msgObj);
+								}
 								break;
 							default:
 								break;
@@ -857,10 +861,10 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 				Intent intent = new Intent(mContext, RKCloudChatViewImagesActivity.class);
 				intent.putExtra(RKCloudChatViewImagesActivity.INTENT_KEY_MSGOBJ, msgObj);
 				mContext.startActivity(intent);
-				if(mChatClassObj == SingleChat.class)
-				{
-					RKCloudChatMessageManager.getInstance(mContext).sendReadedReceipt(msgObj);
-				}
+//				if(mChatClassObj == SingleChat.class)
+//				{
+//					RKCloudChatMessageManager.getInstance(mContext).sendReadedReceipt(msgObj);
+//				}
 
 			}
 			else if (msgObj instanceof AudioMessage || msgObj instanceof VideoMessage || msgObj instanceof FileMessage)
@@ -874,10 +878,10 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 						RKCloudChatTools.showToastText(mContext, mContext.getString(R.string.rkcloud_chat_sdcard_error));
 						return;
 					}
-					if(null != msgObj)
-					{
-						RKCloudChatMessageManager.getInstance(mContext).sendReadedReceipt(msgObj);
-					}
+//					if(null != msgObj)
+//					{
+//						RKCloudChatMessageManager.getInstance(mContext).sendReadedReceipt(msgObj);
+//					}
 					// 下载媒体消息
 					itemBuffer.newMsgSign.setVisibility(View.GONE);
 					itemBuffer.loadLayout.setVisibility(View.VISIBLE);
