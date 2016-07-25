@@ -60,9 +60,10 @@ import com.rongkecloud.chat.demo.ui.widget.record.RKCloudChatRecordPopupWindow;
 import com.rongkecloud.multiVoice.RKCloudMeetingCallState;
 import com.rongkecloud.multiVoice.RKCloudMeetingInfo;
 import com.rongkecloud.sdkbase.RKCloud;
+import com.rongkecloud.sdkbase.RKCloudLog;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.system.RKCloudDemo;
-import com.rongkecloud.test.utility.Print;
+import com.rongkecloud.test.utility.FileLog;
 import org.json.JSONArray;
 
 import java.io.File;
@@ -238,6 +239,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
         }
         else
         {
+            RKCloudLog.e(TAG, "获取消息=====================================");
             startQuery(QUERY_TYPE_LOAD_DATA);
         }
 
@@ -298,7 +300,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
     protected void onStop()
     {
         super.onStop();
-        Print.e(TAG,"edittext text ====================" + mSmiliesEditText.getText().toString().trim());
         mMmsManager.saveDraft(mChatId, mSmiliesEditText.getText().toString().trim());// 只有离开消息列表页面时才会保存草稿箱内容
         // 关闭语音消息的播放，放在这里即使为待机状态仍可以继续播放语音消息
         mAudioHelper.stopMsgOfAudio();
@@ -1249,7 +1250,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after)
             {
-                Print.e(TAG, "beforeTextChanged:" + s + "-" + "-start===" + start + "-after===" + after + "-count===" + count);
             }
 
             @Override
@@ -1274,6 +1274,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
                 {
                     if (0 == view.getFirstVisiblePosition() && !mLoadingHistoryData && !mLoadHistoryDataFinished)
                     {
+                        FileLog.e(TAG, "gethis===============");
                         // 加载历史数据
                         mLoadingHistoryData = true;
                         mLoadingHistoryLayout.setVisibility(View.VISIBLE);
@@ -1281,6 +1282,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
                     }
                     else if (mAllMsgsData.size() - 1 == view.getLastVisiblePosition() && !mLoadingNewData && !mLoadNewDataFinished)
                     {
+                        FileLog.e(TAG, "getnewdata===============");
                         // 加载新数据
                         mLoadingNewData = true;
                         startQuery(QUERY_TYPE_LOAD_NEW_DATA);
@@ -1629,10 +1631,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
                 {
                     message.obj = mMmsManager.getChatMsgs(mChatId,GroupChat.CHAT_TYPE, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
                 }
-
-
                 message.sendToTarget();
-
             }
             else if (msg.what == QUERY_TYPE_LOAD_UNREAD_DATA)
             {
@@ -1647,6 +1646,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
             {
                 Message message = mUiHandler.obtainMessage();
                 message.what = RKCloudChatUiHandlerMessage.MSG_LOAD_HISTROY_DATA_FINISHED;
+                FileLog.e(TAG, "gethis---lastLoadMsgCreaingId-- = " + lastLoadMsgCreaingId);
                 if (SingleChat.class.equals(mChatClassObj))
                 {
                     message.obj = mMmsManager.getChatMsgs(mChatId,SingleChat.CHAT_TYPE, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
@@ -1655,6 +1655,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
                 {
                     message.obj = mMmsManager.getChatMsgs(mChatId,GroupChat.CHAT_TYPE, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
                 }
+                FileLog.e(TAG, "gethis---result-- = " + message.obj);
                 message.sendToTarget();
 
             }
@@ -1668,9 +1669,11 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
             }
             else if (msg.what == QUERY_TYPE_LOAD_NEW_DATA)
             {
+                FileLog.e(TAG, "queryNewChatMsgs---newLoadMsgCreaingId-- = " + newLoadMsgCreaingId);
                 Message message = mUiHandler.obtainMessage();
                 message.what = RKCloudChatUiHandlerMessage.MSG_LOAD_NEW_DATA_FINISHED;
                 message.obj = mMmsManager.queryNewChatMsgs(mChatId, newLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
+                FileLog.e(TAG, "queryNewChatMsgs---result-- = " + message.obj);
                 message.sendToTarget();
             }
 

@@ -35,11 +35,10 @@ import com.rongkecloud.chat.interfaces.RKCloudChatReceivedMsgCallBack;
 import com.rongkecloud.chat.interfaces.RKCloudChatRequestCallBack;
 import com.rongkecloud.chat.interfaces.RKCloudChatResult;
 import com.rongkecloud.sdkbase.RKCloud;
+import com.rongkecloud.sdkbase.RKCloudLog;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.system.RKCloudDemo;
 import com.rongkecloud.test.ui.MainActivity;
-import com.rongkecloud.test.utility.FileLog;
-import com.rongkecloud.test.utility.Print;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -765,28 +764,29 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		{
 			return new ArrayList<>();
 		}
-
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
-        final  List<RKCloudChatBaseMessage> messages = new ArrayList<>();
-		FileLog.e(TAG, "chatId = " + chatId + ", msgId = " + msgId + ", limit = " + limit);
-		mChatManager.queryChatMsgs(chatId,chatType, msgId, limit, new RKCloudChatResult<List<RKCloudChatBaseMessage>>()
+		RKCloudLog.e(TAG, "getChatMsgs=====================================");
+		final CountDownLatch countDownLatch = new CountDownLatch(1);
+		final List<RKCloudChatBaseMessage> messages = new ArrayList<>();
+		mChatManager.queryChatMsgs(chatId, chatType, msgId, limit, new RKCloudChatResult<List<RKCloudChatBaseMessage>>()
 		{
 			@Override
 			public void onResult(List<RKCloudChatBaseMessage> value)
 			{
-                messages.addAll(value);
-                countDownLatch.countDown();
-				FileLog.e(TAG, "data = " + value);
-//				sendHandlerMsg(RKCloudChatUiHandlerMessage.RESPONSE_GET_CHAT_MMS, RKCloudChatErrorCode.RK_SUCCESS, value);
+				RKCloudLog.e(TAG, "getChatMsgs==========value = " + value);
+				messages.addAll(value);
+				countDownLatch.countDown();
 			}
 		});
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return  messages;
-    }
+		try
+		{
+			countDownLatch.await();
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+		return messages;
+	}
 
 	/**
 	 * 重新发送失败的消息
@@ -1748,7 +1748,6 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	@Override
 	public void onGroupInfoChanged(final String groupId, int type)
 	{
-		Print.e(TAG, "----------groupId===" + groupId + ", type===" + type);
 		if (RKCloudChatBaseChat.CHANGE_TYPE_GROUP_NAME == type)
 		{
 			sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_MODIFY_GROUP_NAME, groupId);
