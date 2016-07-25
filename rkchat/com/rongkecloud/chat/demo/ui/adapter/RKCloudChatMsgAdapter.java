@@ -209,7 +209,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 		}
 		else
 		{
-			if (msgObj instanceof TipMessage|| MSG_STATUS.MESSAGE_REVOKE == msgObj.getStatus())
+			if (msgObj instanceof TipMessage || MSG_STATUS.MESSAGE_REVOKE == msgObj.getStatus())
 			{
 				type = ITEM_STYLE_TIP;
 			}
@@ -347,7 +347,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 		RelativeLayout loadLayout;// 下载布局
 		TextView loadProgress;// 下载进度值
 		ImageView playImg;// 视频播放图标
-		TextView msgStatus;//消息状态的回执显示
+		TextView msgStatus;// 消息状态的回执显示
 
 		ItemViewBuffer(View view)
 		{
@@ -471,7 +471,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 						{
 							if (MSG_STATUS.RECEIVE_RECEIVED == msgObj.getStatus())
 							{
-								if(mChatClassObj == SingleChat.class && !msgObj.isHistory())
+								if (mChatClassObj == SingleChat.class && !msgObj.isHistory())
 								{
 									mMmsManager.notifyOtherMsgHasReaded(msgObj);
 								}
@@ -482,7 +482,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 							// TODO 自定义消息是否需要已读处理，默认是需要的
 							if (MSG_STATUS.RECEIVE_RECEIVED == msgObj.getStatus() && !msgObj.isHistory())
 							{
-								if(mChatClassObj == SingleChat.class)
+								if (mChatClassObj == SingleChat.class)
 								{
 									mMmsManager.notifyOtherMsgHasReaded(msgObj);
 								}
@@ -672,7 +672,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 
 							case RECEIVE_DOWNED: // 下载完成
 							case READED: // 已读
-								if(mChatClassObj == SingleChat.class && !msgObj.isHistory())
+								if (mChatClassObj == SingleChat.class && !msgObj.isHistory())
 								{
 									mMmsManager.notifyOtherMsgHasReaded(msgObj);
 								}
@@ -861,15 +861,13 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 				Intent intent = new Intent(mContext, RKCloudChatViewImagesActivity.class);
 				intent.putExtra(RKCloudChatViewImagesActivity.INTENT_KEY_MSGOBJ, msgObj);
 				mContext.startActivity(intent);
-//				if(mChatClassObj == SingleChat.class)
-//				{
-//					RKCloudChatMessageManager.getInstance(mContext).sendReadedReceipt(msgObj);
-//				}
-
 			}
 			else if (msgObj instanceof AudioMessage || msgObj instanceof VideoMessage || msgObj instanceof FileMessage)
 			{
-				if (MSG_STATUS.RECEIVE_RECEIVED == msgObj.getStatus() || MSG_STATUS.RECEIVE_DOWNFAILED == msgObj.getStatus())
+
+				if ((msgObj instanceof AudioMessage && !(new File(((AudioMessage) msgObj).getFilePath()).exists()))
+						|| (msgObj instanceof VideoMessage && !(new File(((VideoMessage) msgObj).getFilePath()).exists()))
+						|| (msgObj instanceof FileMessage && !(new File(((FileMessage) msgObj).getFilePath()).exists())))
 				{
 					// 表示下载操作
 					// 先判断SD卡是否可用、容量是否已满，用于提前处理
@@ -878,12 +876,11 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 						RKCloudChatTools.showToastText(mContext, mContext.getString(R.string.rkcloud_chat_sdcard_error));
 						return;
 					}
-//					if(null != msgObj)
-//					{
-//						RKCloudChatMessageManager.getInstance(mContext).sendReadedReceipt(msgObj);
-//					}
 					// 下载媒体消息
-					itemBuffer.newMsgSign.setVisibility(View.GONE);
+					if (null != itemBuffer.newMsgSign)
+					{
+						itemBuffer.newMsgSign.setVisibility(View.GONE);
+					}
 					itemBuffer.loadLayout.setVisibility(View.VISIBLE);
 					itemBuffer.loadProgress.setText("0%");
 					msgObj.setStatus(MSG_STATUS.RECEIVE_DOWNING);
