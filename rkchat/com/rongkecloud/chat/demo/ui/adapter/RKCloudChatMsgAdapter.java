@@ -471,7 +471,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 						{
 							if (MSG_STATUS.RECEIVE_RECEIVED == msgObj.getStatus())
 							{
-								if(mChatClassObj == SingleChat.class)
+								if(mChatClassObj == SingleChat.class && !msgObj.isHistory())
 								{
 									mMmsManager.notifyOtherMsgHasReaded(msgObj);
 								}
@@ -480,7 +480,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 						if (msgObj instanceof CustomMessage)
 						{
 							// TODO 自定义消息是否需要已读处理，默认是需要的
-							if (MSG_STATUS.RECEIVE_RECEIVED == msgObj.getStatus())
+							if (MSG_STATUS.RECEIVE_RECEIVED == msgObj.getStatus() && !msgObj.isHistory())
 							{
 								if(mChatClassObj == SingleChat.class)
 								{

@@ -60,7 +60,6 @@ import com.rongkecloud.chat.demo.ui.widget.record.RKCloudChatRecordPopupWindow;
 import com.rongkecloud.multiVoice.RKCloudMeetingCallState;
 import com.rongkecloud.multiVoice.RKCloudMeetingInfo;
 import com.rongkecloud.sdkbase.RKCloud;
-import com.rongkecloud.sdkbase.RKCloudLog;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.system.RKCloudDemo;
 import com.rongkecloud.test.utility.FileLog;
@@ -233,13 +232,15 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
         showConvInfo();// 获取会话信息
 
         // 如果需要则重新刷新列表数据
+//        lastLoadMsgCreaingId = 0;
+//        mLoadingHistoryData = false;
+//        mLoadHistoryDataFinished = false;
         if (!TextUtils.isEmpty(mMsgId))
         {
             startQuery(QUERY_TYPE_LOAD_SEARCH_DATA);
         }
         else
         {
-            RKCloudLog.e(TAG, "获取消息=====================================");
             startQuery(QUERY_TYPE_LOAD_DATA);
         }
 
@@ -1646,7 +1647,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
             {
                 Message message = mUiHandler.obtainMessage();
                 message.what = RKCloudChatUiHandlerMessage.MSG_LOAD_HISTROY_DATA_FINISHED;
-                FileLog.e(TAG, "gethis---lastLoadMsgCreaingId-- = " + lastLoadMsgCreaingId);
                 if (SingleChat.class.equals(mChatClassObj))
                 {
                     message.obj = mMmsManager.getChatMsgs(mChatId,SingleChat.CHAT_TYPE, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
@@ -1655,7 +1655,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
                 {
                     message.obj = mMmsManager.getChatMsgs(mChatId,GroupChat.CHAT_TYPE, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
                 }
-                FileLog.e(TAG, "gethis---result-- = " + message.obj);
                 message.sendToTarget();
 
             }
