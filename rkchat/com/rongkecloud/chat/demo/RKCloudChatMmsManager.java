@@ -748,6 +748,18 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		return mChatManager.queryNewChatMsgs(chatId, minMsgId, limit);
 	}
 
+
+    public  List<RKCloudChatBaseMessage> refreshMessageState(String chatId, long msgId)
+    {
+        if (null == mChatManager)
+        {
+            return new ArrayList<>();
+        }
+
+        return  mChatManager.queryLocalChatMsgs(chatId,msgId);
+    }
+
+
 	/**
 	 * 获取会话消息
 	 * 

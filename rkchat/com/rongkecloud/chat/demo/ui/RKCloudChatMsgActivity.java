@@ -1624,13 +1624,23 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
                 message.what = RKCloudChatUiHandlerMessage.MSG_LOAD_DATA_FINISHED;
                 message.arg1 = 0;
 
-                if (SingleChat.class.equals(mChatClassObj))
+
+                if(lastLoadMsgCreaingId > 0)
                 {
-                    message.obj = mMmsManager.getChatMsgs(mChatId,SingleChat.CHAT_TYPE, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
+                    //刷新消息状态
+                    message.obj = mMmsManager.refreshMessageState(mChatId,lastLoadMsgCreaingId);
                 }
                 else
                 {
-                    message.obj = mMmsManager.getChatMsgs(mChatId,GroupChat.CHAT_TYPE, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
+                    //查询消息
+                    if (SingleChat.class.equals(mChatClassObj))
+                    {
+                        message.obj = mMmsManager.getChatMsgs(mChatId,SingleChat.CHAT_TYPE, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
+                    }
+                    else
+                    {
+                        message.obj = mMmsManager.getChatMsgs(mChatId,GroupChat.CHAT_TYPE, lastLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
+                    }
                 }
                 message.sendToTarget();
             }
