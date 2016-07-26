@@ -1983,6 +1983,11 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 	{
 		updateUnreadMsgCountsInMain();
 		sendHandlerMsg(RKCloudChatUiHandlerMessage.MSG_STATUS_HAS_CHANGED, msgSerialNum);
+		RKCloudChatBaseMessage msg = mChatManager.queryChatMsg(msgSerialNum);
+		if(RKCloudDemo.config.getString(msg.getChatId(),"").equals(msgSerialNum))
+		{
+			RKCloudDemo.config.remove(msg.getChatId());
+		}
 	}
 
 	/**
