@@ -1703,7 +1703,20 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			return;
 		}
 		mChatManager.sendReadedReceipt(msgObj);
-		mChatManager.sendOtherDeviceReadedReceipt(msgObj);
+	}
+
+	/**
+	 * 通知该会话的消息已读
+	 *
+	 * @param chatId
+	 */
+	public void notifyOtherDeviceMsgHasReaded(String chatId)
+	{
+		if (TextUtils.isEmpty(chatId))
+		{
+			return;
+		}
+		mChatManager.sendOtherDeviceReadedReceipt(chatId);
 	}
 
 	/**

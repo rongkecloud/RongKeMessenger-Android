@@ -208,6 +208,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 		initListeners();
 		initData(savedInstanceState, getIntent());
 		mMsgInstance = this;
+		mMmsManager.notifyOtherDeviceMsgHasReaded(mChatId);
 	}
 
 	@Override
