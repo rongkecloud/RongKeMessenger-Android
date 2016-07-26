@@ -626,12 +626,28 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 						});
 						break;
 					case RECEIVE_RECEIVED:
-						itemBuffer.msgStatus.setVisibility(View.VISIBLE);
-						itemBuffer.msgStatus.setText(mContext.getString(R.string.rkcloud_chat_msgstatus_send_arrived));
+						if(GroupChat.class.equals(mChatClassObj))
+						{
+							itemBuffer.msgStatus.setVisibility(View.VISIBLE);
+							itemBuffer.msgStatus.setText(mContext.getString(R.string.rkcloud_chat_msgstatus_send_arrived));
+						}
+						else
+						{
+							itemBuffer.msgStatus.setVisibility(View.GONE);
+						}
+
 						break;
 					case READED:
-						itemBuffer.msgStatus.setVisibility(View.VISIBLE);
-						itemBuffer.msgStatus.setText(mContext.getString(R.string.rkcloud_chat_msgstatus_send_readed));
+						if(GroupChat.class.equals(mChatClassObj))
+						{
+							itemBuffer.msgStatus.setVisibility(View.VISIBLE);
+							itemBuffer.msgStatus.setText(mContext.getString(R.string.rkcloud_chat_msgstatus_send_readed));
+						}
+						else
+						{
+							itemBuffer.msgStatus.setVisibility(View.GONE);
+						}
+
 						break;
 
 					default:
