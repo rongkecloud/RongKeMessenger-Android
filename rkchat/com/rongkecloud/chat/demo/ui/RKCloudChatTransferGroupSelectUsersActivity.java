@@ -443,7 +443,7 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 				String previousCataName = null;
 				if (0 != position)
 				{
-					previousCataName = getFirstChar(mDatas.get(position - 1));
+					previousCataName = getFirstChar(obj);
 				}
 				// 分类名称显示的控制
 				if (TextUtils.isEmpty(previousCataName) || !currcatalogName.equalsIgnoreCase(previousCataName))
