@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 		  package="com.rongkecloud.test"
 		  android:installLocation="auto"
-		  android:versionCode="15"
-		  android:versionName="2.3.15">
+		  android:versionCode="21"
+		  android:versionName="2.3.21">
 
 	<uses-sdk
 			android:minSdkVersion="11"
@@ -35,10 +35,10 @@
 
 	<!-- 小米Start -->
 	<uses-permission android:name="android.permission.GET_TASKS" />
+	<!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
 	<permission
 			android:name="com.rongkecloud.test.permission.MIPUSH_RECEIVE"
 			android:protectionLevel="signature" />
-	<!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
 	<uses-permission android:name="com.rongkecloud.test.permission.MIPUSH_RECEIVE" />
 	<!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
 	<!-- 小米end -->
