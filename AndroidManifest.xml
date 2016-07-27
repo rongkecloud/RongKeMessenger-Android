@@ -95,9 +95,6 @@
 				android:screenOrientation="portrait"/>
 		<!-- 通讯录 -->
 		<activity
-				android:name=".ui.contact.AddressListActivity"
-				android:screenOrientation="portrait"/>
-		<activity
 				android:name=".ui.contact.ContactDetailInfoActivity"
 				android:screenOrientation="portrait"/>
 		<activity
@@ -113,9 +110,6 @@
 				android:name=".ui.contact.AddFriendsActivity"
 				android:screenOrientation="portrait"/>
 		<!-- 设置 -->
-		<activity
-				android:name=".ui.setting.SettingMainActivity"
-				android:screenOrientation="portrait"/>
 		<activity
 				android:name=".ui.setting.SettingPersonalActivity"
 				android:screenOrientation="portrait"/>
