@@ -55,6 +55,7 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 	// 成员变量
 	private RKCloudChatContactManager mContactManager;
 	private List<RKCloudChatContact> mDatas;
+	private List<RKCloudChatContact> mAllDatas;
 	private RKCloudChatSelectUsersAdapter mAdapter;
 	private BackgroundColorSpan backgroundColorSpan;
 	private String mGroupId;
@@ -242,12 +243,14 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 		mContactManager = RKCloudChatContactManager.getInstance(this);
 		mGroupId = getIntent().getStringExtra(INTENT_KEY_GROUP_ID);
 		List<String> tempList = getIntent().getStringArrayListExtra(INTENT_KEY_GROUP_USERS);
-		mDatas = new ArrayList<RKCloudChatContact>();
+		mDatas = new ArrayList<RKCloudChatContact>(tempList.size());
+		mAllDatas =  new ArrayList<RKCloudChatContact>(tempList.size());
 		if(null != tempList && tempList.size() > 0)
 		{
 			for (String account : tempList)
 			{
 				mDatas.add(mContactManager.getContactInfo(account));
+				mAllDatas.add(mContactManager.getContactInfo(account));
 			}
 		}
 
@@ -268,7 +271,8 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 		mQuerThread.startQuery(queryType);
 	}
 
-	private class QueryHandlerThread extends HandlerThread implements Callback {
+	private class QueryHandlerThread extends HandlerThread implements Callback
+	{
 		private Handler mQuerHandler;
 
 		public QueryHandlerThread(String name) {
@@ -285,8 +289,8 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 				if(QUERY_TYPE_SEARCH == queryType)
 				{
 					List<RKCloudChatContact> datas = new ArrayList<RKCloudChatContact>();
-					if(mDatas.size() > 0){
-						datas.addAll(mDatas);
+					if(mAllDatas.size() > 0){
+						datas.addAll(mAllDatas);
 					}
 					msg.obj = datas;
 				}
@@ -318,7 +322,6 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 				message.obj = datas;
 				message.sendToTarget();
 			}
-
 			return true;
 		}
 	}
