@@ -1884,7 +1884,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			}
 			for (RKCloudChatBaseMessage msgObj : datas)
 			{
-				if (chatObj instanceof SingleChat)
+				if (chatObj instanceof SingleChat && !msgObj.getSender().equals(RKCloud.getUserName()))
 				{
 					mChatManager.sendArrivedReceipt(msgObj);
 				}
@@ -1916,7 +1916,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		{
 			return;
 		}
-		if (chatObj instanceof SingleChat)
+		if (chatObj instanceof SingleChat && !msgObj.getSender().equals(RKCloud.getUserName()))
 		{
 			mChatManager.sendArrivedReceipt(msgObj);
 		}
