@@ -1716,7 +1716,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		{
 			return;
 		}
-		mChatManager.sendOtherDeviceReadedReceipt(chatId);
+		mChatManager.clearOtherPlatformNewMMSCounts(chatId);
 	}
 
 	/**
