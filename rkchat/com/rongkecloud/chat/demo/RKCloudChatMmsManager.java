@@ -1893,6 +1893,10 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 				{
 					syncContactDatas.add(msgObj.getSender());
 				}
+				if ((!chatObj.getChatId().equalsIgnoreCase(mUnNeedSendNotifyChatId) && chatObj.getRemindStatus() && null != datas && datas.size() > 0) || isHasAtMeMsg(chatObj,msgObj))
+				{
+					notifyNewReceivedMsg(chatObj, datas.get(datas.size() - 1));
+				}
 
 				pareAtMeMsg(chatObj, msgObj);
 			}
@@ -1917,7 +1921,7 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			mChatManager.sendArrivedReceipt(msgObj);
 		}
 		// 发送通知
-		if (!chatObj.getChatId().equalsIgnoreCase(mUnNeedSendNotifyChatId) && chatObj.getRemindStatus())
+		if ((!chatObj.getChatId().equalsIgnoreCase(mUnNeedSendNotifyChatId) && chatObj.getRemindStatus()) || isHasAtMeMsg(chatObj,msgObj))
 		{
 			notifyNewReceivedMsg(chatObj, msgObj);
 		}
@@ -1926,6 +1930,66 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_RECEIVED_MMS, msgObj);
 		// 同步用户信息
 		RKCloudChatContactManager.getInstance(mContext).syncContactInfo(msgObj.getSender());
+	}
+
+	/**
+	 * 是否包含 @我的消息
+	 * @param msgObj
+	 * @return true:包含；false:不包含.
+	 */
+	private boolean isHasAtMeMsg(RKCloudChatBaseChat chatObj ,RKCloudChatBaseMessage msgObj)
+	{
+		boolean result = false;
+		if(chatObj instanceof SingleChat)
+		{
+			return result = true;
+		}
+		if(msgObj instanceof TextMessage)
+		{
+			TextMessage msg = (TextMessage)msgObj;
+			if(TextUtils.isEmpty(msg.getAtUser()))
+			{
+				result = false;
+			}
+			else
+			{
+				if(msg.getAtUser().contains(RKCloudChatConstants.KEY_GROUP_ALL))
+				{
+					result = true;
+				}
+				else
+				{
+					try
+					{
+						JSONArray array = new JSONArray(msg.getAtUser());
+						String currAccount = RKCloud.getUserName();
+						/**
+						 * 是为了避免群主设置了消息不提醒， 群主自己@所有成员之后,群主还出现提示音、通知栏的问题”
+						 */
+						if (!msgObj.getSender().equals(currAccount))
+						{
+							for (int i = 0; i < array.length(); i++)
+							{
+								if (array.get(i).equals(currAccount))
+								{
+									result = true;
+									break;
+								}
+							}
+						}
+					}
+					catch (JSONException e)
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		else
+		{
+			result = false;
+		}
+		return result;
 	}
 
 	/**
