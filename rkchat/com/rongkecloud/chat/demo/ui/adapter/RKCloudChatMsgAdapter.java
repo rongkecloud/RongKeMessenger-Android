@@ -626,7 +626,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 						});
 						break;
 					case RECEIVE_RECEIVED:
-						if (SingleChat.class.equals(mChatClassObj))
+						if (SingleChat.class.equals(mChatClassObj) && !msgObj.isHistory() && !(msgObj instanceof LocalMessage))
 						{
 							itemBuffer.msgStatus.setVisibility(View.VISIBLE);
 							itemBuffer.msgStatus.setText(mContext.getString(R.string.rkcloud_chat_msgstatus_send_arrived));
@@ -638,7 +638,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 
 						break;
 					case READED:
-						if (SingleChat.class.equals(mChatClassObj))
+						if (SingleChat.class.equals(mChatClassObj) && !msgObj.isHistory() && !(msgObj instanceof LocalMessage))
 						{
 							itemBuffer.msgStatus.setVisibility(View.VISIBLE);
 							itemBuffer.msgStatus.setText(mContext.getString(R.string.rkcloud_chat_msgstatus_send_readed));
