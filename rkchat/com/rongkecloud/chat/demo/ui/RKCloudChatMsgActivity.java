@@ -1788,7 +1788,9 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 		// 增加“撤回”
 		if (RKCloudChatBaseMessage.MSG_DIRECTION.SEND == msgObj.getDirection() && msgObj.getSender().equals(RKCloud.getUserName())
 				&& (MSG_STATUS.SEND_SENDED == msgObj.getStatus() || MSG_STATUS.RECEIVE_RECEIVED == msgObj.getStatus() || MSG_STATUS.READED == msgObj.getStatus())
-				&& (System.currentTimeMillis() - msgObj.getMsgTime() * 1000 <= RKCloud.getRevokeMessageTimeout() * 1000) && !msgObj.isHistory())
+				&& (System.currentTimeMillis() - msgObj.getMsgTime() * 1000 <= RKCloud.getRevokeMessageTimeout() * 1000) && !msgObj.isHistory()
+				&& (!TextUtils.isEmpty(msgObj.getExtension()) && !RKCloudChatConstants.FLAG_AVCALL_IS_AUDIO.equals(msgObj.getExtension()))
+				&& (!TextUtils.isEmpty(msgObj.getExtension()) && !RKCloudChatConstants.FLAG_AVCALL_IS_VIDEO.equals(msgObj.getExtension())))
 		{
 			ids.add(CONTEXT_MENU_REVOKE);
 			contents.add(getString(R.string.rkcloud_chat_msglist_context_revoke));

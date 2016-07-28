@@ -1,254 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/rkcloud_chat_ui_bg_style"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+			  style="@style/rkcloud_chat_ui_bg_style"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical">
 
-    <include layout="@layout/rkcloud_chat_title_layout"/>
-    <View
-            style="@style/divider_line_style"
-    />
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scrollbars="none" >
+	<include layout="@layout/rkcloud_chat_title_layout"/>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+	<View
+			style="@style/divider_line_style"
+	/>
 
-            <include layout="@layout/rkcloud_chat_setting_dividezone" />
-            <!-- 头像 -->
+	<ScrollView
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:scrollbars="none">
 
-            <LinearLayout
-                android:id="@+id/layout_photo"
-                style="@style/rkcloud_chat_setting_item_style"
-                android:layout_height="70dip" >
+		<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
 
-                <TextView
-                    style="@style/rkcloud_chat_setting_item_tip_style"
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:text="@string/setting_photo" />
+			<include layout="@layout/rkcloud_chat_setting_dividezone"/>
+			<!-- 头像 -->
 
-                <com.rongkecloud.test.ui.widget.RoundedImageView
-                    android:id="@+id/photo"
-                    android:layout_width="50dip"
-                    android:layout_height="50dip"
-                    android:layout_gravity="right|center_vertical"
-                    android:scaleType="fitXY" />
-            </LinearLayout>
+			<LinearLayout
+					android:id="@+id/layout_photo"
+					style="@style/rkcloud_chat_setting_item_style"
+					android:layout_height="70dip">
 
-            <include layout="@layout/rkcloud_chat_setting_dividezone" />
-            <!-- 账号 -->
+				<TextView
+						style="@style/rkcloud_chat_setting_item_tip_style"
+						android:layout_width="0dip"
+						android:layout_height="fill_parent"
+						android:layout_weight="1"
+						android:text="@string/setting_photo"/>
 
-            <LinearLayout
-                android:id="@+id/layout_account"
-                style="@style/rkcloud_chat_setting_item_style"
-                android:clickable="false" >
+				<com.rongkecloud.test.ui.widget.RoundedImageView
+						android:id="@+id/photo"
+						android:layout_width="50dip"
+						android:layout_height="50dip"
+						android:layout_gravity="right|center_vertical"
+						android:scaleType="fitXY"/>
+			</LinearLayout>
 
-                <TextView
-                    style="@style/rkcloud_chat_setting_item_tip_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:text="@string/chatdemo_setting_account" />
+			<include layout="@layout/rkcloud_chat_setting_dividezone"/>
+			<!-- 账号 -->
 
-                <TextView
-                    android:id="@+id/account"
-                    style="@style/rkcloud_chat_setting_item_content_style"
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" />
-            </LinearLayout>
+			<LinearLayout
+					android:id="@+id/layout_account"
+					style="@style/rkcloud_chat_setting_item_style"
+					android:clickable="false">
 
-            <include layout="@layout/rkcloud_chat_setting_dividezone" />
-            <!-- 加好友权限 -->
+				<TextView
+						style="@style/rkcloud_chat_setting_item_tip_style"
+						android:layout_width="wrap_content"
+						android:layout_height="fill_parent"
+						android:text="@string/chatdemo_setting_account"/>
 
-            <LinearLayout
-                android:id="@+id/layout_add_friend_premission"
-                style="@style/rkcloud_chat_setting_item_style" >
+				<TextView
+						android:id="@+id/account"
+						style="@style/rkcloud_chat_setting_item_content_style"
+						android:layout_width="0dip"
+						android:layout_height="fill_parent"
+						android:layout_weight="1"/>
+			</LinearLayout>
 
-                <TextView
-                    style="@style/rkcloud_chat_setting_item_tip_style"
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:text="@string/setting_add_friend_premission" />
+			<include layout="@layout/rkcloud_chat_setting_dividezone"/>
+			<!-- 加好友权限 -->
 
-                <CheckBox
-                    android:id="@+id/add_friend_premission_checkbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|right"
-                    android:button="@drawable/btn_checkbox_selector" />
-            </LinearLayout>
+			<LinearLayout
+					android:id="@+id/layout_add_friend_premission"
+					style="@style/rkcloud_chat_setting_item_style"
+					android:paddingTop="5dip"
+					android:paddingBottom="5dip"
+			>
 
-            <include layout="@layout/rkcloud_chat_setting_dividezone" />
-            <!-- 手机号码 -->
+				<TextView
+						style="@style/rkcloud_chat_setting_item_tip_style"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical"
+						android:layout_weight="1.0"
+						android:text="@string/setting_add_friend_premission"/>
 
-            <LinearLayout
-                android:id="@+id/setting_mobile"
-                style="@style/rkcloud_chat_setting_item_style" >
+				<CheckBox
+						android:id="@+id/add_friend_premission_checkbox"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:background="@drawable/btn_checkbox_selector"
+						android:button="@null"/>
+			</LinearLayout>
 
-                <TextView
-                    style="@style/rkcloud_chat_setting_item_tip_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:text="@string/setting_mobile" />
+			<include layout="@layout/rkcloud_chat_setting_dividezone"/>
+			<!-- 手机号码 -->
 
-                <TextView
-                    android:id="@+id/setting_mobile_content"
-                    style="@style/rkcloud_chat_setting_item_content_style"
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" />
+			<LinearLayout
+					android:id="@+id/setting_mobile"
+					style="@style/rkcloud_chat_setting_item_style">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:src="@drawable/rkcloud_chat_img_arrow" />
-            </LinearLayout>
+				<TextView
+						style="@style/rkcloud_chat_setting_item_tip_style"
+						android:layout_width="wrap_content"
+						android:layout_height="fill_parent"
+						android:text="@string/setting_mobile"/>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
-                android:clickable="false"
-                android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft" >
+				<TextView
+						android:id="@+id/setting_mobile_content"
+						style="@style/rkcloud_chat_setting_item_content_style"
+						android:layout_width="0dip"
+						android:layout_height="fill_parent"
+						android:layout_weight="1"/>
 
-                <ImageView style="@style/rkcloud_chat_listview_divide_style" />
-            </RelativeLayout>
-            <!-- email -->
+				<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="5dip"
+						android:src="@drawable/rkcloud_chat_img_arrow"/>
+			</LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/setting_email"
-                style="@style/rkcloud_chat_setting_item_style" >
+			<RelativeLayout
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
+					android:clickable="false"
+					android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft">
 
-                <TextView
-                    style="@style/rkcloud_chat_setting_item_tip_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:text="@string/setting_email" />
+				<ImageView style="@style/rkcloud_chat_listview_divide_style"/>
+			</RelativeLayout>
+			<!-- email -->
 
-                <TextView
-                    android:id="@+id/setting_email_content"
-                    style="@style/rkcloud_chat_setting_item_content_style"
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" />
+			<LinearLayout
+					android:id="@+id/setting_email"
+					style="@style/rkcloud_chat_setting_item_style">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:src="@drawable/rkcloud_chat_img_arrow" />
-            </LinearLayout>
+				<TextView
+						style="@style/rkcloud_chat_setting_item_tip_style"
+						android:layout_width="wrap_content"
+						android:layout_height="fill_parent"
+						android:text="@string/setting_email"/>
 
-            <include layout="@layout/rkcloud_chat_setting_dividezone" />
-            <!-- 姓名 -->
+				<TextView
+						android:id="@+id/setting_email_content"
+						style="@style/rkcloud_chat_setting_item_content_style"
+						android:layout_width="0dip"
+						android:layout_height="fill_parent"
+						android:layout_weight="1"/>
 
-            <LinearLayout
-                android:id="@+id/setting_name"
-                style="@style/rkcloud_chat_setting_item_style" >
+				<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="5dip"
+						android:src="@drawable/rkcloud_chat_img_arrow"/>
+			</LinearLayout>
 
-                <TextView
-                    style="@style/rkcloud_chat_setting_item_tip_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:text="@string/setting_name" />
+			<include layout="@layout/rkcloud_chat_setting_dividezone"/>
+			<!-- 姓名 -->
 
-                <TextView
-                    android:id="@+id/setting_name_content"
-                    style="@style/rkcloud_chat_setting_item_content_style"
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" />
+			<LinearLayout
+					android:id="@+id/setting_name"
+					style="@style/rkcloud_chat_setting_item_style">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:src="@drawable/rkcloud_chat_img_arrow" />
-            </LinearLayout>
+				<TextView
+						style="@style/rkcloud_chat_setting_item_tip_style"
+						android:layout_width="wrap_content"
+						android:layout_height="fill_parent"
+						android:text="@string/setting_name"/>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
-                android:clickable="false"
-                android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft" >
+				<TextView
+						android:id="@+id/setting_name_content"
+						style="@style/rkcloud_chat_setting_item_content_style"
+						android:layout_width="0dip"
+						android:layout_height="fill_parent"
+						android:layout_weight="1"/>
 
-                <ImageView style="@style/rkcloud_chat_listview_divide_style" />
-            </RelativeLayout>
-            <!-- 性别 -->
+				<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="5dip"
+						android:src="@drawable/rkcloud_chat_img_arrow"/>
+			</LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/setting_sex"
-                style="@style/rkcloud_chat_setting_item_style" >
+			<RelativeLayout
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
+					android:clickable="false"
+					android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft">
 
-                <TextView
-                    style="@style/rkcloud_chat_setting_item_tip_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:text="@string/setting_sax" />
+				<ImageView style="@style/rkcloud_chat_listview_divide_style"/>
+			</RelativeLayout>
+			<!-- 性别 -->
 
-                <TextView
-                    android:id="@+id/setting_sex_content"
-                    style="@style/rkcloud_chat_setting_item_content_style"
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" />
+			<LinearLayout
+					android:id="@+id/setting_sex"
+					style="@style/rkcloud_chat_setting_item_style">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:src="@drawable/rkcloud_chat_img_arrow" />
-            </LinearLayout>
+				<TextView
+						style="@style/rkcloud_chat_setting_item_tip_style"
+						android:layout_width="wrap_content"
+						android:layout_height="fill_parent"
+						android:text="@string/setting_sax"/>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
-                android:clickable="false"
-                android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft" >
+				<TextView
+						android:id="@+id/setting_sex_content"
+						style="@style/rkcloud_chat_setting_item_content_style"
+						android:layout_width="0dip"
+						android:layout_height="fill_parent"
+						android:layout_weight="1"/>
 
-                <ImageView style="@style/rkcloud_chat_listview_divide_style" />
-            </RelativeLayout>
-            <!-- 地址 -->
+				<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="5dip"
+						android:src="@drawable/rkcloud_chat_img_arrow"/>
+			</LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/setting_addr"
-                style="@style/rkcloud_chat_setting_item_style" >
+			<RelativeLayout
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:background="@color/rkcloud_chat_listview_item_normal_bgcolor"
+					android:clickable="false"
+					android:paddingLeft="@dimen/rkcloud_chat_setting_item_marginleft">
 
-                <TextView
-                    style="@style/rkcloud_chat_setting_item_tip_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:text="@string/setting_addr" />
+				<ImageView style="@style/rkcloud_chat_listview_divide_style"/>
+			</RelativeLayout>
+			<!-- 地址 -->
 
-                <TextView
-                    android:id="@+id/setting_addr_content"
-                    style="@style/rkcloud_chat_setting_item_content_style"
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" />
+			<LinearLayout
+					android:id="@+id/setting_addr"
+					style="@style/rkcloud_chat_setting_item_style">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:src="@drawable/rkcloud_chat_img_arrow" />
-            </LinearLayout>
-            
-            <TextView 
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/rkcloud_chat_setting_dividezone_height"/>
-        </LinearLayout>
-    </ScrollView>
+				<TextView
+						style="@style/rkcloud_chat_setting_item_tip_style"
+						android:layout_width="wrap_content"
+						android:layout_height="fill_parent"
+						android:text="@string/setting_addr"/>
+
+				<TextView
+						android:id="@+id/setting_addr_content"
+						style="@style/rkcloud_chat_setting_item_content_style"
+						android:layout_width="0dip"
+						android:layout_height="fill_parent"
+						android:layout_weight="1"/>
+
+				<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="5dip"
+						android:src="@drawable/rkcloud_chat_img_arrow"/>
+			</LinearLayout>
+
+			<TextView
+					android:layout_width="fill_parent"
+					android:layout_height="@dimen/rkcloud_chat_setting_dividezone_height"/>
+		</LinearLayout>
+	</ScrollView>
 
 </LinearLayout>
