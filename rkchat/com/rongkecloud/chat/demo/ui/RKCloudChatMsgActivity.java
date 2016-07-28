@@ -1334,6 +1334,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			mChatId = singleId;
 			mChatClassObj = SingleChat.class;
 		}
+		mMmsManager = RKCloudChatMmsManager.getInstance(this);
 		// 禁止给自己发消息
 		if (mChatId.equalsIgnoreCase(RKCloud.getUserName()))
 		{
@@ -1348,7 +1349,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 		mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 		mChatConfigManager = RKCloudChatConfigManager.getInstance(this);
-		mMmsManager = RKCloudChatMmsManager.getInstance(this);
 		mContactManager = RKCloudChatContactManager.getInstance(this);
 		mAudioHelper = RKCloudChatPlayAudioMsgTools.getInstance(this);
 
