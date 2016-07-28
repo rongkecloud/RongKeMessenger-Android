@@ -394,7 +394,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 						textObj.setAtUser(array.toString());
 					}
 				}
-				textObj.setmMsgSummary(textObj.getContent());
 				sendMms(textObj);
 				mSmiliesEditText.setText(null);// 清空输入框内容
 			}
@@ -604,7 +603,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			if (null != videoFile)
 			{
 				VideoMessage videoObj = VideoMessage.buildMsg(mChatId, videoFile.getFilePath());
-				videoObj.setmMsgSummary(getString(R.string.rkcloud_chat_notify_video));
 				sendMms(videoObj);
 			}
 
@@ -616,7 +614,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			{
 				// 生成附件消息并发送
 				FileMessage fileObj = FileMessage.buildMsg(mChatId, filePath);
-				fileObj.setmMsgSummary(getString(R.string.rkcloud_chat_notify_file));
 				sendMms(fileObj);
 			}
 		}
@@ -2257,7 +2254,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			{
 				closeProgressDialog();
 				ImageMessage body = ImageMessage.buildMsg(mChatId, contents[1]);
-				body.setmMsgSummary(getString(R.string.rkcloud_chat_notify_image));
 				sendMms(body);
 			}
 
