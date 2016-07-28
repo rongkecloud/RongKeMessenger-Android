@@ -626,7 +626,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 						});
 						break;
 					case RECEIVE_RECEIVED:
-						if(SingleChat.class.equals(mChatClassObj))
+						if (SingleChat.class.equals(mChatClassObj))
 						{
 							itemBuffer.msgStatus.setVisibility(View.VISIBLE);
 							itemBuffer.msgStatus.setText(mContext.getString(R.string.rkcloud_chat_msgstatus_send_arrived));
@@ -638,7 +638,7 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 
 						break;
 					case READED:
-						if(SingleChat.class.equals(mChatClassObj))
+						if (SingleChat.class.equals(mChatClassObj))
 						{
 							itemBuffer.msgStatus.setVisibility(View.VISIBLE);
 							itemBuffer.msgStatus.setText(mContext.getString(R.string.rkcloud_chat_msgstatus_send_readed));
@@ -881,40 +881,9 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 			else if (msgObj instanceof AudioMessage || msgObj instanceof VideoMessage || msgObj instanceof FileMessage)
 			{
 
-				if ((msgObj instanceof AudioMessage && !(new File(((AudioMessage) msgObj).getFilePath()).exists()))
-						|| (msgObj instanceof VideoMessage && !(new File(((VideoMessage) msgObj).getFilePath()).exists()))
-						|| (msgObj instanceof FileMessage && !(new File(((FileMessage) msgObj).getFilePath()).exists())))
-				{
-					// 表示下载操作
-					// 先判断SD卡是否可用、容量是否已满，用于提前处理
-					if (!RKCloudChatTools.isSDCardValid())
-					{
-						RKCloudChatTools.showToastText(mContext, mContext.getString(R.string.rkcloud_chat_sdcard_error));
-						return;
-					}
-					// 下载媒体消息
-					if (null != itemBuffer.newMsgSign)
-					{
-						itemBuffer.newMsgSign.setVisibility(View.GONE);
-					}
-					itemBuffer.loadLayout.setVisibility(View.VISIBLE);
-					itemBuffer.loadProgress.setText("0%");
-					msgObj.setStatus(MSG_STATUS.RECEIVE_DOWNING);
-					mMmsManager.downAttach(msgObj.getMsgSerialNum());
-					// 记录下载的消息
-					mRecordDowningTV.put(itemBuffer.loadProgress, msgObj.getMsgSerialNum());
-
-					if (msgObj instanceof VideoMessage)
-					{
-						itemBuffer.playImg.setVisibility(View.GONE);
-					}
-					if (msgObj instanceof AudioMessage)
-					{
-						// 记录播放的最后一条消息编号，用于下载完成后自动播放
-						RKCloudChatMsgActivity.lastAudioSerialNum = msgObj.getMsgSerialNum();
-					}
-				}
-				else
+				if ((msgObj instanceof AudioMessage && !TextUtils.isEmpty(((AudioMessage) msgObj).getFilePath()) && new File(((AudioMessage) msgObj).getFilePath()).exists())
+						|| (msgObj instanceof VideoMessage && !TextUtils.isEmpty(((VideoMessage) msgObj).getFilePath()) && new File(((VideoMessage) msgObj).getFilePath()).exists())
+						|| (msgObj instanceof FileMessage && !TextUtils.isEmpty(((FileMessage) msgObj).getFilePath()) && new File(((FileMessage) msgObj).getFilePath()).exists()))
 				{
 					if (msgObj instanceof AudioMessage)
 					{ // 播放或关闭播放语音消息
@@ -978,6 +947,37 @@ public class RKCloudChatMsgAdapter extends BaseAdapter
 							return;
 						}
 						RKCloudChatTools.openFile(mContext, ((FileMessage) msgObj).getFilePath());
+					}
+				}
+				else
+				{
+					// 表示下载操作
+					// 先判断SD卡是否可用、容量是否已满，用于提前处理
+					if (!RKCloudChatTools.isSDCardValid())
+					{
+						RKCloudChatTools.showToastText(mContext, mContext.getString(R.string.rkcloud_chat_sdcard_error));
+						return;
+					}
+					// 下载媒体消息
+					if (null != itemBuffer.newMsgSign)
+					{
+						itemBuffer.newMsgSign.setVisibility(View.GONE);
+					}
+					itemBuffer.loadLayout.setVisibility(View.VISIBLE);
+					itemBuffer.loadProgress.setText("0%");
+					msgObj.setStatus(MSG_STATUS.RECEIVE_DOWNING);
+					mMmsManager.downAttach(msgObj.getMsgSerialNum());
+					// 记录下载的消息
+					mRecordDowningTV.put(itemBuffer.loadProgress, msgObj.getMsgSerialNum());
+
+					if (msgObj instanceof VideoMessage)
+					{
+						itemBuffer.playImg.setVisibility(View.GONE);
+					}
+					if (msgObj instanceof AudioMessage)
+					{
+						// 记录播放的最后一条消息编号，用于下载完成后自动播放
+						RKCloudChatMsgActivity.lastAudioSerialNum = msgObj.getMsgSerialNum();
 					}
 				}
 			}
