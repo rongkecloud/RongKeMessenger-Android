@@ -1788,8 +1788,8 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			GroupChat groupChat = (GroupChat) queryChat(groupId);
 			if (null != groupChat)
 			{
-				String createName = groupChat.getGroupName();
-				LocalMessage localMessage = LocalMessage.buildSendMsg(groupId, String.format(mContext.getString(R.string.rkcloud_chat_manage_transfer_group_tip_other), createName), groupId);
+				String createAccount = groupChat.getGroupCreater();
+				LocalMessage localMessage = LocalMessage.buildSendMsg(groupId, String.format(mContext.getString(R.string.rkcloud_chat_manage_transfer_group_tip_other), RKCloudChatContactManager.getInstance(mContext).getContactInfo(createAccount).getShowName()), groupId);
 				localMessage.setExtension(RKCloudChatConstants.FLAG_LOCAL_TIPMESSAGE);
 				addLocalMsg(localMessage, GroupChat.class);
 				sendHandlerMsg(RKCloudChatUiHandlerMessage.CALLBACK_GROUP_INFO_CHANGED, groupId);
