@@ -1943,8 +1943,8 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		boolean result = false;
 		if(chatObj instanceof SingleChat)
 		{
-			return result = true;
-		}
+            return false;
+        }
 		if(msgObj instanceof TextMessage)
 		{
 			TextMessage msg = (TextMessage)msgObj;
