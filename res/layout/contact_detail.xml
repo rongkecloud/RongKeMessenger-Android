@@ -55,6 +55,8 @@
             android:layout_weight="1"
             android:gravity="right"
             android:layout_marginRight="5dp"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:textColor="@color/contact_remark_textcolor"
             android:textSize="@dimen/contact_detail_rematk_textsize" />
 
