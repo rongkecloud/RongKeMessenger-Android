@@ -17,7 +17,7 @@
         android:padding="8dip"
         android:singleLine="true"
         android:text="@string/bnt_return"
-        android:textColor="@color/title_content"
+        android:textColor="@color/color_confirm_text"
         android:textSize="@dimen/rkcloud_chat_titlezone_title_textsize" />
     <TextView
         android:layout_width="wrap_content"
@@ -96,6 +96,7 @@
             android:layout_marginRight="8dip"
             android:minWidth="@dimen/rkcloud_chat_titlezone_rightbtn_minwidth"
             android:textSize="@dimen/rkcloud_chat_setting_item_tip_textsize"
+            android:textColor="@color/color_confirm_text"
             android:visibility="gone" />
     </LinearLayout>
 

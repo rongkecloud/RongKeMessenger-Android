@@ -123,7 +123,7 @@ public class NotifyActivity extends RKCloudChatBaseActivity{
 
         // 清空按钮
 		mClearBnt = (Button)findViewById(R.id.title_right_btn);
-        mClearBnt.setTextColor(getResources().getColor(R.color.title_right_btn_text_color));
+//        mClearBnt.setTextColor(getResources().getColor(R.color.title_right_btn_text_color));
         mClearBnt.setBackgroundColor(getResources().getColor(R.color.bg_transparent));
 		mClearBnt.setVisibility(View.VISIBLE);
 		mClearBnt.setText(getString(R.string.bnt_clear));

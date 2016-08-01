@@ -50,7 +50,7 @@ public class SettingModifyPwdActivity extends RKCloudChatBaseActivity{
 
 		mConfirmBtn = (Button) findViewById(R.id.title_right_btn);
 		mConfirmBtn.setVisibility(View.VISIBLE);
-        mConfirmBtn.setTextColor(getResources().getColor(R.color.text_Color_Hint));
+//		mConfirmBtn.setTextColor(getResources().getColor(R.color.color_confirm_text));
         mConfirmBtn.setBackgroundColor(getResources().getColor(R.color.bg_transparent));
 		mConfirmBtn.setText(getResources().getString(R.string.bnt_confirm));
 		

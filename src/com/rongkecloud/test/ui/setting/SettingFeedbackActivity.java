@@ -55,7 +55,7 @@ public class SettingFeedbackActivity extends RKCloudChatBaseActivity {
 
 		mConfirmBtn = (Button) findViewById(R.id.title_right_btn);
 		mConfirmBtn.setVisibility(View.VISIBLE);
-        mConfirmBtn.setTextColor(getResources().getColor(R.color.title_content));
+//        mConfirmBtn.setTextColor(getResources().getColor(R.color.title_content));
         mConfirmBtn.setBackgroundColor(getResources().getColor(R.color.bg_transparent));
 		mConfirmBtn.setText(getResources().getString(R.string.bnt_confirm));
 		
