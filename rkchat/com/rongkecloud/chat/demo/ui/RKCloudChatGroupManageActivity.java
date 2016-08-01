@@ -155,6 +155,7 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 			modifyGroupDescription(mGroupChatObj.getGroupDescription());
 
 		}else if(R.id.inviteauth == id){ // 邀请权限
+            mInviteAuth = mInviteAuthImg.isSelected();
 			boolean isSelected = mInviteAuthImg.isSelected();
 			showProgressDialog();
 			mMmsManager.modifyGroupInviteAuth(mChatId, !isSelected);
@@ -694,7 +695,9 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 		}else if(RKCloudChatUiHandlerMessage.RESPONSE_MODIFY_GROUP_INVITEAUTH == msg.what){ // 修改邀请权限
 			if (mChatId.equalsIgnoreCase((String) msg.obj)) {
 				closeProgressDialog();
-				if(0 == msg.arg1){
+				if(0 == msg.arg1)
+                {
+                    //修改邀请成功
 					mInviteAuth = !mInviteAuth;
 					mGroupChatObj.setInviteAuth(mInviteAuth);
 					mInviteAuthImg.setSelected(mInviteAuth);
