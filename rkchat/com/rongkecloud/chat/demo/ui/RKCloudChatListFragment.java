@@ -874,7 +874,7 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 
 			// 设置最后一条消息内容的显示
 			RKCloudChatBaseMessage msgObj = chatObj.getLastMsgObj();
-			if (null == msgObj || (msgObj instanceof TipMessage) || RKCloudChatConstants.FLAG_LOCAL_TIPMESSAGE.equals(msgObj.getExtension()))
+			if (null == msgObj)// || (msgObj instanceof TipMessage) || RKCloudChatConstants.FLAG_LOCAL_TIPMESSAGE.equals(msgObj.getExtension()))
 			{
 				// 提示类型的消息时不显示
 				mItemBuffer.lastMsgContentTV.setVisibility(View.GONE);
