@@ -128,7 +128,7 @@
     <string name="rkcloud_chat_mentioned_me">[有人@我]</string>
 
     <!-- 通知栏使用的内容 -->
-    <string name="rkcloud_chat_notify_unreadcnt_title">云视互动即时通信</string>
+    <string name="rkcloud_chat_notify_unreadcnt_title">融科通</string>
     <string name="rkcloud_chat_notify_me">我</string>
     <string name="rkcloud_chat_notify_image">[图片消息]</string>
     <string name="rkcloud_chat_notify_audio">[语音消息]</string>
