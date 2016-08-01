@@ -1,111 +1,123 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/rkcloud_userandpass_bgcolor"
-    android:orientation="vertical" >
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/rkcloud_userandpass_bgcolor"
+              android:orientation="vertical">
 
     <include layout="@layout/title_layout"/>
     <View
             style="@style/divider_line_style"
     />
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip"
-        android:scrollbars="vertical" >
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="none">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/rongketonglogo" />
-
-        <TextView
-            android:id="@+id/vesioninfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dip"
-            android:textColor="@color/setting_about_textcolor"
-            android:textSize="@dimen/setting_about_title_textsize" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:lineSpacingExtra="5dip"
-            android:text="@string/setting_about_content"
-            android:textColor="@color/setting_about_textcolor"
-            android:textSize="@dimen/setting_about_content_textsize" />
 
         <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:orientation="vertical">
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+        >
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dip"
+                    android:paddingRight="20dip"
+                    android:scrollbars="vertical">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/rongketonglogo"/>
+
+                <TextView
+                        android:id="@+id/vesioninfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dip"
+                        android:textColor="@color/setting_about_textcolor"
+                        android:textSize="@dimen/setting_about_title_textsize"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dip"
+                        android:lineSpacingExtra="5dip"
+                        android:text="@string/setting_about_content"
+                        android:textColor="@color/setting_about_textcolor"
+                        android:textSize="@dimen/setting_about_content_textsize"/>
+
+                <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dip"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:id="@+id/qqgroup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/setting_about_textcolor"
+                            android:textSize="@dimen/setting_about_entinfo_textsize"/>
+
+                    <TextView
+                            android:id="@+id/business_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dip"
+                            android:autoLink="email"
+                            android:textColor="@color/setting_about_textcolor"
+                            android:textSize="@dimen/setting_about_entinfo_textsize"/>
+
+                    <TextView
+                            android:id="@+id/technology_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dip"
+                            android:autoLink="email"
+                            android:textColor="@color/setting_about_textcolor"
+                            android:textSize="@dimen/setting_about_entinfo_textsize"/>
+
+                    <TextView
+                            android:id="@+id/wesite"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dip"
+                            android:autoLink="web"
+                            android:textColor="@color/setting_about_textcolor"
+                            android:textSize="@dimen/setting_about_entinfo_textsize"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/qqgroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/setting_about_textcolor"
-                android:textSize="@dimen/setting_about_entinfo_textsize" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="2dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginTop="10dip"
+                    android:text="@string/setting_about_enter_name"
+                    android:textColor="@color/setting_about_textcolor"
+                    android:textSize="@dimen/setting_about_entinfo_textsize"/>
 
             <TextView
-                android:id="@+id/business_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dip"
-                android:autoLink="email"
-                android:textColor="@color/setting_about_textcolor"
-                android:textSize="@dimen/setting_about_entinfo_textsize" />
-            
-            <TextView
-                android:id="@+id/technology_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dip"
-                android:autoLink="email"
-                android:textColor="@color/setting_about_textcolor"
-                android:textSize="@dimen/setting_about_entinfo_textsize" />
-
-            <TextView
-                android:id="@+id/wesite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dip"
-                android:autoLink="web"
-                android:textColor="@color/setting_about_textcolor"
-                android:textSize="@dimen/setting_about_entinfo_textsize" />
+                    android:id="@+id/copyright"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:textColor="@color/setting_about_textcolor"
+                    android:textSize="@dimen/setting_about_entinfo_textsize"/>
         </LinearLayout>
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="2dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginTop="10dip"
-        android:text="@string/setting_about_enter_name"
-        android:textColor="@color/setting_about_textcolor"
-        android:textSize="@dimen/setting_about_entinfo_textsize" />
-
-    <TextView
-        android:id="@+id/copyright"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:textColor="@color/setting_about_textcolor"
-        android:textSize="@dimen/setting_about_entinfo_textsize" />
-
+    </ScrollView>
 </LinearLayout>
