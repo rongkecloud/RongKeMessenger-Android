@@ -51,6 +51,8 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 	private EditText mSearchET;
 	private RKCloudChatSideBar mSideBar;
 	private TextView mShowAlpha;
+	private LinearLayout mAllLayout;
+	private TextView mAllName;
 
 	// 成员变量
 	private RKCloudChatContactManager mContactManager;
@@ -106,6 +108,18 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 
 		TextView text_title_content = (TextView) findViewById(R.id.text_title_content);
 		text_title_content.setText(getString(R.string.rkcloud_chat_selectuser_title));
+		mAllLayout = (LinearLayout) findViewById(R.id.layout_all);
+		mAllName = (TextView) findViewById(R.id.layout_all_name);
+		mAllLayout.setOnClickListener(new View.OnClickListener()
+		{
+			@Override public void onClick(View v)
+			{
+				Intent intent = getIntent();
+				intent.putExtra(INTENT_KEY_TO_ACCOUNT,RKCloudChatConstants.KEY_GROUP_ALL);
+				setResult(RESULT_OK,intent);
+				finish();
+			}
+		});
 
 		// 初始化UI元素
 		mListView = (ListView) findViewById(R.id.transfergroup_listview);
@@ -130,31 +144,11 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 
 				if(isMsgActivity)
 				{
-					String account = "";
-					if(isGroupCreater)
+					if(null == mDatas.get(position))
 					{
-						if(position == 0)
-						{
-							account = RKCloudChatConstants.KEY_GROUP_ALL;
-						}
-						else
-						{
-							position = position - 1;
-							if(null == mDatas.get(position))
-							{
-								return;
-							}
-							account =  mDatas.get(position).rkAccount;
-						}
+						return;
 					}
-					else
-					{
-						if(null == mDatas.get(position))
-						{
-							return;
-						}
-						account =  mDatas.get(position).rkAccount;
-					}
+					String account =  mDatas.get(position).rkAccount;
 					Intent intent = getIntent();
 					intent.putExtra(INTENT_KEY_TO_ACCOUNT,account);
 					setResult(RESULT_OK,intent);
@@ -217,19 +211,19 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 
 	}
 
-	private void addHeadView()
-	{
-		View convertView = getLayoutInflater().inflate(R.layout.rkcloud_chat_selectusers_item, null);
-		TextView categoryName = (TextView) convertView.findViewById(R.id.categoryname);
-		categoryName.setVisibility(View.GONE);
-		RoundedImageView headerPhotoView = (RoundedImageView) convertView.findViewById(R.id.headerphoto);
-		headerPhotoView.setImageResource(R.drawable.rkcloud_chat_img_header_default);
-		TextView nameTV = (TextView) convertView.findViewById(R.id.name);
-		nameTV.setText(getString(R.string.rkcloud_chat_all_members));
-		ImageView checkbox = (ImageView) convertView.findViewById(R.id.checkbox);
-		checkbox.setVisibility(View.GONE);
-		mListView.addHeaderView(convertView);
-	}
+//	private void addHeadView()
+//	{
+//		View convertView = getLayoutInflater().inflate(R.layout.rkcloud_chat_selectusers_item, null);
+//		TextView categoryName = (TextView) convertView.findViewById(R.id.categoryname);
+//		categoryName.setVisibility(View.GONE);
+//		RoundedImageView headerPhotoView = (RoundedImageView) convertView.findViewById(R.id.headerphoto);
+//		headerPhotoView.setImageResource(R.drawable.rkcloud_chat_img_header_default);
+//		TextView nameTV = (TextView) convertView.findViewById(R.id.name);
+//		nameTV.setText(getString(R.string.rkcloud_chat_all_members));
+//		ImageView checkbox = (ImageView) convertView.findViewById(R.id.checkbox);
+//		checkbox.setVisibility(View.GONE);
+//		mListView.addHeaderView(convertView);
+//	}
 
 	private void initData()
 	{
@@ -238,7 +232,11 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 		isGroupCreater = getIntent().getBooleanExtra(INTENT_KEY_IS_GROUP_CREATER,false);
 		if(isGroupCreater)
 		{
-			addHeadView();
+			mAllLayout.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			mAllLayout.setVisibility(View.GONE);
 		}
 		mContactManager = RKCloudChatContactManager.getInstance(this);
 		mGroupId = getIntent().getStringExtra(INTENT_KEY_GROUP_ID);

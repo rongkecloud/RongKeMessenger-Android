@@ -1,77 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_content"
-    android:focusable="true"
-    android:focusableInTouchMode="true" >
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
 
     <include
-        android:id="@+id/layout_title"
-        layout="@layout/rkcloud_chat_title_layout" />
+            android:id="@+id/layout_title"
+            layout="@layout/rkcloud_chat_title_layout"/>
 
     <!-- 搜索区域 -->
 
     <com.rongkecloud.chat.demo.ui.widget.RKCloudChatSearchEditText
-        android:id="@+id/transfergroup_searchedittext"
-        style="@style/rkcloud_chat_search_edittext_style"
-        android:layout_width="fill_parent"
-        android:layout_below="@id/layout_title"
-        android:layout_marginRight="@dimen/rkcloud_chat_sidebar_width" />
+            android:id="@+id/transfergroup_searchedittext"
+            style="@style/rkcloud_chat_search_edittext_style"
+            android:layout_width="fill_parent"
+            android:layout_below="@id/layout_title"
+            android:layout_marginRight="@dimen/rkcloud_chat_sidebar_width"/>
 
+    <LinearLayout
+            android:id="@+id/layout_all"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/rkcloud_chat_listview_item_bg"
+            android:paddingBottom="@dimen/rkcloud_chat_listview_item_paddingtop"
+            android:paddingLeft="@dimen/rkcloud_chat_listview_item_paddingleft"
+            android:paddingRight="@dimen/rkcloud_chat_sidebar_width"
+            android:paddingTop="@dimen/rkcloud_chat_listview_item_paddingtop"
+            android:layout_below="@id/transfergroup_searchedittext">
+        <com.rongkecloud.test.ui.widget.RoundedImageView
+                android:id="@+id/layout_all_headerphoto"
+                android:layout_width="@dimen/rkcloud_chat_address_headerimg_width"
+                android:layout_height="@dimen/rkcloud_chat_address_headerimg_height"
+                android:layout_marginRight="4dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/rkcloud_chat_img_header_default"/>
+
+        <TextView
+                android:id="@+id/layout_all_name"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/rkcloud_chat_all_members"
+                android:textColor="@color/rkcloud_chat_address_name_textcolor"
+                android:textSize="@dimen/rkcloud_chat_address_name_textsize"/>
+
+    </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/transfergroup_searchedittext" >
-
-        <ProgressBar
-            android:id="@+id/transfergroup_loading_progressbar"
-            style="@android:style/Widget.ProgressBar.Inverse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
-
-        <TextView
-            android:id="@+id/transfergroup_emptytv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="@string/rkcloud_chat_selectuser_data_empty"
-            android:textColor="#ff808080"
-            android:textSize="20sp"
-            android:visibility="gone" />
-
-        <ListView
-            android:id="@+id/transfergroup_listview"
-            style="@style/rkcloud_chat_ListviewStyle"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/white"
-            android:paddingLeft="0dip"
-            android:divider="@null" />
+            android:layout_below="@id/layout_all">
+
+        <ProgressBar
+                android:id="@+id/transfergroup_loading_progressbar"
+                style="@android:style/Widget.ProgressBar.Inverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
 
         <TextView
-            android:id="@+id/transfergroup_selectedalpha"
-            android:layout_width="70dip"
-            android:layout_height="70dip"
-            android:layout_centerInParent="true"
-            android:background="@drawable/rkcloud_chat_show_selectedalpha_bg"
-            android:gravity="center"
-            android:textColor="#ffffffff"
-            android:textSize="50sp"
-            android:visibility="gone" />
+                android:id="@+id/transfergroup_emptytv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/rkcloud_chat_selectuser_data_empty"
+                android:textColor="#ff808080"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+
+        <ListView
+                android:id="@+id/transfergroup_listview"
+                style="@style/rkcloud_chat_ListviewStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:paddingLeft="0dip"
+                android:divider="@null"/>
+
+        <TextView
+                android:id="@+id/transfergroup_selectedalpha"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:layout_centerInParent="true"
+                android:background="@drawable/rkcloud_chat_show_selectedalpha_bg"
+                android:gravity="center"
+                android:textColor="#ffffffff"
+                android:textSize="50sp"
+                android:visibility="gone"/>
     </RelativeLayout>
 
     <com.rongkecloud.chat.demo.ui.widget.RKCloudChatSideBar
-        android:id="@+id/transfergroup_sidebar"
-        android:layout_width="@dimen/rkcloud_chat_sidebar_width"
-        android:layout_height="fill_parent"
-        android:layout_above="@id/footer_layout"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/layout_title"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="0dip" />
+            android:id="@+id/transfergroup_sidebar"
+            android:layout_width="@dimen/rkcloud_chat_sidebar_width"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/footer_layout"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/layout_title"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="0dip"/>
 
 </RelativeLayout>
