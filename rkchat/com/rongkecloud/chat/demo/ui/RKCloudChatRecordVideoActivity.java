@@ -362,6 +362,7 @@ public class RKCloudChatRecordVideoActivity extends RKCloudChatBaseActivity impl
 
 	private void sendRecoder()
 	{
+		mCancel.setVisibility(View.GONE);
 		// 判断文件大小
 		File file = new File(mFilePath);
 		long size = 0;
