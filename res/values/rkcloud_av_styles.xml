@@ -27,4 +27,13 @@
         <item name="android:textSize">@dimen/rkcloud_av_btn_textsize</item>
         <item name="android:textColor">@color/rkcloud_av_btn_textcolor</item>
     </style>
+
+    <style name="rkcloud_av_call_textview_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">5dip</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#61b320</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>

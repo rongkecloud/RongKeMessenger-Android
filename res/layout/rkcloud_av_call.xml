@@ -103,13 +103,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/rkcloud_av_timer_margintop"
+            android:layout_marginTop="10dip"
+            android:layout_below="@+id/layout_userinfo"
             android:background="@drawable/rkcloud_av_timer_bg"
             android:gravity="center_horizontal"
-            android:paddingBottom="5dip"
-            android:paddingLeft="8dip"
-            android:paddingRight="8dip"
-            android:paddingTop="5dip"
             android:textColor="@color/rkcloud_av_timer_textcolor"
             android:textSize="@dimen/rkcloud_av_timer_textsize"
             android:visibility="gone" />
@@ -258,5 +255,60 @@
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/transparent">
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/call_text1"
+                    style="@style/rkcloud_av_call_textview_style"
+                    android:layout_weight="1"
+                    android:ellipsize="end"/>
+
+            <TextView
+                    android:id="@+id/call_text2"
+                    style="@style/rkcloud_av_call_textview_style"
+                    android:layout_weight="1"
+                    android:ellipsize="end"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/call_text3"
+                    style="@style/rkcloud_av_call_textview_style"
+                    android:layout_weight="1"
+                    android:ellipsize="end"/>
+
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                <TextView
+                        android:id="@+id/call_text4"
+                        style="@style/rkcloud_av_call_textview_style"/>
+
+                <TextView
+                        android:id="@+id/call_text5"
+                        style="@style/rkcloud_av_call_textview_style"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
