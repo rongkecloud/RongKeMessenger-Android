@@ -836,16 +836,16 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 		}
 		
 		public View getView(int arg0, View convertView, ViewGroup arg2) {	
-			if (null == convertView)
-            {
+//			if (null == convertView)
+//            {
 				convertView = getLayoutInflater().inflate(R.layout.rkcloud_chat_manage_gridview_item, null);
 				mItemBuffer = new ItemViewBuffer(convertView);
 				convertView.setTag(mItemBuffer);
-			}
-            else
-            {
-				mItemBuffer = (ItemViewBuffer) convertView.getTag();
-			}
+//			}
+//            else
+//            {
+//				mItemBuffer = (ItemViewBuffer) convertView.getTag();
+//			}
 			
 			// 获取数据
 			final String userAccount = mDatas.get(arg0);	
