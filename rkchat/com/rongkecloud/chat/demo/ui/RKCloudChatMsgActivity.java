@@ -632,7 +632,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 				}
 				int start = mSmiliesEditText.getSelectionStart();
 				Editable editable = mSmiliesEditText.getEditableText();
-				editable.insert(start, account.equals(RKCloudChatConstants.KEY_GROUP_ALL) ? getString(R.string.rkcloud_chat_all_members) : mContactManager.getContactName(account));
+				editable.insert(start, account.equals(RKCloudChatConstants.KEY_GROUP_ALL) ? getString(R.string.rkcloud_chat_all_members) + " " : mContactManager.getContactName(account) + " ");
 				mSmiliesEditText.setText(editable.toString());
 				mSmiliesEditText.setSelection(mSmiliesEditText.getText().length());
 			}
