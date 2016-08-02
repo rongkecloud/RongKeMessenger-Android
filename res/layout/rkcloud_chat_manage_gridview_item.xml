@@ -14,8 +14,8 @@
 
         <com.rongkecloud.test.ui.widget.RoundedImageView
             android:id="@+id/headerimg"
-            android:layout_width="56dip"
-            android:layout_height="56dip"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:scaleType="fitXY"
             android:background="@drawable/rkcloud_chat_img_header_default"

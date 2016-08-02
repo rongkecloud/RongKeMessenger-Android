@@ -1942,13 +1942,16 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 	 */
 	private void sendODR()
 	{
-		if (mChatClassObj == SingleChat.class)
+		if (null != mMmsManager && null != mChatClassObj)
 		{
-			mMmsManager.notifyOtherDeviceMsgHasReaded(singleId);
-		}
-		else if (mChatClassObj == GroupChat.class)
-		{
-			mMmsManager.notifyOtherDeviceMsgHasReaded(mChatId);
+			if (mChatClassObj == SingleChat.class)
+			{
+				mMmsManager.notifyOtherDeviceMsgHasReaded(singleId);
+			}
+			else if (mChatClassObj == GroupChat.class)
+			{
+				mMmsManager.notifyOtherDeviceMsgHasReaded(mChatId);
+			}
 		}
 	}
 
