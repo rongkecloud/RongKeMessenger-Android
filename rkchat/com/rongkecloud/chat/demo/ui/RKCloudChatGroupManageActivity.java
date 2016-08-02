@@ -3,11 +3,8 @@ package com.rongkecloud.chat.demo.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
+import android.os.*;
 import android.os.Handler.Callback;
-import android.os.HandlerThread;
-import android.os.Message;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
@@ -50,7 +47,7 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 	private static final int INTENT_REQUEST_CODE_SELECT_USER = 3;
 	
 	public static final String USER_INVITE_FLAG = "+1";// 邀请成员时的特殊号码
-	public static final String USER_KICK_FLAG = "-1";// 邀请成员时的特殊号码
+	public static final String USER_KICK_FLAG = "-1";// 剔除成员时的特殊号码
 	
 	// 定义查询使用的相关类型
 	private static final int QUERY_TYPE_GROUP_USERS = 1;// 获取群内所有成员
@@ -315,7 +312,9 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 				}
 				
 				String userAccount = mDatas.get(position);
-				if (userAccount.equals(USER_INVITE_FLAG)) {
+				if (userAccount.equals(USER_INVITE_FLAG))
+                {
+                    //邀请按钮被点击
 					if(!mDelStatus){
 						Intent intent = new Intent(RKCloudChatGroupManageActivity.this, RKCloudChatSelectUsersActivity.class);
 						StringBuffer existAccounts = new StringBuffer();
@@ -331,17 +330,25 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 						intent.putExtra(RKCloudChatSelectUsersActivity.INTENT_KEY_EXIST_ACCOUNTS, existAccounts.toString());
 						startActivityForResult(intent, INTENT_FORWARD_KEY_SELECT_USER);
 					}
-					
-				}else if(userAccount.equals(USER_KICK_FLAG)){
+				}
+                else if(userAccount.equals(USER_KICK_FLAG))
+                {
+                    //剔除成员时候的特殊符号
 					mDelStatus = !mDelStatus;
 					mAdapter.setDelStatus(mDelStatus);
 					mAdapter.notifyDataSetChanged();
-					
-				}else{
-					if(!mDelStatus){
+				}
+                else
+                {
+					if(!mDelStatus)
+                    {
 						mContactManager.jumpContactDetailInfoUI(RKCloudChatGroupManageActivity.this, userAccount);
-					}else{
-						if(!userAccount.equalsIgnoreCase(mCurrAccount)){
+					}
+                    else
+                    {
+                        //踢掉其他用户
+						if(!userAccount.equalsIgnoreCase(mCurrAccount))
+                        {
 							kickUser(userAccount);
 						}
 					}
@@ -565,14 +572,19 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 		// 设置群描述
 		mGroupDescTV.setText(mGroupChatObj.getGroupDescription());
 		// 设置邀请方式的显示与隐藏
-		if(!TextUtils.isEmpty(mGroupChatObj.getGroupCreater()) && mGroupChatObj.getGroupCreater().equalsIgnoreCase(mCurrAccount)){
+		if(!TextUtils.isEmpty(mGroupChatObj.getGroupCreater()) && mGroupChatObj.getGroupCreater().equalsIgnoreCase(mCurrAccount))
+        {
+            //如果当前用户是群主的话
 			mTransferGroupLayout.setVisibility(View.VISIBLE);
 			mInviteAuthLayout.setVisibility(View.VISIBLE);
 			findViewById(R.id.transferGroup_underline).setVisibility(View.VISIBLE);
 			findViewById(R.id.inviteauth_underline).setVisibility(View.VISIBLE);
 			mInviteAuth = mGroupChatObj.getInviteAuth();
 			mInviteAuthImg.setSelected(mInviteAuth);
-		}else{
+		}
+        else
+        {
+            //如果当前用户不是群主
 			mTransferGroupLayout.setVisibility(View.GONE);
 			mInviteAuthLayout.setVisibility(View.GONE);
 			findViewById(R.id.transferGroup_underline).setVisibility(View.GONE);
@@ -596,7 +608,7 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 			}
 			
 			// 如果是创建者则添加踢除功能
-			if(!TextUtils.isEmpty(mGroupChatObj.getGroupCreater()) && mGroupChatObj.getGroupCreater().equalsIgnoreCase(mCurrAccount)){
+			if(!TextUtils.isEmpty(mGroupChatObj.getGroupCreater()) && mGroupChatObj.getGroupCreater().equalsIgnoreCase(mCurrAccount) && mDatas.size() > 1){
 				mDatas.add(USER_KICK_FLAG);
 			}
 			// 添加邀请图标
@@ -824,49 +836,75 @@ public class RKCloudChatGroupManageActivity extends RKCloudChatBaseActivity impl
 		}
 		
 		public View getView(int arg0, View convertView, ViewGroup arg2) {	
-			if (null == convertView) {
+			if (null == convertView)
+            {
 				convertView = getLayoutInflater().inflate(R.layout.rkcloud_chat_manage_gridview_item, null);
 				mItemBuffer = new ItemViewBuffer(convertView);
 				convertView.setTag(mItemBuffer);
-			} else {
+			}
+            else
+            {
 				mItemBuffer = (ItemViewBuffer) convertView.getTag();
 			}
 			
 			// 获取数据
 			final String userAccount = mDatas.get(arg0);	
-			if(userAccount.equalsIgnoreCase(RKCloudChatGroupManageActivity.USER_INVITE_FLAG)){ // 邀请成员的图标
+			if(userAccount.equalsIgnoreCase(RKCloudChatGroupManageActivity.USER_INVITE_FLAG))
+            { // 邀请成员的图标
 				mItemBuffer.nameTV.setVisibility(View.INVISIBLE);
 				mItemBuffer.delIcon.setVisibility(View.GONE);
-				if(mDelStatus){
+				if(mDelStatus)
+                {
 					mItemBuffer.headerImgView.setVisibility(View.INVISIBLE);
-				}else{
+				}
+                else
+                {
 					mItemBuffer.headerImgView.setVisibility(View.VISIBLE);
 					mItemBuffer.headerImgView.setBackgroundResource(R.drawable.rkcloud_chat_img_add_user);
 				}
-				
-			}else if(userAccount.equalsIgnoreCase(RKCloudChatGroupManageActivity.USER_KICK_FLAG)){ // 删除成员的图标
+			}
+            else if(userAccount.equalsIgnoreCase(RKCloudChatGroupManageActivity.USER_KICK_FLAG))
+            { // 删除成员的图标
 				mItemBuffer.nameTV.setVisibility(View.INVISIBLE);
 				mItemBuffer.delIcon.setVisibility(View.GONE);
 				
 				mItemBuffer.headerImgView.setVisibility(View.VISIBLE);
 				mItemBuffer.headerImgView.setBackgroundResource(R.drawable.rkcloud_chat_img_minus_user);
 				
-			}else{
+			}
+            else
+            {
 				RKCloudChatContact contactObj = mContacts.get(userAccount);
 				// 设置名称
 				mItemBuffer.nameTV.setVisibility(View.VISIBLE);
 				mItemBuffer.nameTV.setText(null!=contactObj ? contactObj.getShowName() : userAccount); 
 				// 设置头像
 				mItemBuffer.headerImgView.setVisibility(View.VISIBLE);
-				mItemBuffer.headerImgView.setBackgroundResource(R.drawable.rkcloud_chat_img_header_default);
-				if(null!=contactObj && !TextUtils.isEmpty(contactObj.getHeaderThumbImagePath())){
+				if(null!=contactObj && !TextUtils.isEmpty(contactObj.getHeaderThumbImagePath()))
+                {
 					RKCloudChatImageRequest imageReq = new RKCloudChatImageRequest(IMAGE_REQUEST_TYPE.GET_CONTACT_HEADERIMG, contactObj.getHeaderThumbImagePath(), userAccount);
 					// 如果在缓存中则直接设置图片
 					RKCloudChatImageResult imgResult = RKCloudChatImageAsyncLoader.getInstance(RKCloudChatGroupManageActivity.this).sendPendingRequestQuryCache(imageReq);
-					if(null!=imgResult && null!=imgResult.resource){
-						mItemBuffer.headerImgView.setImageDrawable(imgResult.resource);
-					}	
+					if(null!=imgResult && null!=imgResult.resource)
+                    {
+                        if(Build.VERSION.SDK_INT >= 16)
+                        {
+                            mItemBuffer.headerImgView.setBackground(imgResult.resource);
+                        }
+                        else
+                        {
+                            mItemBuffer.headerImgView.setBackgroundDrawable(imgResult.resource);
+                        }
+					}
+                    else
+                    {
+                        mItemBuffer.headerImgView.setBackgroundResource(R.drawable.rkcloud_chat_img_header_default);
+                    }
 				}
+                else
+                {
+                    mItemBuffer.headerImgView.setBackgroundResource(R.drawable.rkcloud_chat_img_header_default);
+                }
 				// 设置删除图标是否显示
 				mItemBuffer.delIcon.setVisibility(!mDelStatus || userAccount.equalsIgnoreCase(mCurrAccount) ? View.GONE : View.VISIBLE);
 			}
