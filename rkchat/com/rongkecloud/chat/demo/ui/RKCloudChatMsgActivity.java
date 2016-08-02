@@ -208,14 +208,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 		initListeners();
 		initData(savedInstanceState, getIntent());
 		mMsgInstance = this;
-		if (mChatClassObj == SingleChat.class)
-		{
-			mMmsManager.notifyOtherDeviceMsgHasReaded(singleId);
-		}
-		else if (mChatClassObj == GroupChat.class)
-		{
-			mMmsManager.notifyOtherDeviceMsgHasReaded(mChatId);
-		}
 	}
 
 	@Override
@@ -274,6 +266,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 		}
 
 		jumpListBottom();
+		sendODR();
 	}
 
 	@Override
@@ -1945,6 +1938,21 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 	}
 
 	/*
+	 * 发送ODR
+	 */
+	private void sendODR()
+	{
+		if (mChatClassObj == SingleChat.class)
+		{
+			mMmsManager.notifyOtherDeviceMsgHasReaded(singleId);
+		}
+		else if (mChatClassObj == GroupChat.class)
+		{
+			mMmsManager.notifyOtherDeviceMsgHasReaded(mChatId);
+		}
+	}
+
+	/*
 	 * 添加消息
 	 */
 	private synchronized void addMsg(RKCloudChatBaseMessage msgObj, boolean needShowBottom)
@@ -2431,8 +2439,8 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 						showTipMsg(newMsgObj);
 					}
 				}
+				sendODR();
 			}
-
 		}
 		else if (RKCloudChatUiHandlerMessage.CALLBACK_RECEIVED_MMS == what)
 		{ // 接收一条消息
@@ -2449,8 +2457,8 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 					addMsg(msgObj, false);
 					showTipMsg(msgObj);
 				}
+				sendODR();
 			}
-
 		}
 		else if (RKCloudChatUiHandlerMessage.ADD_MSG_TO_LOCALDB == what)
 		{ // 向DB表中插入一条消息
