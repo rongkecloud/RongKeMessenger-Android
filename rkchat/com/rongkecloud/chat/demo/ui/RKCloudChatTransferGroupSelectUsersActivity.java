@@ -31,11 +31,14 @@ import com.rongkecloud.chat.interfaces.RKCloudChatRequestCallBack;
 import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.ui.widget.RoundedImageView;
+import com.rongkecloud.test.utility.Print;
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBaseActivity implements ImageLoadedCompleteDelayNotify
 {
@@ -250,6 +253,31 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 				mDatas.add(mContactManager.getContactInfo(account));
 				mAllDatas.add(mContactManager.getContactInfo(account));
 			}
+			Collections.sort(mDatas, new Comparator<RKCloudChatContact>()
+			{
+				@Override public int compare(RKCloudChatContact lhs, RKCloudChatContact rhs)
+				{
+					String lName = getFirstChar(lhs);
+					String rName = getFirstChar(rhs);
+					if(lName.equals(rName))return 0;
+					if("#".equals(lName))return -1;
+					if("#".equals(rName))return 1;
+					return lName.compareTo(rName);
+				}
+			});
+
+			Collections.sort(mAllDatas, new Comparator<RKCloudChatContact>()
+			{
+				@Override public int compare(RKCloudChatContact lhs, RKCloudChatContact rhs)
+				{
+					String lName = getFirstChar(lhs);
+					String rName = getFirstChar(rhs);
+					if(lName.equals(rName))return 0;
+					if("#".equals(lName))return -1;
+					if("#".equals(rName))return 1;
+					return lName.compareTo(rName);
+				}
+			});
 		}
 
 		mAdapter = new RKCloudChatSelectUsersAdapter();
@@ -508,23 +536,62 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 			}
 		}
 
-		private String getFirstChar(RKCloudChatContact obj)
+//		private String getFirstChar(RKCloudChatContact obj)
+//		{
+//			String s = !TextUtils.isEmpty(obj.getSortKey()) ? obj.getSortKey() : obj.rkAccount;
+//			if (!TextUtils.isEmpty(s))
+//			{
+//				char first = s.charAt(0);
+//				if ((first >= 'A' && first <= 'Z') || (first >= 'a' && first <= 'z'))
+//				{
+//					return s.substring(0, 1).toUpperCase();
+//				}
+//				else
+//				{
+//					return "#";
+//				}
+//			}
+//			return "";
+//		}
+
+
+	}
+
+	private String getFirstChar(RKCloudChatContact obj)
+	{
+		char name = 0;
+		String s = !TextUtils.isEmpty(obj.getSortKey()) ? obj.getSortKey() : obj.rkAccount;
+		if (!TextUtils.isEmpty(s))
 		{
-			String s = !TextUtils.isEmpty(obj.getSortKey()) ? obj.getSortKey() : obj.rkAccount;
-			if (!TextUtils.isEmpty(s))
+			HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();// jar包
+			// 汉字输出转码；
+			defaultFormat.setCaseType(HanyuPinyinCaseType.UPPERCASE);// 设置成大写字母；
+			defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+			try
 			{
-				char first = s.charAt(0);
-				if ((first >= 'A' && first <= 'Z') || (first >= 'a' && first <= 'z'))
+				if (null != PinyinHelper.toHanyuPinyinStringArray(s.charAt(0), defaultFormat))
 				{
-					return s.substring(0, 1).toUpperCase();
+					name = PinyinHelper.toHanyuPinyinStringArray(s.charAt(0), defaultFormat)[0].charAt(0);
 				}
 				else
 				{
-					return "#";
+					name = s.charAt(0);
 				}
 			}
-			return "";
+			catch (BadHanyuPinyinOutputFormatCombination e)
+			{
+				e.printStackTrace();
+			}
+			if((name >= 'A' && name <= 'Z') || (name >= 'a' && name <= 'z'))
+			{
+				return String.valueOf(name).toUpperCase();
+			}
+			else
+			{
+				return "#";
+			}
 		}
+		return String.valueOf(name);
 	}
 
 }

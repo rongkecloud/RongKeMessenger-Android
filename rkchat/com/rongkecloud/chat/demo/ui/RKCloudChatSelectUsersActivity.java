@@ -1,9 +1,6 @@
 package com.rongkecloud.chat.demo.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,6 +45,11 @@ import com.rongkecloud.chat.demo.ui.widget.RKCloudChatSideBar;
 import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.ui.widget.RoundedImageView;
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 public class RKCloudChatSelectUsersActivity extends RKCloudChatBaseActivity implements ImageLoadedCompleteDelayNotify{	
 	public static final String INTENT_KEY_EXIST_ACCOUNTS = "exist_accounts";// 已经存在的账号，多个之间用半角逗号分隔，注意：已存在的账号禁止执行选中或取消选中操作
@@ -428,6 +430,18 @@ public class RKCloudChatSelectUsersActivity extends RKCloudChatBaseActivity impl
 			if(null!=datas && datas.size()>0){
 				mAllContacts.addAll(datas);
 			}
+			Collections.sort(mAllContacts, new Comparator<RKCloudChatContact>()
+			{
+				@Override public int compare(RKCloudChatContact lhs, RKCloudChatContact rhs)
+				{
+					String lName = getFirstChar(lhs);
+					String rName = getFirstChar(rhs);
+					if(lName.equals(rName))return 0;
+					if("#".equals(lName))return -1;
+					if("#".equals(rName))return 1;
+					return lName.compareTo(rName);
+				}
+			});
 			mLoadingPB.setVisibility(View.GONE);
 			startQuery(QUERY_TYPE_SEARCH);
 			break;
@@ -438,6 +452,18 @@ public class RKCloudChatSelectUsersActivity extends RKCloudChatBaseActivity impl
 			if(null!=data2 && data2.size()>0){
 				mDatas.addAll(data2);
 			}
+			Collections.sort(mDatas, new Comparator<RKCloudChatContact>()
+			{
+				@Override public int compare(RKCloudChatContact lhs, RKCloudChatContact rhs)
+				{
+					String lName = getFirstChar(lhs);
+					String rName = getFirstChar(rhs);
+					if(lName.equals(rName))return 0;
+					if("#".equals(lName))return -1;
+					if("#".equals(rName))return 1;
+					return lName.compareTo(rName);
+				}
+			});
 			mAdapter.notifyDataSetChanged();
 			mNoDataTV.setVisibility(mDatas.size()>0 ? View.GONE : View.VISIBLE);
 			break;
@@ -612,20 +638,58 @@ public class RKCloudChatSelectUsersActivity extends RKCloudChatBaseActivity impl
 			}
 		}
 		
-		private String getFirstChar (RKCloudChatContact obj){
-			String s = !TextUtils.isEmpty(obj.getSortKey()) ? obj.getSortKey() : obj.rkAccount;
-			if(!TextUtils.isEmpty(s)){
-				char first = s.charAt(0);
-				if((first>='A' && first<='Z') || (first>='a' && first<='z')){
-					return s.substring(0, 1).toUpperCase();
-				} else {
-					return "#";
+//		private String getFirstChar (RKCloudChatContact obj){
+//			String s = !TextUtils.isEmpty(obj.getSortKey()) ? obj.getSortKey() : obj.rkAccount;
+//			if(!TextUtils.isEmpty(s)){
+//				char first = s.charAt(0);
+//				if((first>='A' && first<='Z') || (first>='a' && first<='z')){
+//					return s.substring(0, 1).toUpperCase();
+//				} else {
+//					return "#";
+//				}
+//			}
+//			return "";
+//		}
+	}
+
+	private String getFirstChar(RKCloudChatContact obj)
+	{
+		char name = 0;
+		String s = !TextUtils.isEmpty(obj.getSortKey()) ? obj.getSortKey() : obj.rkAccount;
+		if (!TextUtils.isEmpty(s))
+		{
+			HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();// jar包
+			// 汉字输出转码；
+			defaultFormat.setCaseType(HanyuPinyinCaseType.UPPERCASE);// 设置成大写字母；
+			defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+			try
+			{
+				if (null != PinyinHelper.toHanyuPinyinStringArray(s.charAt(0), defaultFormat))
+				{
+					name = PinyinHelper.toHanyuPinyinStringArray(s.charAt(0), defaultFormat)[0].charAt(0);
+				}
+				else
+				{
+					name = s.charAt(0);
 				}
 			}
-			return "";
+			catch (BadHanyuPinyinOutputFormatCombination e)
+			{
+				e.printStackTrace();
+			}
+			if((name >= 'A' && name <= 'Z') || (name >= 'a' && name <= 'z'))
+			{
+				return String.valueOf(name).toUpperCase();
+			}
+			else
+			{
+				return "#";
+			}
 		}
+		return String.valueOf(name);
 	}
-	
+
+
 	private class RKCloudChatHasSelectedUsersAdapter extends BaseAdapter {
 		private ItemViewBuffer mItemBuffer;
 

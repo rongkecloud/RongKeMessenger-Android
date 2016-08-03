@@ -61,7 +61,25 @@ public class ContactInfo extends RKCloudChatContact implements Parcelable {
 	
 	@Override
 	public String getSortKey() {
-		return mAccount;
+		if (!TextUtils.isEmpty(mRemark)) {
+			return mRemark;
+		} else if(!TextUtils.isEmpty(mRealName)){
+			return mRealName;
+		}else if(!TextUtils.isEmpty(mAccount)){
+			String currAccount = AccountManager.getInstance().getAccount();
+			if(mAccount.equalsIgnoreCase(currAccount)){
+				return currAccount;
+			}else{
+				return mAccount;
+			}
+		}else{
+			String currAccount = AccountManager.getInstance().getAccount();
+			if(rkAccount.equalsIgnoreCase(currAccount)){
+				return currAccount;
+			}else{
+				return rkAccount;
+			}
+		}
 	}
 
 	@Override
