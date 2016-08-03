@@ -265,7 +265,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			mEnterMeetingTip.setVisibility(View.GONE);
 		}
 
-		jumpListBottom();
+//		jumpListBottom();
 		sendODR();
 	}
 
