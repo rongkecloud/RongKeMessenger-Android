@@ -250,8 +250,17 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 		{
 			for (String account : tempList)
 			{
-				mDatas.add(mContactManager.getContactInfo(account));
-				mAllDatas.add(mContactManager.getContactInfo(account));
+				if(null != mContactManager.getContactInfo(account))
+				{
+					mDatas.add(mContactManager.getContactInfo(account));
+					mAllDatas.add(mContactManager.getContactInfo(account));
+				}
+				else
+				{
+					RKCloudChatContact mInfo = new RKCloudChatContact();
+					mInfo.rkAccount = account;
+				}
+
 			}
 			Collections.sort(mDatas, new Comparator<RKCloudChatContact>()
 			{
