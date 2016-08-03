@@ -1,8 +1,5 @@
 package com.rongke.cloud.av.demo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -19,26 +16,16 @@ import android.os.Message;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.SurfaceView;
-import android.view.View;
+import android.view.*;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.rongke.cloud.av.demo.entity.RKCloudAVContact;
 import com.rongke.cloud.av.demo.tools.RKCloudAVUtils;
 import com.rongke.cloud.av.demo.ui.RKCloudAVCallLogListActivity;
 import com.rongke.cloud.av.demo.ui.RKCloudAVDemoActivity;
-import com.rongkecloud.av.RKCloudAV;
-import com.rongkecloud.av.RKCloudAVCallInfo;
-import com.rongkecloud.av.RKCloudAVCallLog;
-import com.rongkecloud.av.RKCloudAVCallState;
-import com.rongkecloud.av.RKCloudAVErrorCode;
+import com.rongkecloud.av.*;
 import com.rongkecloud.av.interfaces.RKCloudAVNewCallCallBack;
 import com.rongkecloud.av.interfaces.RKCloudAVStateCallBack;
 import com.rongkecloud.chat.LocalMessage;
@@ -49,6 +36,9 @@ import com.rongkecloud.chat.demo.RKCloudChatMmsManager;
 import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.sdkbase.RKCloudLog;
 import com.rongkecloud.test.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RKCloudAVDemoManager implements RKCloudAVNewCallCallBack{
 	private static final String TAG = RKCloudAVDemoManager.class.getSimpleName();	
@@ -356,7 +346,8 @@ public class RKCloudAVDemoManager implements RKCloudAVNewCallCallBack{
 						content = context.getString(R.string.rkcloud_av_callfailed_reject);
 						mmsContent = context.getString(R.string.rkcloud_av_msg_caller_calleereject);
 						break;	
-						
+
+                    case RKCloudAVErrorCode.AV_CALLEE_ANSWER_TIMEOUT:
 					case RKCloudAVErrorCode.AV_CALLER_CANCEL:
 						content = context.getString(R.string.rkcloud_av_callfailed_cancel);
 						mmsContent = context.getString(R.string.rkcloud_av_msg_caller_callcanel);
@@ -622,7 +613,7 @@ public class RKCloudAVDemoManager implements RKCloudAVNewCallCallBack{
 	
 	/**
 	 * 控制免提的打开与关闭操作
-	 * @param isOpen
+	 * @param handfree
 	 */
 	public void handFree(boolean handfree){
 		mHandFreeStatus = handfree;
