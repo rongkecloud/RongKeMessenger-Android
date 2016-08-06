@@ -259,6 +259,8 @@ public class RKCloudChatTransferGroupSelectUsersActivity extends RKCloudChatBase
 				{
 					RKCloudChatContact mInfo = new RKCloudChatContact();
 					mInfo.rkAccount = account;
+					mDatas.add(mInfo);
+					mAllDatas.add(mInfo);
 				}
 
 			}

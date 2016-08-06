@@ -67,7 +67,6 @@
                     android:id="@+id/tv_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="aaaaaaaaa"
                     android:singleLine="true"
                     android:textSize="@dimen/rkcloud_chat_msg_tip_textsize"
                     android:textColor="@color/rkcloud_chat_msg_name_textcolor"
