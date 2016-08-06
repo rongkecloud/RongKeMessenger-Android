@@ -187,7 +187,10 @@ public class RKCloudAVDemoManager implements RKCloudAVNewCallCallBack{
 						mmsContent = mContext.getString(R.string.rkcloud_av_msg_callmissed);
 						isNotify = true;
 						break;
-						
+                    case RKCloudAVErrorCode.AV_CALL_OTHER_FAIL:
+                        mmsContent =  mContext.getString(R.string.rkcloud_av_msg_callmissed);
+                        break;
+
 					case RKCloudAVErrorCode.AV_CALLER_CANCEL:
 						content = mContext.getString(R.string.rkcloud_av_callfailed_cancel);
 						mmsContent = mContext.getString(R.string.rkcloud_av_msg_callmissed);
