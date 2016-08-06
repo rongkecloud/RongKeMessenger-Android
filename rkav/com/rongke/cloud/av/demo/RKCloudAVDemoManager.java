@@ -541,8 +541,7 @@ public class RKCloudAVDemoManager implements RKCloudAVNewCallCallBack{
 		if(-1 != mCameraId){
 			RKCloudAV.rkCloudAVManager.setCamera(mCameraId);
 		}
-		RKCloudAV.rkCloudAVManager.startVideo();
-		
+
 		mLocalSurfaceView = RKCloudAV.rkCloudAVManager.getLocalRenderer();
 		mRemoteSurfaceView = RKCloudAV.rkCloudAVManager.getRemoteRenderer();
 		// 创建悬浮窗
