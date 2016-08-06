@@ -356,7 +356,7 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			if (!TextUtils.isEmpty(content))
 			{
 				/*
-				 * TODO 先判断是都包含@all 如果是直接传的全部 如果不是 在@单个成员 参数 content
+				 * 先判断是都包含@all 如果是直接传的全部 如果不是 在@单个成员 参数 content
 				 * list<String> 群成员账号数据
 				 */
 				TextMessage textObj = TextMessage.buildMsg(mChatId, content);
