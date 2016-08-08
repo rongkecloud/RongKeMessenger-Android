@@ -2006,10 +2006,17 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			TextMessage msg = (TextMessage) msgObj;
 			if (!TextUtils.isEmpty(msg.getAtUser()))
 			{
+				String currAccount = RKCloud.getUserName();
 				// @ all的处理
 				if (msg.getAtUser().contains(RKCloudChatConstants.KEY_GROUP_ALL))
 				{
-					RKCloudDemo.config.put(chatObj.getChatId(), msg.getMsgSerialNum());
+					if (!msgObj.getSender().equals(currAccount))
+					{
+						/**
+						 * 是为了避免 群主自己@所有成员之后，群主自己还显示“[有人@我]”
+						 */
+						RKCloudDemo.config.put(chatObj.getChatId(), msg.getMsgSerialNum());
+					}
 				}
 				else
 				{
@@ -2017,7 +2024,6 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 					try
 					{
 						JSONArray array = new JSONArray(msg.getAtUser());
-						String currAccount = RKCloud.getUserName();
 						/**
 						 * 是为了避免 群主自己@所有成员之后，群主自己还显示“[有人@我]”
 						 */
