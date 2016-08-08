@@ -38,9 +38,7 @@ import org.webrtc.StatsReport;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RKCloudAVDemoActivity extends Activity implements OnClickListener, SensorEventListener{
 	private static final String TAG = RKCloudAVDemoActivity.class.getSimpleName();
@@ -174,116 +172,225 @@ public class RKCloudAVDemoActivity extends Activity implements OnClickListener, 
 		}
 	};
 
-	public void updateEncoderStatistics(final StatsReport[] reports) {
+    private static final Set<String> send = new HashSet<>();
+    private static final Set<String>reciver = new HashSet<>();
+    private static final Set<String>connStat = new HashSet<>();
+    private static final Set<String>rates = new HashSet<>();
 
-		final StringBuilder encoderStat = new StringBuilder(128);
-		final StringBuilder bweStat = new StringBuilder();
-		final StringBuilder connectionStat = new StringBuilder();
-		final StringBuilder videoSendStat = new StringBuilder();
-		final StringBuilder videoRecvStat = new StringBuilder();
-		String fps = null;
-		String targetBitrate = null;
-		String actualBitrate = null;
+    private boolean isShowSendStat(String name)
+    {
+        if(send.size() == 0)
+        {
+            send.add("codecImplementationName");
+            send.add("mediaType");
+            send.add("ssrc");
+            send.add("transportId");
+            send.add("AdaptationChanges");
+            send.add("BandwidthLimitedResolution");
+            send.add("AvgEncodeMs");
+            send.add("CpuLimitedResolution");
+            send.add("EncodeUsagePercent");
+            send.add("FirsReceived");
+            send.add("NacksReceived");
+            send.add("PlisReceived");
+            send.add("Rtt");
+            send.add("TrackId");
+            send.add("ViewLimitedResolution");
+        }
+        return !send.contains(name);
+    }
 
-		for (StatsReport report : reports) {
-			if (report.type.equals("ssrc") && report.id.contains("ssrc")
-					&& report.id.contains("send")) {
-				// Send video statistics.
-				Map<String, String> reportMap = getReportMap(report);
-				String trackId = reportMap.get("googTrackId");
-				if (trackId != null && trackId.contains(PeerConnectionClient.VIDEO_TRACK_ID)) {
-					fps = reportMap.get("googFrameRateSent");
-					videoSendStat.append(report.id).append("\n");
-					for (StatsReport.Value value : report.values) {
-						String name = value.name.replace("goog", "");
-						videoSendStat.append(name).append("=").append(value.value).append("\n");
-					}
-				}
-			} else if (report.type.equals("ssrc") && report.id.contains("ssrc")
-					&& report.id.contains("recv")) {
-				// Receive video statistics.
-				Map<String, String> reportMap = getReportMap(report);
-				// Check if this stat is for video track.
-				String frameWidth = reportMap.get("googFrameWidthReceived");
-				if (frameWidth != null) {
-					videoRecvStat.append(report.id).append("\n");
-					for (StatsReport.Value value : report.values) {
-						String name = value.name.replace("goog", "");
-						videoRecvStat.append(name).append("=").append(value.value).append("\n");
-					}
-				}
-			} else if (report.id.equals("bweforvideo")) {
-				// BWE statistics.
-				Map<String, String> reportMap = getReportMap(report);
-				targetBitrate = reportMap.get("googTargetEncBitrate");
-				actualBitrate = reportMap.get("googActualEncBitrate");
+    private boolean isShowReciveStat(String name)
+    {
+        if(reciver.size() == 0)
+        {
+            reciver.add("codecImplementationName");
+            reciver.add("mediaType");
+            reciver.add("ssrc");
+            reciver.add("transportId");
+            reciver.add("CaptureStartNtpTimeMs");
+            reciver.add("FirsSent");
+            reciver.add("TrackId");
+            reciver.add("TargetDelayMs");
+            reciver.add("RenderDelayMs");
+            reciver.add("PlisSent");
+            reciver.add("NacksSent");
+            reciver.add("MinPlayoutDelayMs");
+            reciver.add("MaxDecodeMs");
+            reciver.add("JitterBufferMs");
+            reciver.add("FrameRateDecoded");
+        }
+        return !reciver.contains(name);
+    }
 
-				bweStat.append(report.id).append("\n");
-				for (StatsReport.Value value : report.values) {
-					String name = value.name.replace("goog", "").replace("Available", "");
-					bweStat.append(name).append("=").append(value.value).append("\n");
-				}
-			} else if (report.type.equals("googCandidatePair")) {
-				// Connection statistics.
-				Map<String, String> reportMap = getReportMap(report);
-				String activeConnection = reportMap.get("googActiveConnection");
-				if (activeConnection != null && activeConnection.equals("true")) {
-					connectionStat.append(report.id).append("\n");
-					for (StatsReport.Value value : report.values) {
-						String name = value.name.replace("goog", "");
-						connectionStat.append(name).append("=").append(value.value).append("\n");
-					}
-				}
-			}
-		}
+
+    private boolean isConnStat(String name)
+    {
+        if(connStat.size() == 0)
+        {
+            connStat.add("ActiveConnection");
+            connStat.add("Readable");
+            connStat.add("ChannelId");
+            connStat.add("localCandidateId");
+            connStat.add("remoteCandidateId");
+            connStat.add("Rtt");
+            connStat.add("packetsDiscardedOnSend");
+            connStat.add("TransportType");
+            connStat.add("Writable");
+        }
+        return !connStat.contains(name);
+    }
+
+    private boolean isRateStat(String name)
+    {
+        return true;
+    }
+
+
+
+
+
+
+
+
+    public void updateEncoderStatistics(final StatsReport[] reports) {
+
+        final StringBuilder encoderStat = new StringBuilder(128);
+        final StringBuilder bweStat = new StringBuilder();
+        final StringBuilder connectionStat = new StringBuilder();
+        final StringBuilder videoSendStat = new StringBuilder();
+        final StringBuilder videoRecvStat = new StringBuilder();
+        String fps = null;
+        String targetBitrate = null;
+        String actualBitrate = null;
+
+        for (StatsReport report : reports) {
+            if (report.type.equals("ssrc") && report.id.contains("ssrc") && report.id.contains("send"))
+            {
+                // Send video statistics.
+                Map<String, String> reportMap = getReportMap(report);
+                String trackId = reportMap.get("googTrackId");
+                if (trackId != null && trackId.contains(PeerConnectionClient.VIDEO_TRACK_ID))
+                {
+                    fps = reportMap.get("googFrameRateSent");
+                    //videoSendStat.append(report.id).append("\n");
+                    for (StatsReport.Value value : report.values)
+                    {
+                        String name = value.name.replace("goog", "");
+                        if(isShowSendStat(name))
+                        {
+                            videoSendStat.append(name).append("=").append(value.value).append("\n");
+                        }
+                    }
+                }
+            } else if (report.type.equals("ssrc") && report.id.contains("ssrc")
+                    && report.id.contains("recv"))
+            {
+                // Receive video statistics.
+                Map<String, String> reportMap = getReportMap(report);
+                // Check if this stat is for video track.
+                String frameWidth = reportMap.get("googFrameWidthReceived");
+                if (frameWidth != null)
+                {
+//					videoRecvStat.append(report.id).append("\n");
+                    for (StatsReport.Value value : report.values)
+                    {
+                        String name = value.name.replace("goog", "");
+                        if(isShowReciveStat(name))
+                            videoRecvStat.append(name).append("=").append(value.value).append("\n");
+                    }
+                }
+            } else if (report.id.equals("bweforvideo")) {
+                // BWE statistics.
+                Map<String, String> reportMap = getReportMap(report);
+                targetBitrate = reportMap.get("googTargetEncBitrate");
+                actualBitrate = reportMap.get("googActualEncBitrate");
+
+//				bweStat.append(report.id).append("\n");
+                for (StatsReport.Value value : report.values)
+                {
+                    String name = value.name.replace("goog", "").replace("Available", "");
+                    if(isRateStat(name))
+                        bweStat.append(name).append("=").append(value.value).append("\n");
+                }
+            } else if (report.type.equals("googCandidatePair"))
+            {
+                // Connection statistics.
+                Map<String, String> reportMap = getReportMap(report);
+                String activeConnection = reportMap.get("googActiveConnection");
+                if (activeConnection != null && activeConnection.equals("true"))
+                {
+//					connectionStat.append(report.id).append("\n");
+                    for (StatsReport.Value value : report.values)
+                    {
+                        String name = value.name.replace("goog", "");
+                        if(isConnStat(name))
+                            connectionStat.append(name).append("=").append(value.value).append("\n");
+                    }
+                }
+            }
+        }
 //		mAVTextView.setText(bweStat.toString());
 //		hudViewConnection.setText(connectionStat.toString());
 //		hudViewVideoSend.setText(videoSendStat.toString());
 //		hudViewVideoRecv.setText(videoRecvStat.toString());
 
-		if (true) {
-			if (fps != null) {
-				encoderStat.append("Fps:  ").append(fps).append("\n");
-			}
-			if (targetBitrate != null) {
-				encoderStat.append("Target BR: ").append(targetBitrate).append("\n");
-			}
-			if (actualBitrate != null) {
-				encoderStat.append("Actual BR: ").append(actualBitrate).append("\n");
-			}
-		}
+        if (true) {
+            if (fps != null) {
+                encoderStat.append("Fps:  ").append(fps).append("\n");
+            }
+            if (targetBitrate != null) {
+                encoderStat.append("Target BR: ").append(targetBitrate).append("\n");
+            }
+            if (actualBitrate != null) {
+                encoderStat.append("Actual BR: ").append(actualBitrate).append("\n");
+            }
+        }
 
-		if (cpuMonitor.sampleCpuUtilization()) {
-			encoderStat.append("CPU%: ")
-					.append(cpuMonitor.getCpuCurrent()).append("/")
-					.append(cpuMonitor.getCpuAvg3()).append("/")
-					.append(cpuMonitor.getCpuAvgAll());
-		}
+        if (cpuMonitor.sampleCpuUtilization()) {
+            encoderStat.append("CPU%: ")
+                    .append(cpuMonitor.getCpuCurrent()).append("/")
+                    .append(cpuMonitor.getCpuAvg3()).append("/")
+                    .append(cpuMonitor.getCpuAvgAll());
+        }
 //		encoderStatView.setText(encoderStat.toString());
 
 //		final StringBuilder builder = new StringBuilder();
 //		builder.append("编解码和cpu使用率:").append(encoderStat);
 //		builder.append("码率:").append(bweStat).append("\n").append("链路状态:").append(connectionStat).append("发送统计:").append(videoSendStat).append("接收统计:");
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				mAVTextView5.setText("编解码和cpu使用率:" + "\n" + encoderStat.toString());
-				mAVTextView4.setText("码率:" + "\n" + bweStat.toString());
-				mAVTextView3.setText("链路状态:" + "\n" + connectionStat.toString());
-				mAVTextView1.setText("发送统计:" + "\n" + videoSendStat.toString());
-				mAVTextView2.setText("接收统计:" + "\n" + videoRecvStat.toString());
-			}
-		});
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mAVTextView5.setText("编解码和cpu使用率:" + "\n" + encoderStat.toString());
 
-	}
+                if(bweStat.length() > 0)
+                    mAVTextView4.setText("码率:" + "\n" + bweStat.toString());
+                else
+                    mAVTextView4.setVisibility(View.GONE);
 
-	private Map<String, String> getReportMap(StatsReport report) {
-		Map<String, String> reportMap = new HashMap<String, String>();
-		for (StatsReport.Value value : report.values) {
-			reportMap.put(value.name, value.value);
-		}
-		return reportMap;
-	}
+                mAVTextView2.setText("链路状态:" + "\n" + connectionStat.toString());
+
+                if(videoSendStat.length() > 0)
+                    mAVTextView1.setText("发送统计:" + "\n" + videoSendStat.toString());
+                else
+                    mAVTextView1.setVisibility(View.GONE);
+
+                if(videoRecvStat.length() > 0 )
+                    mAVTextView3.setText("接收统计:" + "\n" + videoRecvStat.toString());
+                else
+                    mAVTextView3.setVisibility(View.GONE);
+            }
+        });
+
+    }
+
+    private Map<String, String> getReportMap(StatsReport report) {
+        Map<String, String> reportMap = new HashMap<String, String>();
+        for (StatsReport.Value value : report.values) {
+            reportMap.put(value.name, value.value);
+        }
+        return reportMap;
+    }
 
 	@Override
 	protected void onPause() {
