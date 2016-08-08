@@ -35,7 +35,6 @@ import com.rongkecloud.chat.interfaces.RKCloudChatReceivedMsgCallBack;
 import com.rongkecloud.chat.interfaces.RKCloudChatRequestCallBack;
 import com.rongkecloud.chat.interfaces.RKCloudChatResult;
 import com.rongkecloud.sdkbase.RKCloud;
-import com.rongkecloud.sdkbase.RKCloudLog;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.system.RKCloudDemo;
 import com.rongkecloud.test.ui.MainActivity;
@@ -776,7 +775,6 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 		{
 			return new ArrayList<>();
 		}
-		RKCloudLog.e(TAG, "getChatMsgs=====================================");
 		final CountDownLatch countDownLatch = new CountDownLatch(1);
 		final List<RKCloudChatBaseMessage> messages = new ArrayList<>();
 		mChatManager.queryChatMsgs(chatId, chatType, msgId, limit, new RKCloudChatResult<List<RKCloudChatBaseMessage>>()
@@ -784,7 +782,6 @@ public class RKCloudChatMmsManager implements RKCloudChatReceivedMsgCallBack, RK
 			@Override
 			public void onResult(List<RKCloudChatBaseMessage> value)
 			{
-				RKCloudLog.e(TAG, "getChatMsgs==========value = " + value);
 				messages.addAll(value);
 				countDownLatch.countDown();
 			}

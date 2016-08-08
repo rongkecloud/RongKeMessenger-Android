@@ -1675,11 +1675,9 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 			}
 			else if (msg.what == QUERY_TYPE_LOAD_NEW_DATA)
 			{
-				FileLog.e(TAG, "queryNewChatMsgs---newLoadMsgCreaingId-- = " + newLoadMsgCreaingId);
 				Message message = mUiHandler.obtainMessage();
 				message.what = RKCloudChatUiHandlerMessage.MSG_LOAD_NEW_DATA_FINISHED;
 				message.obj = mMmsManager.queryNewChatMsgs(mChatId, newLoadMsgCreaingId, RKCloudChatConstants.LOAD_MSG_DEFAULT_COUNT);
-				FileLog.e(TAG, "queryNewChatMsgs---result-- = " + message.obj);
 				message.sendToTarget();
 			}
 
