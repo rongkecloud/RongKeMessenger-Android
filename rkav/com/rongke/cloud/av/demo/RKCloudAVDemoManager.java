@@ -587,7 +587,9 @@ public class RKCloudAVDemoManager implements RKCloudAVNewCallCallBack{
 			mFloatSmallImageLayout.removeAllViews();
 			
 			if(mIsCallActivityShow){
-				mFloatSmallImageLayout.setVisibility(View.GONE);	
+				mFloatSmallImageLayout.setVisibility(View.GONE);
+                removeParentView(mLocalSurfaceView);
+                removeParentView(mRemoteSurfaceView);
 				if(mFloatDefaultShowSelf){
 					mCallUiVideoLayout.addView(mRemoteSurfaceView);
 					mFloatBigImageLayout.addView(mLocalSurfaceView);
@@ -598,6 +600,8 @@ public class RKCloudAVDemoManager implements RKCloudAVNewCallCallBack{
 				}
 							 
 			}else{
+                removeParentView(mLocalSurfaceView);
+                removeParentView(mRemoteSurfaceView);
 				mFloatSmallImageLayout.setVisibility(View.VISIBLE);	
 				mFloatSmallImageLayout.addView(mLocalSurfaceView);
 				mLocalSurfaceView.setZOrderMediaOverlay(true);
@@ -605,7 +609,19 @@ public class RKCloudAVDemoManager implements RKCloudAVNewCallCallBack{
 			}
 		}
 	}
-	
+
+    private synchronized  void removeParentView(View view)
+    {
+        if(null == view)return;
+        final ViewParent parent = view.getParent();
+        if(null != parent && parent instanceof ViewGroup)
+        {
+            ViewGroup viewGroup = (ViewGroup) parent;
+            viewGroup.removeView(view);
+        }
+    }
+
+
 	/**
 	 * 被叫应答电话
 	 */
