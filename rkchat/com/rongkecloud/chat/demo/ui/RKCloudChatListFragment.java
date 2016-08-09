@@ -22,7 +22,6 @@ import android.widget.*;
 import com.rongkecloud.chat.*;
 import com.rongkecloud.chat.RKCloudChatBaseMessage.MSG_DIRECTION;
 import com.rongkecloud.chat.RKCloudChatBaseMessage.MSG_STATUS;
-import com.rongkecloud.chat.demo.RKCloudChatConstants;
 import com.rongkecloud.chat.demo.RKCloudChatContactManager;
 import com.rongkecloud.chat.demo.RKCloudChatMmsManager;
 import com.rongkecloud.chat.demo.RKCloudChatUiHandlerMessage;
@@ -39,10 +38,6 @@ import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.system.RKCloudDemo;
 import com.rongkecloud.test.ui.widget.RoundedImageView;
-import com.rongkecloud.test.utility.Print;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -877,7 +872,7 @@ public class RKCloudChatListFragment extends RKCloudChatBaseFragment implements 
 			if (null == msgObj)// || (msgObj instanceof TipMessage) || RKCloudChatConstants.FLAG_LOCAL_TIPMESSAGE.equals(msgObj.getExtension()))
 			{
 				// 提示类型的消息时不显示
-				mItemBuffer.lastMsgContentTV.setVisibility(View.GONE);
+				mItemBuffer.lastMsgContentTV.setVisibility(View.INVISIBLE);
 			}
 			else
 			{
