@@ -43,6 +43,15 @@ public class MessageManager implements RKCloudReceivedUserDefinedMsgCallBack{
 
 	@Override
 	public void onReceivedUserDefinedMsg(String sender, String content, long time) {
+
+        String rkcloudAccount = RKCloudDemo.config.getString(ConfigKey.LOGIN_NAME, null);
+        if(!TextUtils.isEmpty(sender) && sender.equals(rkcloudAccount))
+        {
+            //不接收同账号发送过来的消息
+            return;
+        }
+
+
 		if(content.startsWith(Constants.MESSGE_TYPE_ADD_REQUEST)){ // 添加好友请求
 			FriendNotify friendNotify = new FriendNotify();
 			friendNotify.account = sender;
