@@ -53,7 +53,6 @@ public class SDKManager implements RKCloudFatalExceptionCallBack
 						{
 							FileLog.d(TAG, "initSDK success.");
 							sdkInitStatus = true;
-							sdkSuccessDo();
 						}
 						else
 						{
@@ -142,6 +141,7 @@ public class SDKManager implements RKCloudFatalExceptionCallBack
 				@Override
 				public void onSuccess()
 				{
+                    sdkSuccessDo();
 					Message msg = mHandler.obtainMessage();
 					msg.what = SDK_INIT_WHAT;
 					msg.arg1 = RKCloudBaseErrorCode.RK_SUCCESS;
