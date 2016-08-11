@@ -110,6 +110,7 @@ public class RKCloudAVDemoActivity extends Activity implements OnClickListener, 
 		super.onCreate(savedInstanceState);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
 				| WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                |WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
 				| WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		setContentView(R.layout.rkcloud_av_call);
@@ -627,6 +628,7 @@ public class RKCloudAVDemoActivity extends Activity implements OnClickListener, 
 
 	private void showWidgets(){
 		RKCloudAVCallInfo avCallInfo = mAVManager.getAVCallInfo();
+        if(null == avCallInfo)return;
 		switch(avCallInfo.callState){
 		case RKCloudAVCallState.AV_CALL_STATE_PREPARING:
 			mCallStatusTV.setText(R.string.rkcloud_av_tip_caller_connect);

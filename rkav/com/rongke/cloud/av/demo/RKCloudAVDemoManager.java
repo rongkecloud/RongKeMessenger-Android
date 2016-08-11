@@ -203,6 +203,10 @@ public class RKCloudAVDemoManager implements RKCloudAVNewCallCallBack{
 							mmsContent = mContext.getString(R.string.rkcloud_av_msg_callduration, RKCloudAVUtils.secondConvertToTime(duration));
 						}
 						break;
+                        case RKCloudAVErrorCode.AV_CALLEE_OTHER_PLATFORM_ANSWER://该通话在其他终端被接听
+                            content = "该通话已经被其他终端接听";
+                            mmsContent = null;
+                            break;
 					}
 					if(null!=mmsContent){
 						// TODO 向即时通信消息表中插入记录
