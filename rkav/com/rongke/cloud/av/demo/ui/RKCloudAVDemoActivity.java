@@ -33,7 +33,6 @@ import com.rongkecloud.av.RKCloudAVCallInfo;
 import com.rongkecloud.av.RKCloudAVCallState;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.ui.widget.RoundedImageView;
-import org.appspot.apprtc.PeerConnectionClient;
 import org.webrtc.StatsReport;
 
 import java.io.File;
@@ -271,7 +270,7 @@ public class RKCloudAVDemoActivity extends Activity implements OnClickListener, 
                 // Send video statistics.
                 Map<String, String> reportMap = getReportMap(report);
                 String trackId = reportMap.get("googTrackId");
-                if (trackId != null && trackId.contains(PeerConnectionClient.VIDEO_TRACK_ID))
+                if (trackId != null && trackId.contains("ARDAMSv0"))
                 {
                     fps = reportMap.get("googFrameRateSent");
                     //videoSendStat.append(report.id).append("\n");
