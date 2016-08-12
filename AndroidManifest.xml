@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 		  package="com.rongkecloud.test"
 		  android:installLocation="auto"
-		  android:versionCode="25"
-		  android:versionName="2.3.25">
+		  android:versionCode="26"
+		  android:versionName="3.0.1">
 
 	<uses-sdk
 			android:minSdkVersion="11"
