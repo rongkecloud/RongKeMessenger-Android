@@ -14,7 +14,7 @@ interface HttpApi {
 //  public static final String ROOT_HOST_NAME = "192.168.1.166";
 //  public static final int ROOT_HOST_PORT = 8083;
 
-	public static final String API_PATH = "/rkdemo/";
+	public static final String API_PATH = "/rkdemo3/";
 	// 修改密码
 	public static final String MODIFY_PWD_URL = API_PATH + "modify_pwd.php";
 	// 注册
