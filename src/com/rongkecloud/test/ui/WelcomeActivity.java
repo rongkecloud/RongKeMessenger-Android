@@ -3,7 +3,6 @@ package com.rongkecloud.test.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
-
 import com.rongkecloud.chat.demo.ui.base.RKCloudChatBaseActivity;
 import com.rongkecloud.sdkbase.RKCloudBaseErrorCode;
 import com.rongkecloud.test.R;
@@ -11,7 +10,6 @@ import com.rongkecloud.test.entity.Account;
 import com.rongkecloud.test.manager.AccountManager;
 import com.rongkecloud.test.manager.SDKManager;
 import com.rongkecloud.test.manager.uihandlermsg.AccountUiMessage;
-import com.rongkecloud.test.system.Config;
 import com.rongkecloud.test.system.ConfigKey;
 import com.rongkecloud.test.system.RKCloudDemo;
 import com.rongkecloud.test.utility.OtherUtilities;
@@ -59,6 +57,10 @@ public class WelcomeActivity extends RKCloudChatBaseActivity{
             }else{
                 if(SDKManager.getInstance().getSDKInitStatus()){
                     mUiHandler.sendEmptyMessage(MSG_ENTER_MAIN);
+                }
+                else
+                {
+                    mUiHandler.sendEmptyMessage(MSG_ENTER_LOGIN);
                 }
             }
         }else{
