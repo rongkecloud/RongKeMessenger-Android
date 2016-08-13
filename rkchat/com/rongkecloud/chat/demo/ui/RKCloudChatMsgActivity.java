@@ -62,7 +62,6 @@ import com.rongkecloud.multiVoice.RKCloudMeetingInfo;
 import com.rongkecloud.sdkbase.RKCloud;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.system.RKCloudDemo;
-import com.rongkecloud.test.utility.FileLog;
 import org.json.JSONArray;
 
 import java.io.File;
@@ -1273,7 +1272,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 				{
 					if (0 == view.getFirstVisiblePosition() && !mLoadingHistoryData && !mLoadHistoryDataFinished)
 					{
-						FileLog.e(TAG, "gethis===============");
 						// 加载历史数据
 						mLoadingHistoryData = true;
 						mLoadingHistoryLayout.setVisibility(View.VISIBLE);
@@ -1281,7 +1279,6 @@ public class RKCloudChatMsgActivity extends RKCloudChatBaseActivity implements O
 					}
 					else if (mAllMsgsData.size() - 1 == view.getLastVisiblePosition() && !mLoadingNewData && !mLoadNewDataFinished)
 					{
-						FileLog.e(TAG, "getnewdata===============");
 						// 加载新数据
 						mLoadingNewData = true;
 						startQuery(QUERY_TYPE_LOAD_NEW_DATA);
