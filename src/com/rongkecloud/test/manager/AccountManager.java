@@ -172,7 +172,7 @@ public class AccountManager implements HttpFatalExceptionCallBack{
 						RKCloudDemo.config.put(ConfigKey.LOGIN_USER_TYPE, type);
 						RKCloudDemo.config.put(ConfigKey.LOGIN_ADD_FRIEND_PERMISSION, jsonObj.getInt("permission"));
 						
-						//RKCloudDemo.config.put(ConfigKey.ACCOUNT_HAS_NOT_EXIST, false);
+						RKCloudDemo.config.put(ConfigKey.ACCOUNT_HAS_NOT_EXIST, false);
 						
 						ContentValues cv = new ContentValues();
 						cv.put(PersonInfoColumns.USER_TYPE, type);
