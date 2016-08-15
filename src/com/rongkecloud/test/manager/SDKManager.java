@@ -107,10 +107,6 @@ public class SDKManager implements RKCloudFatalExceptionCallBack
 		FileLog.d(TAG, "initSDK--begin");
 		String rkcloudAccount = RKCloudDemo.config.getString(ConfigKey.LOGIN_NAME, null);
 		String rkcloudPwd = RKCloudDemo.config.getString(ConfigKey.LOGIN_RKCLOUD_PWD, null);
-		//RKCloud.setRootHost("101.200.143.20", 8000);/** 集测 */
-//		 RKCloud.setRootHost("192.168.1.162",8080);/**内网*/
-//		 RKCloud.setRootHost("192.168.1.166",8000);/**内网*/
-//		 RKCloud.setRootHost("101.200.143.20",8000);/**内网*/
 		RKCloud.setMiPushAppIdAndAppKey("2882303761517329291", "5761732975291");
 		if (!TextUtils.isEmpty(rkcloudAccount) && !TextUtils.isEmpty(rkcloudPwd))
 		{
