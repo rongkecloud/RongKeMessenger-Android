@@ -30,11 +30,12 @@ import com.rongkecloud.av.RKCloudAVCallInfo;
 import com.rongkecloud.av.RKCloudAVCallState;
 import com.rongkecloud.test.R;
 import com.rongkecloud.test.ui.widget.RoundedImageView;
-import org.webrtc.StatsReport;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class RKCloudAVDemoActivity extends Activity implements OnClickListener, SensorEventListener{
 	private static final String TAG = RKCloudAVDemoActivity.class.getSimpleName();
@@ -93,12 +94,6 @@ public class RKCloudAVDemoActivity extends Activity implements OnClickListener, 
 	private float mDistance;
 	private boolean mIsSensorTimerRunning = false;// 距离感应使用的定时器是否在运行
 
-	private TextView mAVTextView1;
-	private TextView mAVTextView2;
-	private TextView mAVTextView3;
-	private TextView mAVTextView4;
-	private TextView mAVTextView5;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -152,45 +147,6 @@ public class RKCloudAVDemoActivity extends Activity implements OnClickListener, 
 	}
 
     private static final Set<String> send = new HashSet<>();
-    private static final Set<String>reciver = new HashSet<>();
-    private static final Set<String>connStat = new HashSet<>();
-    private static final Set<String>rates = new HashSet<>();
-
-    private boolean isShowSendStat(String name)
-    {
-        if(send.size() == 0)
-        {
-            send.add("codecImplementationName");
-            send.add("mediaType");
-            send.add("ssrc");
-            send.add("transportId");
-            send.add("AdaptationChanges");
-            send.add("BandwidthLimitedResolution");
-            send.add("AvgEncodeMs");
-            send.add("CpuLimitedResolution");
-            send.add("EncodeUsagePercent");
-            send.add("FirsReceived");
-            send.add("NacksReceived");
-            send.add("PlisReceived");
-            send.add("Rtt");
-            send.add("TrackId");
-            send.add("ViewLimitedResolution");
-        }
-        return !send.contains(name);
-    }
-
-    private boolean isRateStat(String name)
-    {
-        return true;
-    }
-
-    private Map<String, String> getReportMap(StatsReport report) {
-        Map<String, String> reportMap = new HashMap<String, String>();
-        for (StatsReport.Value value : report.values) {
-            reportMap.put(value.name, value.value);
-        }
-        return reportMap;
-    }
 
 	@Override
 	protected void onPause() {
