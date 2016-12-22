@@ -406,6 +406,42 @@
 
 		<!-- 小米推送End -->
 
+
+
+
+
+
+
+        <!-- 华为推送start  -->
+
+        <receiver android:name="com.rongkecloud.sdkbase.RKHuaweiPushReceiver" >
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REGISTRATION" />
+                <action android:name="com.huawei.android.push.intent.RECEIVE" />
+            </intent-filter>
+            <meta-data android:name="CS_cloud_ablitity" android:value="successRateAnalytics"/>
+        </receiver>
+
+        <receiver
+                android:name="com.huawei.android.pushagent.PushEventReceiver"
+                android:process=":pushservice" >
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REFRESH_PUSH_CHANNEL" />
+                <action android:name="com.huawei.intent.action.PUSH" />
+                <action android:name="com.huawei.intent.action.PUSH_ON" />
+                <action android:name="com.huawei.android.push.PLUGIN" />
+            </intent-filter>
+        </receiver>
+
+        <!-- PushSDK:Push服务 -->
+        <service
+                android:name="com.huawei.android.pushagent.PushService"
+                android:process=":pushservice" >
+        </service>
+        <!-- 华为推送end  -->
+
+
+
 		<meta-data
 				android:name="RKCLOUD_KEY"
 				android:value="ee5646b5d8be3a57918c9857850b53be90ce1004"/>

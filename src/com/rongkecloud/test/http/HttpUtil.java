@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.security.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
@@ -46,6 +49,10 @@ import org.apache.http.protocol.HttpContext;
 
 import android.text.TextUtils;
 import android.util.Log;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 class HttpUtil {
 	private static final String TAG = HttpUtil.class.getSimpleName();
@@ -316,10 +323,18 @@ class HttpUtil {
 				}
 			});
 			ConnManagerParams.setMaxTotalConnections(params, 30);
-			SchemeRegistry supportedSchemes = new SchemeRegistry();
-			supportedSchemes.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-			supportedSchemes.register(new Scheme("Https", SSLSocketFactory.getSocketFactory(), 443));
 
+            SchemeRegistry supportedSchemes = new SchemeRegistry();
+            supportedSchemes.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+            try {
+                KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+                trustStore.load(null, null);
+                SSLSocketFactory sf = new SSLSocketFactoryImp(trustStore);
+                sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+                supportedSchemes.register(new Scheme("https", sf, 443));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 			ClientConnectionManager ccm = new ThreadSafeClientConnManager(params, supportedSchemes);
 			client = new DefaultHttpClient(ccm, params);
 			// 增加HTTP访问失败重试 机制
@@ -394,5 +409,45 @@ class HttpUtil {
 			return -1;
 		}
 	}
+
+
+    private static class SSLSocketFactoryImp extends SSLSocketFactory {
+        final SSLContext sslContext = SSLContext.getInstance("TLS");
+
+        public SSLSocketFactoryImp(KeyStore truststore) throws NoSuchAlgorithmException,
+                KeyManagementException, KeyStoreException, UnrecoverableKeyException {
+            super(truststore);
+
+            TrustManager tm = new X509TrustManager() {
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                @Override
+                public void checkClientTrusted(java.security.cert.X509Certificate[] chain,
+                                               String authType) throws java.security.cert.CertificateException {
+                }
+
+                @Override
+                public void checkServerTrusted(java.security.cert.X509Certificate[] chain,
+                                               String authType) throws java.security.cert.CertificateException {
+                }
+            };
+            sslContext.init(null, new TrustManager[] {
+                    tm
+            }, null);
+        }
+
+        @Override
+        public Socket createSocket(Socket socket, String host, int port, boolean autoClose)
+                throws IOException, UnknownHostException {
+            return sslContext.getSocketFactory().createSocket(socket, host, port, autoClose);
+        }
+
+        @Override
+        public Socket createSocket() throws IOException {
+            return sslContext.getSocketFactory().createSocket();
+        }
+    }
 
 }
