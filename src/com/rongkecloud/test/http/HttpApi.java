@@ -5,7 +5,11 @@ interface HttpApi {
 	public static final String ROOT_HOST_NAME = "demo.rongkecloud.com";
 	public static final int ROOT_HOST_PORT = 80;
 
-	public static final String API_PATH = "/rkdemo3/";
+//    public static final String ROOT_HOST_NAME = "apiqa.rongkecloud.com";
+//    public static final int ROOT_HOST_PORT = 443;
+
+
+    public static final String API_PATH = "/rkdemo3/";
 	// 修改密码
 	public static final String MODIFY_PWD_URL = API_PATH + "modify_pwd.php";
 	// 注册

@@ -125,7 +125,7 @@
             android:layout_marginLeft="75dip"
             android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
-            android:text="kdslsjgksljf考虑时间的方面了开始的方面是来得快模式可见的浪费你受得了开发能力开发那算了可烦你了开始看对方能受得了恐辐女老师看到哪里"
+            android:text=""
             android:textColor="@color/contact_remark_textcolor"
             android:textSize="@dimen/contact_detail_rematk_textsize" />
     </RelativeLayout>

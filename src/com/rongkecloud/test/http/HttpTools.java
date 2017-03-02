@@ -20,7 +20,8 @@ public class HttpTools implements HttpApi{
 	private HttpTools(Context context){
 		mKit = HttpKit.getInstance(context);
 		mHosts = new HashMap<String, HttpHost>();
-		mHosts.put(HTTPHOST_TYPE_ROOT, new HttpHost(ROOT_HOST_NAME, ROOT_HOST_PORT));
+//		mHosts.put(HTTPHOST_TYPE_ROOT, new HttpHost(ROOT_HOST_NAME, ROOT_HOST_PORT,"https"));
+		mHosts.put(HTTPHOST_TYPE_ROOT, new HttpHost(ROOT_HOST_NAME, ROOT_HOST_PORT,"http"));
 	}
 	
 	public static HttpTools getInstance(Context context){

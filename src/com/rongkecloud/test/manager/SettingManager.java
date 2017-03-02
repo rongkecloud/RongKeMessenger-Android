@@ -330,7 +330,7 @@ public class SettingManager{
 	public void downloadApk(String urlStr, long fileSize, String path) {
 		try {
 			URL url = new URL(urlStr);
-			HttpHost host = new HttpHost(url.getHost());
+			HttpHost host = new HttpHost(url.getHost(),url.getPort());
 			Request req = new Request(HttpType.DOWNLOAD_APK, host, url.getPath());
 			req.requestType = Request.RequestType.FILE;
 			req.requesterId = Constants.DOWNLOAD_APK;

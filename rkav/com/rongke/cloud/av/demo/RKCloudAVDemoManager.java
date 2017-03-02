@@ -232,8 +232,9 @@ public class RKCloudAVDemoManager implements RKCloudAVNewCallCallBack{
 					msg.sendToTarget();
 				}
 			}
-		});	
-		
+		});
+
+        mCurrCallInfo = RKCloudAV.rkCloudAVManager.getAVCallInfo();
 		showInCallNotification(callerAccount, System.currentTimeMillis());
 		initCallData(callerAccount, false, isVideo);
 		

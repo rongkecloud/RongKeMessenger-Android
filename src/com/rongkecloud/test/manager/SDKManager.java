@@ -109,6 +109,7 @@ public class SDKManager implements RKCloudFatalExceptionCallBack
 		String rkcloudPwd = RKCloudDemo.config.getString(ConfigKey.LOGIN_RKCLOUD_PWD, null);
 		RKCloud.setMiPushAppIdAndAppKey("2882303761517329291", "5761732975291");
 		RKCloud.setHuaweiPushAppId("10760441");
+//        RKCloud.setRootHost("apiqa.rongkecloud.com",443);
         // 设置Debug模式为打开状态
         RKCloud.setDebugMode(true);
 
